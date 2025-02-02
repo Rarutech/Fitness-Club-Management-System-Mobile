@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.upang.fitness_club_management_system"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.upang.fitness_club_management_system"
