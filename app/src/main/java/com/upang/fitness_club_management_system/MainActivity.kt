@@ -1,10 +1,14 @@
 package com.upang.fitness_club_management_system
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.upang.fitness_club_management_system.helper.PreferenceManager
+import com.upang.fitness_club_management_system.model.Utils
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,5 +20,23 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        saveEssen()
+        checkAuthenticationAfterDelay()
+
     }
+    private fun saveEssen() {
+        val token = intent.getStringExtra("token")
+        val email = intent.getStringExtra("email")
+
+        val preferenceManager = PreferenceManager(this)
+        token?.let { preferenceManager.saveToken(it) }
+        email?.let { preferenceManager.saveEmail(it) }
+    }
+
+    private fun checkAuthenticationAfterDelay() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            Utils.checkAuthentication(this)
+        }, 200)
+    }
+
 }

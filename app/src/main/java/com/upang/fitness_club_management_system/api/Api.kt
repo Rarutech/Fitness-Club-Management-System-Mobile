@@ -1,5 +1,7 @@
 package com.upang.fitness_club_management_system.api
 
+import com.upang.fitness_club_management_system.model.AuthRequest
+import com.upang.fitness_club_management_system.model.AuthResponse
 import com.upang.fitness_club_management_system.model.LoginRequest
 import com.upang.fitness_club_management_system.model.LoginResponse
 import retrofit2.Call
@@ -11,4 +13,10 @@ interface Api {
     @Headers("Content-Type: application/json")
     @POST("login.php")  // Adjust based on your actual API URL
     fun loginUser(@Body request: LoginRequest): Call<LoginResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("Authentication.php")
+    fun Authenticate(@Body request: AuthRequest): Call<AuthResponse>
+
+
 }

@@ -1,7 +1,5 @@
 package com.upang.fitness_club_management_system.model
 
-data class LoginResponse(
+data class AuthResponse(
     val message: String,
-    val token: String? = null,
-    val email: String
 )

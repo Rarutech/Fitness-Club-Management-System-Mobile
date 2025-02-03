@@ -10,6 +10,7 @@ object RetrofitClient {
     val gson = GsonBuilder()
         .setLenient()
         .create()
+
     val instance: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
