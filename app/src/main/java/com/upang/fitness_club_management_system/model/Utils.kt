@@ -44,6 +44,9 @@ object Utils {
 
                 } else {
                     Log.e("Authentication", "Authentication failed with response: ${response.message()}")
+                    val intent = Intent(context, LoginPage::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    context.startActivity(intent)
                 }
             }
 

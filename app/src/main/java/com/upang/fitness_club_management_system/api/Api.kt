@@ -13,11 +13,11 @@ import retrofit2.http.POST
 
 interface Api {
     @Headers("Content-Type: application/json")
-    @POST("login.php")  // Adjust based on your actual API URL
+    @POST("Api/Login.php")  // Adjust based on your actual API URL
     fun loginUser(@Body request: LoginRequest): Call<LoginResponse>
 
     @Headers("Content-Type: application/json")
-    @POST("Authentication.php")
+    @POST("Api/authentication.php")
     fun Authenticate(@Body request: AuthRequest): Call<AuthResponse>
 
     @Headers("Content-Type: application/json")
