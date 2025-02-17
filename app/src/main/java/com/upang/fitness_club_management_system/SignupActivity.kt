@@ -30,6 +30,7 @@ class SignupActivity : AppCompatActivity() {
         }
         val etFullname=findViewById<EditText>(R.id.etFullname)
         val etEmail=findViewById<EditText>(R.id.etEmail)
+        val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
         val etPassword=findViewById<EditText>(R.id.etPassword)
         val btnSignUp=findViewById<Button>(R.id.btnSignUp)
 
@@ -37,7 +38,15 @@ class SignupActivity : AppCompatActivity() {
             val email = etEmail.text.toString().trim()
             val fullname = etFullname.text.toString().trim()
             val password = etPassword.text.toString().trim()
-            SignUp(email,fullname,password)
+            val confirmPassword = etConfirmPassword.text.toString().trim()
+            if (fullname.isEmpty() || password.isEmpty() || email.isEmpty() || confirmPassword.isEmpty()) {
+                Toast.makeText(this, "All fields is required", Toast.LENGTH_SHORT).show()
+            } else if (confirmPassword != password){
+                Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                SignUp(email,fullname,password)
+            }
         }
     }
         private fun SignUp(email:String,fullname:String,password:String){

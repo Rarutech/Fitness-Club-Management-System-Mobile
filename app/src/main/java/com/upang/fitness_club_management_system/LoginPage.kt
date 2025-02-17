@@ -60,6 +60,7 @@ class LoginPage : AppCompatActivity() {
                             val intent = Intent(this@LoginPage, MainActivity::class.java)
                             intent.putExtra("token", it.token)
                             intent.putExtra("email", it.email)
+
                             startActivity(intent)
                             finish()
 

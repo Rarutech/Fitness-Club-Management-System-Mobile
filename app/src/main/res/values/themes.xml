@@ -1,8 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.FitnessClubManagementSystem" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#2196F3</item> <!-- Change to blue -->
+        <item name="colorPrimaryContainer">#1976D2</item> <!-- Darker blue -->
+        <item name="android:colorButtonNormal">#2196F3</item> <!-- Default button color -->
     </style>
 
     <style name="Theme.FitnessClubManagementSystem" parent="Base.Theme.FitnessClubManagementSystem" />
