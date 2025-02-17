@@ -55,12 +55,12 @@ class LoginPage : AppCompatActivity() {
                     val result = response.body()
                     result?.let {
                         if (it.token != null) {
-                            Log.d("Login", "Success: ${it.message}, Token: ${it.token}")
+                            Log.d("Login", "Success: ${it.message}, Token: ${it.token}, Email: ${it.email}, Role: ${it.role}")
 
                             val intent = Intent(this@LoginPage, MainActivity::class.java)
                             intent.putExtra("token", it.token)
                             intent.putExtra("email", it.email)
-
+                            intent.putExtra("role", it.role)
                             startActivity(intent)
                             finish()
 

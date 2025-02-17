@@ -29,4 +29,18 @@ class PreferenceManager(context: Context) {
     fun clearEmail() {
         prefs.edit().remove("CURRENT_EMAIL").apply()
     }
+
+    fun saveRole(role: String) {
+        prefs.edit().putString("CURRENT_ROLE", role).apply()
+    }
+
+    fun getRole(): String? {
+        return prefs.getString("CURRENT_ROLE", null)
+    }
+
+    fun clearRole() {
+        prefs.edit().remove("CURRENT_ROLE").apply()
+    }
+
+
 }
