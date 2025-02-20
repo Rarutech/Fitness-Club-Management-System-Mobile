@@ -17,10 +17,7 @@
         tools:targetApi="31">
         <activity
             android:name=".TrainerHomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".model.TrainerHomeActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SignupActivity"
             android:exported="true" />
