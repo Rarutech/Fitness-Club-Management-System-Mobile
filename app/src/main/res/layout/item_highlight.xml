@@ -8,8 +8,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvName"
+        android:text="Name"
+        android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="14sp"
+        android:textSize="20sp"
         />
     <!-- Caption -->
     <TextView
@@ -17,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
+        android:text="Caption"
         android:textColor="@android:color/black"
-        android:textStyle="bold"
         android:paddingBottom="4dp"/>
 
     <!-- RecyclerView for Images -->
@@ -28,5 +30,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:nestedScrollingEnabled="false"
-        android:orientation="vertical" />
+        android:orientation="horizontal" />
 </LinearLayout>

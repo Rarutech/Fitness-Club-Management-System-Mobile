@@ -14,8 +14,11 @@ import androidx.core.view.WindowInsetsCompat
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.model.LoginResponse
+import com.upang.fitness_club_management_system.model.SendConfirmEmailRequest
+import com.upang.fitness_club_management_system.model.SendConfirmEmailResponse
 import com.upang.fitness_club_management_system.model.SignUpRequest
 import com.upang.fitness_club_management_system.model.SignUpResponse
+import retrofit2.Callback
 import retrofit2.Response
 
 class SignupActivity : AppCompatActivity() {
@@ -35,9 +38,12 @@ class SignupActivity : AppCompatActivity() {
         val btnSignUp=findViewById<Button>(R.id.btnSignUp)
 
         btnSignUp.setOnClickListener{
+
+            val intent = Intent(this, ConfirmEmailActivity::class.java)
             val email = etEmail.text.toString().trim()
             val fullname = etFullname.text.toString().trim()
             val password = etPassword.text.toString().trim()
+
             val confirmPassword = etConfirmPassword.text.toString().trim()
             if (fullname.isEmpty() || password.isEmpty() || email.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(this, "All fields is required", Toast.LENGTH_SHORT).show()
@@ -45,36 +51,37 @@ class SignupActivity : AppCompatActivity() {
                 Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show()
             }
             else {
-                SignUp(email,fullname,password)
+                sendEmailCode(email, fullname, password)
             }
         }
     }
-        private fun SignUp(email:String,fullname:String,password:String){
-            val api = RetrofitClient.instance.create(Api::class.java)
-            val signUpRequest = SignUpRequest(fullname,email,password)
+    private fun sendEmailCode(email: String, fullname: String, password: String){
+        val api = RetrofitClient.instance.create(Api::class.java)
+        val sendConfirmEmailRequest = SendConfirmEmailRequest(email)
 
-            api.SignUp(signUpRequest).enqueue(object : retrofit2.Callback<SignUpResponse>{
-                override fun onResponse(call: retrofit2.Call<SignUpResponse>, response: Response<SignUpResponse>)
-                {
-                    if (response.isSuccessful){
-                        val result = response.body()
-                        Log.d("Signup", "Error:${response.message()} ")
-                        if (result?.message=="User created successfully"){
-                            Toast.makeText(applicationContext, "User created successfully", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@SignupActivity,LoginPage::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-                    } else {
-                        Log.d("Signup","Error:${response.message()}")
-                    }
-                }
-                override fun onFailure(call: retrofit2.Call<SignUpResponse>, t: Throwable) {
-                    Log.d("Signup","Error:${t.message}")
-                }
-            })
+        api.GetEmailCode(sendConfirmEmailRequest).enqueue(object : Callback<SendConfirmEmailResponse>{
+            override fun onResponse(call: retrofit2.Call<SendConfirmEmailResponse>, response: Response<SendConfirmEmailResponse>) {
+                if (response.isSuccessful) {
+                    val bundle = Bundle()
 
-        }
+                    bundle.putString("email",email)
+                    bundle.putString("fullname",fullname)
+                    bundle.putString("password",password)
+                    val intent = Intent(this@SignupActivity,ConfirmEmailActivity::class.java)
+                    intent.putExtras(bundle)
+                    startActivity(intent)
+                    finish()
+                }
+                else {
+                    Log.e("EMAIL CODE","Error: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<SendConfirmEmailResponse>, t: Throwable) {
+                Log.e("EMAIL CODE", "Error ${t.message}")
+            }
+        })
+    }
 }
 
 

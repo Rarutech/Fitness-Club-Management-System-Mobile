@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://192.168.206.15/PumpingIronGym/"
+    private const val BASE_URL = "http://192.168.171.15/PumpingIronGym/"
 
     val gson = GsonBuilder()
         .setLenient()
