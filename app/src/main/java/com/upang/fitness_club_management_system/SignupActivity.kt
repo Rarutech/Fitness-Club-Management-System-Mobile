@@ -21,6 +21,8 @@ import com.upang.fitness_club_management_system.model.SignUpResponse
 import retrofit2.Callback
 import retrofit2.Response
 
+
+
 class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,6 +85,7 @@ class SignupActivity : AppCompatActivity() {
         })
     }
 }
+
 
 
 
