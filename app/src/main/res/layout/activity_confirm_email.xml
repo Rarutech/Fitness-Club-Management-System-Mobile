@@ -9,52 +9,127 @@
 
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvEmailVerification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_medium"
         android:padding="5dp"
         android:text="Email Verification"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="35sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvVerificationCation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:text="We sent a code through your email"
-        android:textSize="20sp"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:text="Please enter the 4 digit code sent to your email."
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.425" />
 
-    <EditText
-        android:id="@+id/etCode"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="84dp"
-        android:background="@drawable/circular_border"
-        android:hint="   Enter code"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etOTP1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="80dp"
+        android:height="70dp"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/email_verification_border1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etOTP2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5.5dp"
+        android:layout_marginEnd="10dp"
+        android:width="80dp"
+        android:height="70dp"
+        android:background="@drawable/email_verification_border2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.370"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etOTP3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="5.5dp"
+        android:width="80dp"
+        android:height="70dp"
+        android:background="@drawable/email_verification_border3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.650"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etOTP4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="80dp"
+        android:height="70dp"
+        android:layout_marginStart="80dp"
+        android:background="@drawable/email_verification_border4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
 
     <Button
         android:id="@+id/btnConfirmEmail"
+        android:layout_width="350dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_height="wrap_content"
+        android:height="56dp"
+        android:background="@drawable/edittext_border"
+        android:gravity="center"
+        android:text="Verify"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="16sp"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.742" />
+
+    <ImageView
+        android:id="@+id/imageEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:text="Verify"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCode" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.266"
+        tools:srcCompat="@drawable/mail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
