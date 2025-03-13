@@ -32,7 +32,7 @@ class ConfirmEmailActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        etCode = findViewById(R.id.etCode)
+        //etCode = findViewById(R.id.etCode)
         btnConfirmEmail = findViewById(R.id.btnConfirmEmail)
 
         val bundle = intent.extras

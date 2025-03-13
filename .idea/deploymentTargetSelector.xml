@@ -13,13 +13,19 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="LoginPage">
+      <SelectionState runConfigName="MembershipFee">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TrainerHomeActivity">
+      <SelectionState runConfigName="MembershipFee (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TrainerScheduleActivity">
+      <SelectionState runConfigName="QRCodeMembershipFee">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="QRCodeMembershipFee (1)">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="Authentication">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
