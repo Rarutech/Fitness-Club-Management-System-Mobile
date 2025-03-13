@@ -1,0 +1,12 @@
+<resources>
+    <!-- Define custom toolbar title style  -->
+    <style name="CustomToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="fontFamily">@font/poppins_regular</item>
+
+        <!-- Font size -->
+        <item name="android:textSize">18sp</item>
+
+        <!-- Font color -->
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>
