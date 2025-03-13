@@ -18,6 +18,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".QRCodeMembershipFee"
+            android:exported="true" />
+        <activity
+            android:name=".MembershipFee"
+            android:exported="true" />
+        <activity
+            android:name=".Authentication"
+            android:exported="true" />
+        <activity
+            android:name=".WelcomePage"
+            android:exported="true" />
+        <activity
             android:name=".CreateNewPassword"
             android:exported="true" />
         <activity

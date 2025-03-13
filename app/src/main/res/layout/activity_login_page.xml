@@ -59,7 +59,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etEmail"
         android:layout_width="350dp"
-        android:layout_height="56dp"
+        android:layout_height="66dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/edittext_border"
@@ -95,7 +95,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etPassword"
         android:layout_width="350dp"
-        android:layout_height="56dp"
+        android:layout_height="66dp"
         android:background="@drawable/edittext_border"
         android:fontFamily="@font/poppins_medium"
         android:hint="Enter your password"
@@ -131,18 +131,17 @@
     <Button
         android:id="@+id/button"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:height="56dp"
+        android:layout_height="66dp"
         android:background="@drawable/blue_button"
-        android:text="Login"
         android:fontFamily="@font/poppins_medium"
+        android:text="Login"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.713" />
+        app:layout_constraintVertical_bias="0.725" />
 
     <TextView
         android:id="@+id/tvForgotPassword"
@@ -156,10 +155,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
+        app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.778" />
+        app:layout_constraintVertical_bias="0.795" />
 
     <TextView
         android:id="@+id/tvDontHaveAcc"

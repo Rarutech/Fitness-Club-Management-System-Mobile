@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".Authentication">
+
+    <ImageView
+        android:id="@+id/imageAuthenLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04"
+        app:srcCompat="@drawable/welcome_page_logo"
+        android:contentDescription="WelcomePageLogo"/>
+
+    <TextView
+        android:id="@+id/tvAuthenCaption"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="5dp"
+        android:text="Don’t Wait – Your Fitness Goals Are Just a Click Away!"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.395" />
+
+    <Button
+        android:id="@+id/btnAuthenLogin"
+        android:layout_width="350dp"
+        android:layout_height="66dp"
+        android:background="@drawable/blue_button"
+        android:fontFamily="@font/inter_regular"
+        android:gravity="center"
+        android:text="Login"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.757" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAuthenSignIn"
+        style="@style/CustomBlueButtonStyle"
+        android:layout_width="350dp"
+        android:layout_height="66dp"
+        android:fontFamily="@font/inter_regular"
+        android:text="Sign In"
+        android:textAllCaps="false"
+        android:textColor="#007BFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.869" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
