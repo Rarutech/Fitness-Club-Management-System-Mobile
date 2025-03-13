@@ -28,7 +28,6 @@ class HighlightAdapter(private val highlightList: List<Highlight>) :
         val highlight = highlightList[position]
         holder.tvCaption.text = highlight.caption
         holder.tvName.text = highlight.name
-        // Set up inner RecyclerView for images
         holder.rvImages.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
         holder.rvImages.adapter = ImageAdapter(highlight.images)
     }

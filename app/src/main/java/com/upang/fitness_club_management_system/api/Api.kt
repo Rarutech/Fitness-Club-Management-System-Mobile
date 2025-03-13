@@ -4,6 +4,7 @@ import com.upang.fitness_club_management_system.model.AuthRequest
 import com.upang.fitness_club_management_system.model.AuthResponse
 import com.upang.fitness_club_management_system.model.ConfirmEmailRequest
 import com.upang.fitness_club_management_system.model.ConfirmEmailResponse
+import com.upang.fitness_club_management_system.model.Event
 import com.upang.fitness_club_management_system.model.HighlightResponse
 import com.upang.fitness_club_management_system.model.LoginRequest
 import com.upang.fitness_club_management_system.model.LoginResponse
@@ -22,6 +23,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Query
 
 interface Api {
     @Headers("Content-Type: application/json")
@@ -54,5 +56,9 @@ interface Api {
     @Headers("Content-Type: application/json")
     @POST("Controller/emailConfirmation.php")
     fun ConfirmEmail(@Body request: ConfirmEmailRequest): Call<ConfirmEmailResponse>
+
+    @Headers("Content-Type: application/json")
+    @GET("API/fetchTrainerAssignment.php")
+    fun getEvents(@Query("date") date: String): Call<List<Event>>
 
 }

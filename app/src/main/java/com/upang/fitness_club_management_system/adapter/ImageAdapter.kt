@@ -10,10 +10,10 @@ import com.upang.fitness_club_management_system.R
 
 class ImageAdapter(private val imageList: List<String>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
-    private val BASE_URL = "http://192.168.171.15/PumpingIronGym/Api/"
+    private val BASE_URL = "https://glider-above-hopefully.ngrok-free.app/PumpingIronGym/Api/"
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageView)  // Correct ID
+        val imageView: ImageView = itemView.findViewById(R.id.imageView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -22,7 +22,7 @@ class ImageAdapter(private val imageList: List<String>) : RecyclerView.Adapter<I
     }
 
     override fun onBindViewHolder(holder: ImageAdapter.ImageViewHolder, position: Int) {
-        val imageUrl = BASE_URL + imageList[position]  // Append base URL
+        val imageUrl = BASE_URL + imageList[position]
 
         Glide.with(holder.itemView.context)
             .load(imageUrl)

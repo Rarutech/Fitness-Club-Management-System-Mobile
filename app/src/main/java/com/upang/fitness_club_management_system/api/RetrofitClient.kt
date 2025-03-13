@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://192.168.171.15/PumpingIronGym/"
+    private const val BASE_URL = "https://glider-above-hopefully.ngrok-free.app/PumpingIronGym/"
 
     val gson = GsonBuilder()
         .setLenient()

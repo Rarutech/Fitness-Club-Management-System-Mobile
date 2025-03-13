@@ -40,8 +40,6 @@ class SignupActivity : AppCompatActivity() {
         val btnSignUp=findViewById<Button>(R.id.btnSignUp)
 
         btnSignUp.setOnClickListener{
-
-            val intent = Intent(this, ConfirmEmailActivity::class.java)
             val email = etEmail.text.toString().trim()
             val fullname = etFullname.text.toString().trim()
             val password = etPassword.text.toString().trim()
