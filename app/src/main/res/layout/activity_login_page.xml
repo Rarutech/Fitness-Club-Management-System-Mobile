@@ -85,11 +85,9 @@
         android:text="Password"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:fontFamily="@font/poppins_medium"
-        android:layout_marginRight="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/etPassword"
+        app:layout_constraintBottom_toTopOf="@+id/btnShowPass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -119,13 +117,26 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="5.5dp"
         app:endIconMode="password_toggle"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.6039">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/edittext_border"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Enter Your Password"
+            android:inputType="textPassword"
+            android:paddingLeft="16dp"
+            android:paddingTop="10dp"
+            android:textColor="#B0B0B0"
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -203,6 +214,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.036"
         app:srcCompat="@drawable/pumping_iron_login_logo" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

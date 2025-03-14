@@ -1,17 +1,9 @@
 package com.upang.fitness_club_management_system
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -21,15 +13,10 @@ import com.upang.fitness_club_management_system.adapter.HighlightAdapter
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.model.HighlightResponse
-import com.upang.fitness_club_management_system.model.postHighlightResponse
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
+
 
 class TrainerHomeActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -46,8 +33,9 @@ class TrainerHomeActivity : AppCompatActivity() {
         }
 
         recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         btnUpload = findViewById(R.id.btnUpload)
+
 
         fetchHighlights()
     }
@@ -73,6 +61,4 @@ class TrainerHomeActivity : AppCompatActivity() {
 
         })
     }
-
-
 }

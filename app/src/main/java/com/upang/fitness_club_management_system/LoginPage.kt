@@ -3,6 +3,8 @@ package com.upang.fitness_club_management_system
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Telephony.Mms.Intents
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -11,6 +13,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.textfield.TextInputLayout
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.model.LoginRequest
@@ -20,6 +23,8 @@ import retrofit2.Call
 import retrofit2.Response
 
 class LoginPage : AppCompatActivity() {
+    private var isPasswordVisible = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,6 +37,19 @@ class LoginPage : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val button = findViewById<Button>(R.id.button)
+
+        val btnShowPass = findViewById<TextInputLayout>(R.id.btnShowPass)
+
+        btnShowPass.setOnClickListener{
+            isPasswordVisible = !isPasswordVisible
+            if (isPasswordVisible) {
+                etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            } else {
+                etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
+            etPassword.setSelection(etPassword.text?.length ?: 0)
+        }
+
 
         button.setOnClickListener{
             val email = etEmail.text.toString().trim()
@@ -81,7 +99,6 @@ class LoginPage : AppCompatActivity() {
             }
         })
     }
-
 }
 
 
