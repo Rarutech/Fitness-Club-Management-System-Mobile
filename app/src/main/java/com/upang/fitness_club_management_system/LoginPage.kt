@@ -36,9 +36,9 @@ class LoginPage : AppCompatActivity() {
         }
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
-        val button = findViewById<Button>(R.id.button)
+        val button = findViewById<Button>(R.id.btnLogin)
 
-        val btnShowPass = findViewById<TextInputLayout>(R.id.btnShowPass)
+        val btnShowPass = findViewById<TextInputLayout>(R.id.btnShowPassLogin)
 
         btnShowPass.setOnClickListener{
             isPasswordVisible = !isPasswordVisible

@@ -8,6 +8,7 @@
     android:background="#FFFFFF"
     tools:context=".Settings">
 
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarSettings"
         android:layout_width="411dp"
@@ -24,6 +25,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <!-- My Account Section -->
     <TextView
         android:id="@+id/tvMyAccount"
         android:layout_width="wrap_content"
@@ -40,6 +42,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.101" />
 
+    <!-- Edit Profile -->
     <TextView
         android:id="@+id/tvEditProfile"
         android:layout_width="wrap_content"
@@ -56,7 +59,7 @@
         app:layout_constraintVertical_bias="0.159" />
 
     <View
-        android:id="@+id/view1"
+        android:id="@+id/viewEditProfile"
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
         android:background="#D5D5D5"
@@ -67,6 +70,7 @@
         app:layout_constraintTop_toTopOf="@+id/toolbarSettings"
         app:layout_constraintVertical_bias="0.198" />
 
+    <!-- Change Password -->
     <TextView
         android:id="@+id/tvChangePass"
         android:layout_width="wrap_content"
@@ -84,7 +88,7 @@
         app:layout_constraintVertical_bias="0.207" />
 
     <View
-        android:id="@+id/view2"
+        android:id="@+id/viewChangePass"
         android:layout_width="wrap_content"
         android:layout_height="1.5dp"
         android:background="#D5D5D5"
@@ -95,76 +99,8 @@
         app:layout_constraintTop_toTopOf="@+id/toolbarSettings"
         app:layout_constraintVertical_bias="0.268" />
 
-    <View
-        android:id="@+id/view4"
-        android:layout_width="wrap_content"
-        android:layout_height="1.5dp"
-        android:background="#D5D5D5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAboutUs"
-        app:layout_constraintVertical_bias="0.032" />
 
-    <TextView
-        android:id="@+id/PrivacyPolicy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_regular"
-        android:text="Privacy Policy"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.485" />
-
-    <TextView
-        android:id="@+id/tvAboutUs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_regular"
-        android:text="About Us"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.417" />
-
-    <TextView
-        android:id="@+id/tvHelp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_regular"
-        android:text="Help"
-        android:textColor="#808080"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.369" />
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="wrap_content"
-        android:layout_height="1.5dp"
-        android:background="#D5D5D5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLogout"
-        app:layout_constraintVertical_bias="0.035" />
-
+    <!-- Log out -->
     <TextView
         android:id="@+id/tvLogout"
         android:layout_width="wrap_content"
@@ -181,7 +117,80 @@
         app:layout_constraintVertical_bias="0.298" />
 
     <View
-        android:id="@+id/view5"
+        android:id="@+id/viewLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="1.5dp"
+        android:background="#D5D5D5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLogout"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <!-- Help Section-->
+    <TextView
+        android:id="@+id/tvHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:text="Help"
+        android:textColor="#808080"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369" />
+
+    <!-- About Us -->
+    <TextView
+        android:id="@+id/tvAboutUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:text="About Us"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.417" />
+
+    <View
+        android:id="@+id/viewAboutUs"
+        android:layout_width="wrap_content"
+        android:layout_height="1.5dp"
+        android:background="#D5D5D5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAboutUs"
+        app:layout_constraintVertical_bias="0.032" />
+
+    <!-- Privacy Policy -->
+    <TextView
+        android:id="@+id/PrivacyPolicy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:text="Privacy Policy"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.485" />
+
+    <View
+        android:id="@+id/viewPP"
         android:layout_width="wrap_content"
         android:layout_height="1.5dp"
         android:background="#D5D5D5"

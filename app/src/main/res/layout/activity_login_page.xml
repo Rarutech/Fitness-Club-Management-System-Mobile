@@ -7,9 +7,22 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     tools:context=".LoginPage">
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/ivLoginLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.036"
+        app:srcCompat="@drawable/pumping_iron_login_logo" />
 
+    <!-- Welcome Back -->
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tvWelcomeBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
@@ -22,6 +35,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.52" />
 
+    <!-- Login Caption -->
     <TextView
         android:id="@+id/tvLoginCaption"
         android:layout_width="wrap_content"
@@ -39,6 +53,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.308" />
 
+    <!-- Email -->
     <TextView
         android:id="@+id/tvEmailLogin"
         android:layout_width="wrap_content"
@@ -76,19 +91,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.467" />
 
+    <!-- Password -->
     <TextView
         android:id="@+id/tvPassLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
         android:text="Password"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnShowPass"
+        android:fontFamily="@font/poppins_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.539" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etPassword"
@@ -109,7 +127,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.606" />
 
-
+    <!-- Show Password Icon -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/btnShowPassLogin"
         android:layout_width="wrap_content"
@@ -120,27 +138,16 @@
         app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.847"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6039">
+        app:layout_constraintVertical_bias="0.601">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@drawable/edittext_border"
-            android:fontFamily="@font/poppins_medium"
-            android:hint="Enter Your Password"
-            android:inputType="textPassword"
-            android:paddingLeft="16dp"
-            android:paddingTop="10dp"
-            android:textColor="#B0B0B0"
-            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Login Button -->
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnLogin"
         android:layout_width="350dp"
         android:layout_height="66dp"
         android:background="@drawable/blue_button"
@@ -154,6 +161,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.725" />
 
+    <!-- Forgot Password -->
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
@@ -163,14 +171,15 @@
         android:fontFamily="@font/poppins_medium"
         android:text="Forgot your password?"
         android:textColor="#0056B3"
-        android:textSize="18sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.795" />
+        app:layout_constraintVertical_bias="0.794" />
 
+    <!-- Don't have an account? -->
     <TextView
         android:id="@+id/tvDontHaveAcc"
         android:layout_width="wrap_content"
@@ -186,6 +195,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.904" />
 
+    <!-- Sign up -->
     <TextView
         android:id="@+id/tvSignup"
         android:layout_width="wrap_content"
@@ -203,17 +213,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.918" />
 
-    <ImageView
-        android:id="@+id/ivLoginLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="Logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036"
-        app:srcCompat="@drawable/pumping_iron_login_logo" />
+
 
 
 

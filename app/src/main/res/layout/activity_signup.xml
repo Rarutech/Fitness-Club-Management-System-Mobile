@@ -8,6 +8,7 @@
     android:background="#FFFFFF"
     tools:context=".SignupActivity">
 
+    <!--Sign Up -->
     <TextView
         android:id="@+id/tvSignUp"
         android:layout_width="wrap_content"
@@ -22,6 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.059" />
 
+    <!-- Name -->
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
@@ -58,6 +60,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.242" />
 
+    <!-- Email -->
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingLeft="11dp"
+        android:text="Email"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/etEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etEmail"
@@ -78,20 +96,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.409" />
 
+    <!-- Password -->
     <TextView
-        android:id="@+id/tvEmail"
+        android:id="@+id/tvPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/poppins_medium"
-        android:paddingLeft="11dp"
-        android:text="Email"
+        android:text="Password"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/etEmail"
+        app:layout_constraintBottom_toTopOf="@+id/etPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -114,21 +132,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.552" />
 
-    <TextView
-        android:id="@+id/tvPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Password"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/etPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
-        app:layout_constraintStart_toStartOf="parent" />
-
+    <!-- Show Password Icon -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/btnShowPass1"
         android:layout_width="wrap_content"
@@ -145,6 +149,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Password Indicator -->
     <TextView
         android:id="@+id/tvPasswordIndicator"
         android:layout_width="wrap_content"
@@ -159,6 +164,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.601" />
 
+
+    <!-- Confirm Password -->
+    <TextView
+        android:id="@+id/tvConfirmPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="190dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Confirm Password"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/etConfirmPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etConfirmPassword"
@@ -180,21 +201,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.695" />
 
-    <TextView
-        android:id="@+id/tvConfirmPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="190dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Confirm Password"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/etConfirmPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent" />
-
+    <!-- Show Password Icon -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/btnShowPass2"
         android:layout_width="wrap_content"
@@ -211,6 +218,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Sign Up Button -->
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="350dp"
@@ -227,8 +235,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.801" />
 
+    <!-- Already Have an Account -->
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvHaveAnAcc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter_regular"
@@ -242,8 +251,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.909" />
 
+    <!-- Login -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter_regular"

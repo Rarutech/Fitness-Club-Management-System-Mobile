@@ -8,8 +8,9 @@
     android:background="#FFFFFF"
     tools:context=".QRCodeMembershipFee">
 
+    <!-- Back Button -->
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageBackBtn"
         android:layout_width="24dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -24,6 +25,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.017" />
 
+    <!--QR Code Caption -->
     <TextView
         android:id="@+id/tvQrCaption"
         android:layout_width="360dp"
@@ -39,6 +41,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.162" />
 
+    <!-- QR Code -->
     <ImageView
         android:id="@+id/qrCodeImageView"
         android:layout_width="363dp"
@@ -51,6 +54,7 @@
         tools:srcCompat="@tools:sample/avatars"
         android:contentDescription="QrCode"/>
 
+    <!-- Generate Button -->
     <Button
         android:id="@+id/btnGenerateQr"
         android:layout_width="350dp"

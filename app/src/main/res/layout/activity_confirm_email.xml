@@ -8,7 +8,7 @@
     android:background="#FFFFFF"
     tools:context=".ConfirmEmailActivity">
 
-
+    <!-- Email Verification -->
     <TextView
         android:id="@+id/tvEmailVerification"
         android:layout_width="wrap_content"
@@ -25,6 +25,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.043" />
 
+    <!-- Email Icon -->
+    <ImageView
+        android:id="@+id/imageEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.266"
+        tools:srcCompat="@drawable/mail" />
+
+    <!-- Verification Caption -->
     <TextView
         android:id="@+id/tvVerificationCation"
         android:layout_width="wrap_content"
@@ -39,6 +53,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.425" />
 
+    <!-- OTP 1st box -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etOTP1"
         android:layout_width="wrap_content"
@@ -54,6 +69,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.54" />
 
+    <!-- OTP 2nd box -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etOTP2"
         android:layout_width="wrap_content"
@@ -70,6 +86,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.54" />
 
+    <!-- OTP 3rd box -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etOTP3"
         android:layout_width="wrap_content"
@@ -86,6 +103,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.54" />
 
+    <!-- OTP 4th box -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etOTP4"
         android:layout_width="wrap_content"
@@ -101,6 +119,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.54" />
 
+    <!-- Resend Code -->
+    <TextView
+        android:id="@+id/tvResendCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Resend code"
+        android:textColor="#0056B3"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.631" />
+
+    <!-- Verify Button -->
     <Button
         android:id="@+id/btnConfirmEmail"
         android:layout_width="350dp"
@@ -109,28 +144,16 @@
         android:layout_marginEnd="16dp"
         android:height="56dp"
         android:background="@drawable/edittext_border"
-        android:gravity="center"
-        android:text="Verify"
         android:fontFamily="@font/poppins_medium"
-        android:textSize="16sp"
+        android:gravity="center"
         android:paddingTop="10dp"
+        android:text="Verify"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
-
-    <ImageView
-        android:id="@+id/imageEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266"
-        tools:srcCompat="@drawable/mail" />
+        app:layout_constraintVertical_bias="0.775" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
