@@ -7,4 +7,15 @@
     </style>
 
     <style name="Theme.FitnessClubManagementSystem" parent="Base.Theme.FitnessClubManagementSystem" />
+
+    <!-- Bottom Navigation Bar Custom Text -->
+    <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat">
+
+        <!-- Text size -->
+        <item name="android:textSize">14sp</item>
+
+        <!-- To set font -->
+        <item name="android:fontFamily">@font/poppins_regular</item>
+
+    </style>
 </resources>

@@ -14,16 +14,16 @@
         android:layout_width="411dp"
         android:layout_height="wrap_content"
         android:visibility="visible"
-        app:navigationIcon="@drawable/back_btn"
-        app:title="About Us"
-        app:titleTextAppearance="@style/CustomToolbarTitle"
-        app:titleMarginStart="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        app:navigationIcon="@drawable/back_btn"
+        app:title="About Us"
+        app:titleMarginStart="30dp"
+        app:titleTextAppearance="@style/CustomToolbarTitle" />
 
     <!-- About Us First Section -->
     <TextView
@@ -63,6 +63,7 @@ Join us and take your fitness journey to the next level. Let’s get stronger to
         android:id="@+id/tvCreators"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
         android:fontFamily="@font/inter_regular"
         android:gravity="center_vertical"
         android:lineSpacingExtra="7dp"
@@ -70,10 +71,7 @@ Join us and take your fitness journey to the next level. Let’s get stronger to
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarAboutUs"
-        app:layout_constraintVertical_bias="0.755" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

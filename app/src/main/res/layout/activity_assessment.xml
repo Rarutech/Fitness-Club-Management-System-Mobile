@@ -26,10 +26,6 @@
     <!-- Trainee Section -->
 
     <!-- Rectangle -->
-
-    <!-- Trainee Image -->
-
-    <!-- Trainee Text -->
     <ImageButton
         android:id="@+id/imgBtnRec"
         android:layout_width="240dp"
@@ -43,9 +39,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.273" />
 
-    <!-- Trainer Section -->
-
-    <!-- Rectangle -->
+    <!-- Trainer Image-->
     <ImageButton
         android:id="@+id/imgBtnTrainee"
         android:layout_width="wrap_content"
@@ -60,6 +54,8 @@
         app:layout_constraintVertical_bias="0.254"
         app:srcCompat="@drawable/member" />
 
+
+    <!-- Trainee Text -->
     <TextView
         android:id="@+id/tvTrainee"
         android:layout_width="wrap_content"
@@ -75,6 +71,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.398" />
 
+    <!-- Trainer Section -->
+
+    <!--Rectangle -->
     <ImageButton
         android:id="@+id/imgBtnRec2"
         android:layout_width="240dp"
@@ -89,10 +88,6 @@
         android:contentDescription="Rectangle"/>
 
     <!-- Trainer Image -->
-
-    <!-- Trainer Text -->
-
-    <!-- Continue Button -->
     <ImageButton
         android:id="@+id/imgBtnTrainer"
         android:layout_width="wrap_content"
@@ -107,6 +102,7 @@
         app:layout_constraintVertical_bias="0.611"
         app:srcCompat="@drawable/coach" />
 
+    <!-- Trainer Text -->
     <TextView
         android:id="@+id/tvTrainer"
         android:layout_width="wrap_content"
@@ -122,6 +118,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.714" />
 
+
+    <!-- Continue Button -->
     <Button
         android:id="@+id/btnContinueAssess"
         android:layout_width="350dp"

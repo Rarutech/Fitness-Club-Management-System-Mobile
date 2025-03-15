@@ -17,6 +17,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Workout"
+            android:exported="true" />
+        <activity
+            android:name=".Progress"
+            android:exported="true" />
+        <activity
+            android:name=".Trainee_Home"
+            android:exported="true" />
+        <activity
+            android:name=".CardInformation"
+            android:exported="true" />
+        <activity
+            android:name=".LoadingScreen"
+            android:exported="true" />
+        <activity
+            android:name=".MembershipBenefits"
+            android:exported="true" />
+        <activity
             android:name=".Assessment"
             android:exported="true" />
         <activity

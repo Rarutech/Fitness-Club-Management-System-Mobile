@@ -13,19 +13,19 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="PrivacyPolicy">
+      <SelectionState runConfigName="Trainee_Home">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PrivacyPolicy (1)">
+      <SelectionState runConfigName="Trainee_Home (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PrivacyPolicy (2)">
+      <SelectionState runConfigName="Trainee_Home (2)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="PrivacyPolicy (3)">
+      <SelectionState runConfigName="Progress">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Assessment">
+      <SelectionState runConfigName="Workout">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

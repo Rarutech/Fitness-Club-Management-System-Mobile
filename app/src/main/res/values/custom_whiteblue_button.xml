@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="CustomBlueButtonStyle" parent="Widget.MaterialComponents.Button">
-        <!-- Set your custom drawable as the background -->
+
+        <!-- To set your custom drawable as the background -->
         <item name="android:background">@drawable/clear_button</item>
+
         <!-- Remove any tint so that the drawable appears as-is -->
         <item name="backgroundTint">@null</item>
-        <!-- Optionally, remove elevation and state animations (shadow) -->
+
+        <!-- To remove elevation and state animations (shadow) -->
         <item name="android:elevation">0dp</item>
         <item name="android:stateListAnimator">@null</item>
     </style>

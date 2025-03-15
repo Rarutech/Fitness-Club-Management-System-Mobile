@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Home Icon -->
+    <item
+        android:id="@+id/actionHome"
+        android:icon="@drawable/home"
+        android:title="Home" />
+
+    <!-- Progress Icon -->
+    <item
+        android:id="@+id/actionProgress"
+        android:icon="@drawable/progress"
+        android:title="Progress" />
+
+    <!-- Workout Icon -->
+    <item
+        android:id="@+id/actionWorkout"
+        android:icon="@drawable/workout"
+        android:title="Workout" />
+
+    <!-- Classess Icon -->
+    <item
+        android:id="@+id/actionClasses"
+        android:icon="@drawable/classes"
+        android:title="Classes" />
+
+    <!-- Shop Icon -->
+    <item
+        android:id="@+id/actionShop"
+        android:icon="@drawable/shop"
+        android:title="Shop" />
+</menu>

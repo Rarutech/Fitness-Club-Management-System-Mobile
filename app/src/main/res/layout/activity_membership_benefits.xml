@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".QRCodeMembershipFee">
+    tools:context=".MembershipBenefits">
 
     <!-- To ensure a large touchable area of back button -->
     <FrameLayout
@@ -42,51 +42,94 @@
 
     </FrameLayout>
 
-    <!--QR Code Caption -->
+    <!-- Skip Button -->
     <TextView
-        android:id="@+id/tvQrCaption"
-        android:layout_width="360dp"
+        android:id="@+id/tvSkipbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:text="Skip"
+        android:textColor="#007BFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <!-- Caption -->
+    <TextView
+        android:id="@+id/tvCaption"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="Please show your QR code at the counter to verify your payment after purchase."
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:text="Why Join? Here’s What You Can Get!"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.162" />
+        app:layout_constraintVertical_bias="0.136" />
 
-    <!-- QR Code -->
+    <!-- Rectangle Background -->
     <ImageView
-        android:id="@+id/qrCodeImageView"
-        android:layout_width="363dp"
-        android:layout_height="303dp"
+        android:id="@+id/imageViewBG1"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="QrCode"/>
+        app:layout_constraintVertical_bias="0.34" />
 
-    <!-- Generate Button -->
-    <Button
-        android:id="@+id/btnGenerateQr"
+    <ImageView
+        android:id="@+id/imageViewBG2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:background="@drawable/bgrectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <!-- ViewPager2 for Changing Image and Text -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/slideViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewBG2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewBG2"
+        app:layout_constraintVertical_bias="0.856" />
+
+    <!-- Dot Indicator -->
+    <!--Code here..... -->
+
+    <!--Material Button for different button appearance-->
+    <!-- Next Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNext"
+        style="@style/CustomBlueButtonStyle"
         android:layout_width="350dp"
         android:layout_height="66dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/blue_button"
         android:fontFamily="@font/inter_regular"
-        android:text="Generate"
+        android:text="Next"
+        android:textAllCaps="false"
+        android:textColor="#007BFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.895" />
+        app:layout_constraintVertical_bias="0.869" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <!-- Slide Text -->
+    <TextView
+        android:id="@+id/textSlide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:paddingTop="16dp"
+        android:gravity="center"/>
+
+    <!-- Slide Image -->
+    <ImageView
+        android:id="@+id/imageSlide"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="Membership Benefits"/>
+
+
+</LinearLayout>
