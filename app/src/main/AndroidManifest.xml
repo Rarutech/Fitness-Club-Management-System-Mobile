@@ -17,6 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".BookClass"
+            android:exported="true" />
+        <activity
+            android:name=".Shop"
+            android:exported="true" />
+        <activity
+            android:name=".AddExercise"
+            android:exported="true" />
+        <activity
             android:name=".Workout"
             android:exported="true" />
         <activity

@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:navigationIcon="@drawable/back_btn"
         app:title="About Us"
-        app:titleMarginStart="30dp"
+        app:titleMarginStart="15dp"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
 
     <!-- About Us First Section -->
