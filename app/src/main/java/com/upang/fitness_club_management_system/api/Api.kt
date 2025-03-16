@@ -5,6 +5,7 @@ import com.upang.fitness_club_management_system.model.AuthResponse
 import com.upang.fitness_club_management_system.model.ConfirmEmailRequest
 import com.upang.fitness_club_management_system.model.ConfirmEmailResponse
 import com.upang.fitness_club_management_system.model.Event
+import com.upang.fitness_club_management_system.model.FetchInventoryResponse
 import com.upang.fitness_club_management_system.model.HighlightResponse
 import com.upang.fitness_club_management_system.model.LoginRequest
 import com.upang.fitness_club_management_system.model.LoginResponse
@@ -12,11 +13,12 @@ import com.upang.fitness_club_management_system.model.SendConfirmEmailRequest
 import com.upang.fitness_club_management_system.model.SendConfirmEmailResponse
 import com.upang.fitness_club_management_system.model.SignUpRequest
 import com.upang.fitness_club_management_system.model.SignUpResponse
+import com.upang.fitness_club_management_system.model.OrderRequest
+import com.upang.fitness_club_management_system.model.OrderResponse
 import com.upang.fitness_club_management_system.model.postHighlightResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -59,7 +61,17 @@ interface Api {
     fun ConfirmEmail(@Body request: ConfirmEmailRequest): Call<ConfirmEmailResponse>
 
     @Headers("Content-Type: application/json")
-    @GET("API/fetchTrainerAssignment.php")
+    @GET("Api/fetchTrainerAssignment.php")
     fun getEvents(@Query("date") date: String): Call<List<Event>>
 
+    @Headers("Content-Type: application/json")
+    @GET("Api/fetchInventory.php")
+    fun fetchInventory(): Call<FetchInventoryResponse>
+
+    @GET("Api/fetchInventory.php")
+    fun fetchProduct(@Query("id") productId: Int): Call<FetchInventoryResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("Api/sendOrder.php")
+    fun sendOrder(@Body orderRequest: OrderRequest): Call<OrderResponse>
 }
