@@ -43,10 +43,11 @@ interface Api {
 
     @Multipart
     @POST("Api/postHighlights.php")
+
     fun uploadPost(
         @Part("user_email") userEmail: RequestBody,
         @Part("caption") caption: RequestBody,
-        @Part images: List<MultipartBody.Part>
+        @Part image_urls: List<MultipartBody.Part>
     ): Call<postHighlightResponse>
 
     @Headers("Content-Type: application/json")

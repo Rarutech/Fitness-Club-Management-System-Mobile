@@ -7,13 +7,13 @@ data class Event(
     @SerializedName("assignment_date") val assignment_date: String,
     @SerializedName("start_time") val start_time: String,
     @SerializedName("end_time") val end_time: String,
+    @SerializedName("status") val status: String? = null,
 
     // Extra fields from the JSON, marked as nullable to avoid issues
     val assignment_id: Int? = null,
     val request_id: Int? = null,
     val user_email: String? = null,
     val trainer_name: String? = null,
-    val trainer_email: String? = null,
-    val status: String? = null
+    val trainer_email: String? = null
 
 )

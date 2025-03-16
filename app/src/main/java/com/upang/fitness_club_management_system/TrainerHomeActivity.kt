@@ -1,5 +1,6 @@
 package com.upang.fitness_club_management_system
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -36,8 +37,12 @@ class TrainerHomeActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         btnUpload = findViewById(R.id.btnUpload)
 
-
         fetchHighlights()
+
+        btnUpload.setOnClickListener{
+            val intent = Intent(this, PostHighlightActivity::class.java)
+            startActivity(intent)
+        }
     }
     private fun fetchHighlights() {
         val api = RetrofitClient.instance.create(Api::class.java)

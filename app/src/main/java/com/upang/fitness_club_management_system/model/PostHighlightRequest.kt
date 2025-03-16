@@ -8,7 +8,6 @@ import retrofit2.http.Part
 data class PostHighlightRequest(
     @SerializedName("user_email") val user_email: RequestBody,
     @SerializedName("caption") val caption: RequestBody,
-    @SerializedName("image_urls[]") val image_urls: List<MultipartBody.Part>
+    val image_urls: List<MultipartBody.Part> // No need for @SerializedName
 )
-
 

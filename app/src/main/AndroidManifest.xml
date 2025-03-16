@@ -71,6 +71,9 @@
             android:name=".TrainerHomeActivity"
             android:exported="true" />
         <activity
+            android:name=".TrainerScheduleActivity"
+            android:exported="true" />
+        <activity
             android:name=".SignupActivity"
             android:exported="true" />
         <activity
