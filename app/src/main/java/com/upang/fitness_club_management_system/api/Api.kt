@@ -15,6 +15,7 @@ import com.upang.fitness_club_management_system.model.SignUpRequest
 import com.upang.fitness_club_management_system.model.SignUpResponse
 import com.upang.fitness_club_management_system.model.OrderRequest
 import com.upang.fitness_club_management_system.model.OrderResponse
+import com.upang.fitness_club_management_system.model.TrainerRequestResponse
 import com.upang.fitness_club_management_system.model.postHighlightResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -65,6 +66,10 @@ interface Api {
     fun getEvents(@Query("date") date: String): Call<List<Event>>
 
     @Headers("Content-Type: application/json")
+    @GET("Api/fetchTrainerAssignment.php")
+    fun getAllEvents(): Call<List<Event>>
+
+    @Headers("Content-Type: application/json")
     @GET("Api/fetchInventory.php")
     fun fetchInventory(): Call<FetchInventoryResponse>
 
@@ -74,4 +79,7 @@ interface Api {
     @Headers("Content-Type: application/json")
     @POST("Api/sendOrder.php")
     fun sendOrder(@Body orderRequest: OrderRequest): Call<OrderResponse>
+
+    @GET("Api/fetchTrainerRequest.php")
+    fun fetchTrainerRequest(@Query("email") email: String): Call<List<TrainerRequestResponse>>
 }
