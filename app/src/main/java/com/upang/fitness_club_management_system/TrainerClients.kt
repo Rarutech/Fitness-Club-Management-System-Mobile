@@ -33,6 +33,10 @@ class TrainerClients : AppCompatActivity() {
         searchView = findViewById(R.id.searchView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        searchView.isFocusable = true
+        searchView.isFocusableInTouchMode = true
+        searchView.clearFocus() // Prevent keyboard from immediately hiding
+
         fetchEvents()
 
         // Bottom Navigation Setup
@@ -57,10 +61,10 @@ class TrainerClients : AppCompatActivity() {
             true
         }
 
-        // *Implement SearchView Listener*
+        // Implement SearchView Listener
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false  // We don't need to handle submission explicitly
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
