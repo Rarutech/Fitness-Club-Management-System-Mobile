@@ -16,6 +16,8 @@
         android:visibility="visible"
         app:navigationIcon="@drawable/back_btn"
         app:title="Add Exercise"
+        android:background="@color/white"
+        android:elevation="4dp"
         app:titleTextAppearance="@style/CustomToolbarTitle"
         app:titleMarginStart="15dp"
         app:layout_constraintTop_toTopOf="parent" />

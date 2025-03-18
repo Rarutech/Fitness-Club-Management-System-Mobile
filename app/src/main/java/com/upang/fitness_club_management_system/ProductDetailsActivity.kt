@@ -38,7 +38,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         productStock = findViewById(R.id.productStock)
         btnBuyNow = findViewById(R.id.btnBuyNow)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbarProductDetails)
 
         setSupportActionBar(toolbar)
 

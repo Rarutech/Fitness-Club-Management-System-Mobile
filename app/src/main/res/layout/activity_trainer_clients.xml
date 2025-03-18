@@ -6,35 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".Shop">
+    tools:context=".TrainerClients">
 
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarShop"
+        android:id="@+id/toolbarHome"
         android:layout_width="411dp"
         android:layout_height="?attr/actionBarSize"
+        android:paddingTop="5dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        android:paddingTop="5dp"
-        app:title="Shop"
+        app:title="Clients"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
 
     <View
-        android:id="@+id/view3"
+        android:id="@+id/view4"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#D5D5D5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarShop"
+        app:layout_constraintTop_toTopOf="@+id/toolbarHome"
         app:layout_constraintVertical_bias="0.076" />
-
-    <!-- Your weekly overview -->
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -42,22 +40,22 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarShop"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarHome"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarShop"
+        app:layout_constraintTop_toTopOf="@+id/toolbarHome"
         app:layout_constraintVertical_bias="0.001">
 
-        <!-- Search Icon -->
+        <!-- Notification Icon -->
         <ImageButton
-            android:id="@+id/btnSearch"
+            android:id="@+id/btnNotification"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="300dp"
             android:layout_marginTop="10dp"
             android:background="@null"
             android:contentDescription="Search"
-            android:src="@drawable/search"
+            android:src="@drawable/notification"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/linearLayout2"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,40 +72,36 @@
             android:src="@drawable/account" />
     </LinearLayout>
 
-
-    <!-- Bottom Navigation -->
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="580dp"
+    <!-- Search Button -->
+    <SearchView
+        android:id="@+id/btnSearch"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:queryHint="Search"
+        android:iconifiedByDefault="false"
+        android:background="@drawable/search_2"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarShop"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="@+id/view4"
+        app:layout_constraintVertical_bias="0.044" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/shopRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.recyclerview.widget.RecyclerView>
-    </ScrollView>
-
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="4dp"
-        android:backgroundTint="@color/white"
-        app:menu="@menu/bottom_nav_menu"
+        android:background="@android:color/transparent"
+        app:menu="@menu/button_nav_menu_trainer"
         app:labelVisibilityMode="labeled"
+        app:itemBackground="@color/white"
+        android:elevation="5dp"
         app:itemRippleColor="@android:color/transparent"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
         app:itemTextAppearanceActive="@style/BottomNavTextAppearance"
         app:itemTextAppearanceInactive="@style/BottomNavTextAppearance"
         app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,4 +9,6 @@
         <!-- Font color -->
         <item name="android:textColor">@color/black</item>
     </style>
+
+
 </resources>

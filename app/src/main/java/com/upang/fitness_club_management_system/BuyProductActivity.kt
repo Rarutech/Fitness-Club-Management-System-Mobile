@@ -52,7 +52,7 @@ class BuyProductActivity : AppCompatActivity() {
         btnPurchase = findViewById(R.id.btnPurchase)
         quantity = findViewById(R.id.etQuantity)
         // Set up the toolbar
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbarBuyProducts)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
