@@ -20,8 +20,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        android:paddingTop="5dp"
         app:title="Home"
+        android:layout_marginTop="50dp"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
 
     <View
@@ -84,12 +84,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:layout_marginTop="50dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:fontFamily="@font/inter_regular"
                 android:text="Monthly Highlights"
                 android:textSize="20sp"
@@ -103,13 +103,6 @@
                 android:padding="8dp"
                 android:scrollbars="vertical" />
 
-            <Button
-                android:id="@+id/btnUpload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upload"
-                android:layout_marginBottom="20dp"/>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"
@@ -119,7 +112,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/inter_regular"
                 android:text="Upcoming Schedule"

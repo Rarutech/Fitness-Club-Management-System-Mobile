@@ -2,10 +2,8 @@ package com.upang.fitness_club_management_system
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import android.widget.EditText
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,8 +21,8 @@ import retrofit2.Response
 class TrainerClients : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TrainerClientAdapter
-    private lateinit var searchEditText: EditText
-    private var trainerRequests: List<TrainerRequestResponse> = listOf()
+    private lateinit var searchView: SearchView
+    private var trainerRequests: MutableList<TrainerRequestResponse> = mutableListOf()
     private var filteredRequests: MutableList<TrainerRequestResponse> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,20 +30,14 @@ class TrainerClients : AppCompatActivity() {
         setContentView(R.layout.activity_trainer_clients)
 
         recyclerView = findViewById(R.id.clientRecyclerView)
-        searchEditText = findViewById(R.id.searchEditText)
+        searchView = findViewById(R.id.searchView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         fetchEvents()
-        //Bottom Navigation
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        when (javaClass) {
-            TrainerHomeActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionHomeTrainer
-            TrainerScheduleActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionSchedule
-            PostHighlightActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionPost
-            TrainerClients::class.java -> bottomNavigationView.selectedItemId = R.id.actionClients
-            Shop::class.java -> bottomNavigationView.selectedItemId = R.id.actionShopTrainer
-        }
+        // Bottom Navigation Setup
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.selectedItemId = R.id.actionClients
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             val targetActivity = when (item.itemId) {
@@ -65,14 +57,16 @@ class TrainerClients : AppCompatActivity() {
             true
         }
 
-        // Search bar functionality
-        searchEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                filter(s.toString())  // Call filter function
+        // *Implement SearchView Listener*
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false  // We don't need to handle submission explicitly
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filter(newText.orEmpty())  // Filter on text change
+                return true
+            }
         })
     }
 
@@ -91,8 +85,8 @@ class TrainerClients : AppCompatActivity() {
                 response: Response<List<TrainerRequestResponse>>
             ) {
                 if (response.isSuccessful && response.body() != null) {
-                    trainerRequests = response.body()!!
-                    filteredRequests.addAll(trainerRequests) // Initialize with all requests
+                    trainerRequests = response.body()!!.toMutableList()
+                    filteredRequests.addAll(trainerRequests)
 
                     adapter = TrainerClientAdapter(filteredRequests)
                     recyclerView.adapter = adapter
