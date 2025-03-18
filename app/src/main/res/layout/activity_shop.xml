@@ -7,7 +7,11 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     tools:context=".Shop">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    </LinearLayout>
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarShop"
         android:layout_width="411dp"
@@ -75,25 +79,38 @@
     </LinearLayout>
 
 
-    <!-- Bottom Navigation -->
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="580dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarShop"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/shopRecyclerView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:layout_marginTop="40sp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarShop"
+            app:layout_constraintVertical_bias="0.0">
 
-        </androidx.recyclerview.widget.RecyclerView>
-    </ScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shopRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:clipToPadding="false"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+        </ScrollView>
+
+    </LinearLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

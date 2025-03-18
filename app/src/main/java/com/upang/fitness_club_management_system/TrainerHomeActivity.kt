@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.upang.fitness_club_management_system.adapter.HighlightAdapter
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
@@ -33,16 +34,42 @@ class TrainerHomeActivity : AppCompatActivity() {
             insets
         }
 
+
+        //Bottom Navigation
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        when (javaClass) {
+            TrainerHomeActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionHomeTrainer
+            TrainerScheduleActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionSchedule
+            PostHighlightActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionPost
+            TrainerClients::class.java -> bottomNavigationView.selectedItemId = R.id.actionClients
+            Shop::class.java -> bottomNavigationView.selectedItemId = R.id.actionShopTrainer
+        }
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            val targetActivity = when (item.itemId) {
+                R.id.actionHomeTrainer -> TrainerHomeActivity::class.java
+                R.id.actionSchedule -> TrainerScheduleActivity::class.java
+                R.id.actionPost -> PostHighlightActivity::class.java
+                R.id.actionClients -> TrainerClients::class.java
+                R.id.actionShopTrainer -> Shop::class.java
+                else -> null
+            }
+
+            if (targetActivity != null && targetActivity != javaClass) {
+                startActivity(Intent(this, targetActivity))
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                finish()
+            }
+            true
+        }
+
+
+
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        btnUpload = findViewById(R.id.btnUpload)
 
         fetchHighlights()
-
-        btnUpload.setOnClickListener{
-            val intent = Intent(this, PostHighlightActivity::class.java)
-            startActivity(intent)
-        }
     }
     private fun fetchHighlights() {
         val api = RetrofitClient.instance.create(Api::class.java)
