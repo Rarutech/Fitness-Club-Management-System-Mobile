@@ -90,7 +90,7 @@
             android:exported="false" />
         <activity
             android:name=".PostHighlightActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".TrainerHomeActivity"
             android:exported="true" />

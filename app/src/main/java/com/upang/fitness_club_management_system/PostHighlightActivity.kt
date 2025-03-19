@@ -10,6 +10,8 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -51,8 +53,8 @@ class PostHighlightActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_highlight)
 
-        val btnGetImage = findViewById<Button>(R.id.btnGetImage)
-        val btnPost = findViewById<Button>(R.id.btnPost)
+        val btnGetImage = findViewById<ImageButton>(R.id.btnGetImage)
+        val btnPost = findViewById<TextView>(R.id.btnPost)
         val etCaption = findViewById<EditText>(R.id.etCaption)
 
         recyclerView = findViewById(R.id.recyclerView)
@@ -64,34 +66,6 @@ class PostHighlightActivity : AppCompatActivity() {
         progressDialog.setMessage("Uploading... Please wait")
         progressDialog.setCancelable(false)
 
-        //Bottom Navigation
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-
-        when (javaClass) {
-            TrainerHomeActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionHomeTrainer
-            TrainerScheduleActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionSchedule
-            PostHighlightActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionPost
-            TrainerClients::class.java -> bottomNavigationView.selectedItemId = R.id.actionClients
-            Shop::class.java -> bottomNavigationView.selectedItemId = R.id.actionShopTrainer
-        }
-
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            val targetActivity = when (item.itemId) {
-                R.id.actionHomeTrainer -> TrainerHomeActivity::class.java
-                R.id.actionSchedule -> TrainerScheduleActivity::class.java
-                R.id.actionPost -> PostHighlightActivity::class.java
-                R.id.actionClients -> TrainerClients::class.java
-                R.id.actionShopTrainer -> Shop::class.java
-                else -> null
-            }
-
-            if (targetActivity != null && targetActivity != javaClass) {
-                startActivity(Intent(this, targetActivity))
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                finish()
-            }
-            true
-        }
 
 
         btnGetImage.setOnClickListener {
