@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
         android:text="Login as..."
+        android:layout_marginStart="20dp"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +29,9 @@
     <!-- Rectangle -->
     <ImageButton
         android:id="@+id/imgBtnRec"
-        android:layout_width="240dp"
+        android:layout_width="220dp"
         android:layout_height="200dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/bgrec"
         android:contentDescription="Rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,12 +41,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.273" />
 
-    <!-- Trainer Image-->
+    <!-- Trainee Image-->
     <ImageButton
         android:id="@+id/imgBtnTrainee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
+        android:layout_marginBottom="30dp"
         android:contentDescription="Trainee"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +79,7 @@
     <!--Rectangle -->
     <ImageButton
         android:id="@+id/imgBtnRec2"
-        android:layout_width="240dp"
+        android:layout_width="220dp"
         android:layout_height="200dp"
         android:background="@drawable/bgrec"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -121,11 +124,11 @@
 
     <!-- Continue Button -->
     <Button
-        android:id="@+id/btnContinueAssess"
-        android:layout_width="350dp"
-        android:layout_height="66dp"
+        android:id="@+id/btnContinueAssessment"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
         android:height="56dp"
-        android:background="@drawable/edittext_border"
+        android:background="@drawable/blue_button"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
         android:paddingTop="10dp"

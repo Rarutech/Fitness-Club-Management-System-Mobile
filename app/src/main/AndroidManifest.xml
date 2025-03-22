@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ViewAppointment"
+            android:exported="true" />
+        <activity
             android:name=".TrainerClients"
             android:exported="true" />
         <activity
@@ -27,7 +30,7 @@
             android:exported="true" />
         <activity
             android:name=".BuyProductActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ProductDetailsActivity"
             android:exported="true" />
@@ -36,9 +39,6 @@
             android:exported="true" />
         <activity
             android:name=".Shop"
-            android:exported="true" />
-        <activity
-            android:name=".AddExercise"
             android:exported="true" />
         <activity
             android:name=".Workout"
@@ -87,7 +87,7 @@
             android:exported="true" />
         <activity
             android:name=".ConfirmEmailActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".PostHighlightActivity"
             android:exported="true" />

@@ -22,7 +22,6 @@ import retrofit2.Response
 
 class ConfirmEmailActivity : AppCompatActivity() {
     private lateinit var btnConfirmEmail: Button
-    private lateinit var etCode: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,7 +31,12 @@ class ConfirmEmailActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        //etCode = findViewById(R.id.etCode)
+        val otp1 = findViewById<EditText>(R.id.etOTP1)
+        val otp2 = findViewById<EditText>(R.id.etOTP2)
+        val otp3 = findViewById<EditText>(R.id.etOTP3)
+        val otp4 = findViewById<EditText>(R.id.etOTP4)
+
+
         btnConfirmEmail = findViewById(R.id.btnConfirmEmail)
 
         val bundle = intent.extras
@@ -42,7 +46,7 @@ class ConfirmEmailActivity : AppCompatActivity() {
 
 
         btnConfirmEmail.setOnClickListener{
-            val code = etCode.text.toString().trim()
+            val code = otp1.text.toString().trim() + otp2.text.toString().trim() + otp3.text.toString().trim() + otp4.text.toString().trim()
             Log.d("EMAIL CONFIRM", "Email: ${email} Code: ${code}")
             confirmEmail(email,code)
         }

@@ -77,11 +77,33 @@
                 android:contentDescription="Avatar"
                 tools:srcCompat="@tools:sample/avatars" />
 
-            <!-- Name and email code here.... -->
+            <!-- Name -->
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"/>
+
+            <!-- Email -->
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="15sp"
+                android:textColor="#808080"
+                android:layout_gravity="center_horizontal"/>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"
-                android:layout_marginTop="95dp"
+                android:layout_marginTop="10dp"
                 android:background="#D5D5D5" />
 
             <!-- Subscription Status -->
@@ -92,11 +114,11 @@
                 android:fontFamily="@font/poppins_medium"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
-                android:textSize="20sp"/>
+                android:textSize="18sp"/>
 
             <!-- Subscription Background -->
             <ImageView
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center_horizontal"
@@ -117,7 +139,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
-                android:textSize="20sp"/>
+                android:textSize="18sp"/>
         </LinearLayout>
 
     </ScrollView>
