@@ -45,7 +45,7 @@
     <!--QR Code Caption -->
     <TextView
         android:id="@+id/tvQrCaption"
-        android:layout_width="360dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
         android:text="Please show your QR code at the counter to verify your payment after purchase."
@@ -61,8 +61,8 @@
     <!-- QR Code -->
     <ImageView
         android:id="@+id/qrCodeImageView"
-        android:layout_width="363dp"
-        android:layout_height="303dp"
+        android:layout_width="320dp"
+        android:layout_height="290dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -74,8 +74,8 @@
     <!-- Generate Button -->
     <Button
         android:id="@+id/btnGenerateQr"
-        android:layout_width="350dp"
-        android:layout_height="66dp"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/blue_button"

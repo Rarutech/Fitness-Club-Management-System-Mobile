@@ -2,19 +2,19 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="CardInformation">
+      <SelectionState runConfigName="PrivacyPolicy (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ConfirmEmailActivity">
+      <SelectionState runConfigName="Progress">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ConfirmEmailActivity (1)">
+      <SelectionState runConfigName="QRCodeMembershipFee">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ConfirmEmailActivity (2)">
+      <SelectionState runConfigName="Settings">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="CreateNewPassword">
+      <SelectionState runConfigName="WelcomePage">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -45,8 +45,8 @@
     <!-- Smart Fitness Image -->
     <ImageView
         android:id="@+id/imageRecSmartFit"
-        android:layout_width="350dp"
-        android:layout_height="340dp"
+        android:layout_width="320dp"
+        android:layout_height="300dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,24 +58,24 @@
         app:srcCompat="@drawable/bgrectangle" />
 
     <TextView
-        android:layout_width="252dp"
+        android:layout_width="232dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter_regular"
         android:text="Your best self starts here—become a member!"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageRecSmartFit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintHorizontal_bias="0.286"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.404" />
+        app:layout_constraintTop_toTopOf="@+id/imageRecSmartFit"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageSmartFit"
-        android:layout_width="314dp"
-        android:layout_height="281dp"
+        android:layout_width="300dp"
+        android:layout_height="270dp"
         android:contentDescription="Fitness"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,28 +90,27 @@
         android:id="@+id/tvPriceMonthly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/poppins_regular"
         android:text="₱ 600/ Monthly"
         android:textColor="#B0B0B0"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnPayNow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.552" />
+        app:layout_constraintVertical_bias="0.978" />
 
     <!-- Pay Now -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnPayNow"
         style="@style/CustomGrayButtonStyle"
-        android:layout_width="350dp"
-        android:layout_height="66dp"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/inter_regular"
-        android:paddingRight="210dp"
+        android:paddingRight="195dp"
         android:text="Pay now"
         android:textAllCaps="false"
         android:textColor="#B0B0B0"
@@ -125,16 +124,16 @@
 
     <!-- Radio Button -->
     <androidx.appcompat.widget.AppCompatRadioButton
-        android:id="@+id/radiobtn1"
+        android:id="@+id/btnRadio1"
         android:layout_width="32dp"
         android:layout_height="31dp"
         android:buttonTint="@color/radio_button_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.614" />
+        app:layout_constraintVertical_bias="0.616" />
 
     <!-- OR -->
     <TextView
@@ -156,8 +155,8 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnPayAtCounter"
         style="@style/CustomGrayButtonStyle"
-        android:layout_width="350dp"
-        android:layout_height="66dp"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/inter_regular"
@@ -175,22 +174,22 @@
 
     <!-- Radio Button -->
     <androidx.appcompat.widget.AppCompatRadioButton
-        android:id="@+id/radiobtn2"
+        android:id="@+id/btnRadio2"
         android:layout_width="32dp"
         android:layout_height="31dp"
         android:buttonTint="@color/radio_button_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.753" />
+        app:layout_constraintVertical_bias="0.754" />
 
     <!-- Continue Membership Button -->
     <Button
         android:id="@+id/btnContinueMembership"
-        android:layout_width="350dp"
-        android:layout_height="66dp"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
         android:background="@drawable/blue_button"
         android:fontFamily="@font/inter_regular"
         android:text="Continue"

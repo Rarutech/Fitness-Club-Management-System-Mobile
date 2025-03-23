@@ -10,8 +10,8 @@
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarShop"
-        android:layout_width="411dp"
+        android:id="@+id/toolbarBookClass"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,50 +24,33 @@
         app:title="Book Classes"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
 
-    <View
-        android:id="@+id/view5"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#D5D5D5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarShop"
-        app:layout_constraintVertical_bias="0.076" />
-
+    <!-- Icon on the toolbar -->
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarShop"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarShop"
-        app:layout_constraintVertical_bias="0.001">
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="@id/toolbarBookClass"
+        app:layout_constraintBottom_toBottomOf="@id/toolbarBookClass"
+        app:layout_constraintEnd_toEndOf="@id/toolbarBookClass">
 
         <!-- Search Icon -->
         <ImageButton
             android:id="@+id/btnSearch"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:background="@null"
             android:contentDescription="Search"
-            android:src="@drawable/search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/search" />
 
         <!-- Account Icon -->
         <ImageButton
             android:id="@+id/btnAccount"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:background="@null"
             android:contentDescription="Account"
             android:src="@drawable/account" />
@@ -75,66 +58,65 @@
 
     <!-- Shop content -->
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarBookClass"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="20dp"
-            android:padding="15dp">
-
-                <ImageView
-                    android:layout_width="350dp"
-                    android:layout_height="110dp"
-                    android:background="@drawable/black_rectangle"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="70dp"
-                    android:contentDescription="1st Black Rectangle"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp">
 
             <ImageView
-                android:layout_width="350dp"
+                android:layout_width="320dp"
                 android:layout_height="110dp"
                 android:background="@drawable/black_rectangle"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:contentDescription="1st Black Rectangle"/>
+                android:contentDescription="1st Black Rectangle" />
 
             <ImageView
-                android:layout_width="350dp"
+                android:layout_width="320dp"
                 android:layout_height="110dp"
-                android:background="@drawable/black_rectangle"
-                android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
-                android:contentDescription="1st Black Rectangle"/>
+                android:background="@drawable/black_rectangle"
+                android:contentDescription="1st Black Rectangle" />
 
             <ImageView
-                android:layout_width="350dp"
+                android:layout_width="320dp"
                 android:layout_height="110dp"
-                android:background="@drawable/black_rectangle"
-                android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
-                android:contentDescription="1st Black Rectangle"/>
+                android:background="@drawable/black_rectangle"
+                android:contentDescription="1st Black Rectangle" />
 
             <ImageView
-                android:layout_width="350dp"
+                android:layout_width="320dp"
                 android:layout_height="110dp"
-                android:background="@drawable/black_rectangle"
-                android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
-                android:contentDescription="1st Black Rectangle"/>
+                android:background="@drawable/black_rectangle"
+                android:contentDescription="1st Black Rectangle" />
+
+            <ImageView
+                android:layout_width="320dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/black_rectangle"
+                android:contentDescription="1st Black Rectangle" />
 
         </LinearLayout>
     </ScrollView>
 
+    <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAppointment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/appointment_btn"
         app:tint="@android:color/white"
-        app:fabCustomSize="70dp"
+        app:fabSize="normal"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"

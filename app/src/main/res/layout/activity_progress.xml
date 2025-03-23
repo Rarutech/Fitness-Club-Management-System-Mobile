@@ -11,7 +11,7 @@
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarProgress"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,50 +24,33 @@
         app:title="Progress"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
 
-    <View
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#D5D5D5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarProgress"
-        app:layout_constraintVertical_bias="0.076" />
-
+    <!-- Icon on the toolbar -->
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarProgress"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarProgress"
-        app:layout_constraintVertical_bias="0.001">
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="@id/toolbarProgress"
+        app:layout_constraintBottom_toBottomOf="@id/toolbarProgress"
+        app:layout_constraintEnd_toEndOf="@id/toolbarProgress">
 
         <!-- Search Icon -->
         <ImageButton
             android:id="@+id/btnSearch"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:background="@null"
             android:contentDescription="Search"
-            android:src="@drawable/search_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/search" />
 
         <!-- Account Icon -->
         <ImageButton
             android:id="@+id/btnAccount"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:background="@null"
             android:contentDescription="Account"
             android:src="@drawable/account" />
@@ -92,7 +75,7 @@
 
     <ImageView
         android:id="@+id/imageTotal"
-        android:layout_width="350dp"
+        android:layout_width="320dp"
         android:layout_height="66dp"
         android:background="@drawable/black_rectangle"
         android:contentDescription="Total"
@@ -122,8 +105,9 @@
     <!-- Calendar Background -->
     <ImageView
         android:id="@+id/imageCalendarBG"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/black_rectangle"
         android:contentDescription="Total"
         app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
@@ -136,8 +120,9 @@
     <!-- Total Workout -->
     <ImageView
         android:id="@+id/imageTotalWorkout"
-        android:layout_width="350dp"
+        android:layout_width="320dp"
         android:layout_height="90dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/black_rectangle"
         android:contentDescription="Total"
         app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"

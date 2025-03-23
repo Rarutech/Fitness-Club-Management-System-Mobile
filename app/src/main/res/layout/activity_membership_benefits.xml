@@ -51,6 +51,7 @@
         android:text="Skip"
         android:textColor="#007BFF"
         android:textSize="16sp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.939"
@@ -118,8 +119,8 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNext"
         style="@style/CustomBlueButtonStyle"
-        android:layout_width="350dp"
-        android:layout_height="66dp"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
         android:fontFamily="@font/inter_regular"
         android:text="Next"
         android:textAllCaps="false"
