@@ -52,7 +52,9 @@ class MainActivity : AppCompatActivity() {
             finish()
         } else {
             Log.d("Role","Role: ${role}")
-
+            val intent  = Intent(this, Trainee_Home::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 

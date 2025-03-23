@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -66,7 +67,16 @@ class PostHighlightActivity : AppCompatActivity() {
         progressDialog.setMessage("Uploading... Please wait")
         progressDialog.setCancelable(false)
 
+        val toolbar: Toolbar = findViewById(R.id.toolbarPostHighlight)
+        setSupportActionBar(toolbar)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this@PostHighlightActivity, TrainerHomeActivity::class.java)
+            startActivity(intent)
+        }
 
         btnGetImage.setOnClickListener {
             imagePickerLauncher.launch("image/*")
@@ -139,7 +149,7 @@ class PostHighlightActivity : AppCompatActivity() {
             return
         }
 
-        val btnPost = findViewById<Button>(R.id.btnPost)
+        val btnPost = findViewById<TextView>(R.id.btnPost)
         // Show progress dialog and disable button to prevent spamming
         progressDialog.show()
         btnPost.isEnabled = false

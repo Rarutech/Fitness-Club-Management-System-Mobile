@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
+import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.FetchInventoryResponse
 import com.upang.fitness_club_management_system.model.Product
 import retrofit2.Call
@@ -46,8 +47,19 @@ class ProductDetailsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         toolbar.setNavigationOnClickListener {
-            val intent = Intent(this@ProductDetailsActivity, Shop::class.java)
-            startActivity(intent)
+            val preferenceManager = PreferenceManager(this)
+            val role = preferenceManager.getRole()
+
+            if (role != null) {
+                if (role == "trainer") {
+                    val intent = Intent(this@ProductDetailsActivity, TrainerShop::class.java)
+                    startActivity(intent)
+                }
+            } else{
+                val intent = Intent(this@ProductDetailsActivity, Shop::class.java)
+                startActivity(intent)
+            }
+
         }
 
         btnBuyNow.setOnClickListener {
