@@ -15,12 +15,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
         android:padding="5dp"
         android:text="Email Verification"
         android:textSize="35sp"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.043" />
@@ -28,15 +29,16 @@
     <!-- Email Icon -->
     <ImageView
         android:id="@+id/imageEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="Email Image"
+        android:src="@drawable/mail"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266"
-        tools:srcCompat="@drawable/mail" />
+        app:layout_constraintVertical_bias="0.211" />
 
     <!-- Verification Caption -->
     <TextView
@@ -46,7 +48,7 @@
         android:fontFamily="@font/poppins_regular"
         android:gravity="center"
         android:text="Please enter the 4 digit code sent to your email."
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,76 +58,90 @@
     <!-- OTP 1st box -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etOTP1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="80dp"
-        android:height="70dp"
+        android:layout_width="70dp"
+        android:layout_height="65dp"
+        android:inputType="number"
+        android:maxLength="1"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
         android:layout_marginEnd="80dp"
-        android:textColorHint="#B0B0B0"
-        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
         android:background="@drawable/email_verification_border1"
+        android:textColor="@color/black"
+        android:textColorHint="#B0B0B0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintVertical_bias="0.539" />
 
     <!-- OTP 2nd box -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etOTP2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5.5dp"
+        android:layout_width="70dp"
+        android:layout_height="65dp"
+        android:inputType="number"
+        android:maxLength="1"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="10dp"
-        android:width="80dp"
-        android:height="70dp"
-        android:textColorHint="#B0B0B0"
-        android:textColor="@color/black"
         android:background="@drawable/email_verification_border2"
+        android:textColor="@color/black"
+        android:textColorHint="#B0B0B0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.370"
+        app:layout_constraintHorizontal_bias="0.329"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintVertical_bias="0.539" />
 
     <!-- OTP 3rd box -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etOTP3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="65dp"
+        android:inputType="number"
+        android:maxLength="1"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
         android:layout_marginStart="7dp"
-        android:layout_marginEnd="5.5dp"
-        android:width="80dp"
-        android:height="70dp"
-        android:textColorHint="#B0B0B0"
-        android:textColor="@color/black"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/email_verification_border3"
+        android:textColor="@color/black"
+        android:textColorHint="#B0B0B0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.650"
+        app:layout_constraintHorizontal_bias="0.676"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintVertical_bias="0.539" />
 
     <!-- OTP 4th box -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etOTP4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="80dp"
-        android:height="70dp"
-        android:textColorHint="#B0B0B0"
-        android:textColor="@color/black"
+        android:layout_width="70dp"
+        android:layout_height="65dp"
+        android:inputType="number"
+        android:maxLength="1"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
         android:layout_marginStart="80dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/email_verification_border4"
+        android:textColor="@color/black"
+        android:textColorHint="#B0B0B0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.944"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintVertical_bias="0.539" />
 
     <!-- Resend Code -->
     <TextView
@@ -134,7 +150,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
         android:text="Resend code"
-        android:textColor="#0056B3"
+        android:textColor="#007BFF"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,8 +162,8 @@
     <!-- Verify Button -->
     <Button
         android:id="@+id/btnConfirmEmail"
-        android:layout_width="350dp"
-        android:layout_height="66dp"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:height="56dp"

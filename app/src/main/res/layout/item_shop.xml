@@ -2,17 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="#FFFFFF"
     android:orientation="vertical">
-    <ImageView
-        android:id="@+id/productImage"
-        android:layout_width="150dp"
-        android:layout_height="180dp"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="220dp"
+            android:src="@drawable/gray_rectangle"/>
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"/>
+    </FrameLayout>
+
     <TextView
         android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Product name"
-        android:textStyle="bold"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="15sp"
         android:layout_gravity="center"/>
 
     <TextView
@@ -21,5 +35,9 @@
         android:layout_height="wrap_content"
         android:text="Price name"
         android:textStyle="bold"
-        android:layout_gravity="left"/>
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="15sp"
+        android:layout_gravity="center"/>
+
 </LinearLayout>
