@@ -1,13 +1,16 @@
 package com.upang.fitness_club_management_system
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Telephony.Mms.Intents
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputLayout
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
+import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.LoginRequest
 import com.upang.fitness_club_management_system.model.LoginResponse
 import okhttp3.Callback
@@ -24,6 +28,8 @@ import retrofit2.Response
 
 class LoginPage : AppCompatActivity() {
     private var isPasswordVisible = false
+    private lateinit var tvSignUp: TextView
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +43,20 @@ class LoginPage : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val button = findViewById<Button>(R.id.btnLogin)
-
         val btnShowPass = findViewById<TextInputLayout>(R.id.btnShowPassLogin)
+        tvSignUp = findViewById(R.id.tvSignup)
 
-        btnShowPass.setOnClickListener{
+        progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Logging in...")
+        progressDialog.setCancelable(false)
+
+        tvSignUp.setOnClickListener {
+            val intent = Intent(this@LoginPage, SignupActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btnShowPass.setOnClickListener {
             isPasswordVisible = !isPasswordVisible
             if (isPasswordVisible) {
                 etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
@@ -50,13 +66,17 @@ class LoginPage : AppCompatActivity() {
             etPassword.setSelection(etPassword.text?.length ?: 0)
         }
 
-
-        button.setOnClickListener{
+        button.setOnClickListener {
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
 
-            if (email.isNotEmpty() && password.isNotEmpty()){
-                loginUser(email, password)
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    progressDialog.show()
+                    loginUser(email, password)
+                } else {
+                    Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "Email and Password Required", Toast.LENGTH_SHORT).show()
             }
@@ -69,6 +89,7 @@ class LoginPage : AppCompatActivity() {
 
         api.loginUser(loginRequest).enqueue(object : retrofit2.Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                progressDialog.dismiss()
                 if (response.isSuccessful) {
                     val result = response.body()
                     result?.let {
@@ -89,16 +110,35 @@ class LoginPage : AppCompatActivity() {
                         }
                     }
                 } else {
-                    Toast.makeText(applicationContext, "Error: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Email or Password is incorrect", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                progressDialog.dismiss()
                 Log.e("Login", "Error: ${t.message}")
                 Toast.makeText(applicationContext, "Login request failed", Toast.LENGTH_SHORT).show()
             }
         })
     }
+
+    private fun checkSession() {
+        val preferenceManager = PreferenceManager(this)
+        val role = preferenceManager.getRole()
+        val token = preferenceManager.getToken()
+
+        if (token == null && role == null) {
+            return
+        } else {
+            if (role == "trainer") {
+                val intent = Intent(this@LoginPage, TrainerHomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                val intent = Intent(this@LoginPage, Trainee_Home::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+    }
 }
-
-

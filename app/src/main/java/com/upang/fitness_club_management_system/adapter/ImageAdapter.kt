@@ -7,10 +7,9 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.upang.fitness_club_management_system.R
+import com.upang.fitness_club_management_system.api.RetrofitClient
 
 class ImageAdapter(private val imageList: List<String>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
-
-    private val BASE_URL = "https://glider-above-hopefully.ngrok-free.app/PumpingIronGym/Api/"
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
@@ -22,7 +21,7 @@ class ImageAdapter(private val imageList: List<String>) : RecyclerView.Adapter<I
     }
 
     override fun onBindViewHolder(holder: ImageAdapter.ImageViewHolder, position: Int) {
-        val imageUrl = BASE_URL + imageList[position]
+        val imageUrl = RetrofitClient.getBaseImageUrl()+ "Api/" + imageList[position]
 
         Glide.with(holder.itemView.context)
             .load(imageUrl)

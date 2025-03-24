@@ -39,8 +39,8 @@ class TrainerClients : AppCompatActivity() {
 
         fetchEvents()
 
-        // Bottom Navigation Setup
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
         bottomNavigationView.selectedItemId = R.id.actionClients
 
         bottomNavigationView.setOnItemSelectedListener { item ->
@@ -49,13 +49,12 @@ class TrainerClients : AppCompatActivity() {
                 R.id.actionSchedule -> TrainerScheduleActivity::class.java
                 R.id.actionPost -> PostHighlightActivity::class.java
                 R.id.actionClients -> TrainerClients::class.java
-                R.id.actionShopTrainer -> Shop::class.java
+                R.id.actionShopTrainer -> TrainerShop::class.java
                 else -> null
             }
 
             if (targetActivity != null && targetActivity != javaClass) {
                 startActivity(Intent(this, targetActivity))
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                 finish()
             }
             true

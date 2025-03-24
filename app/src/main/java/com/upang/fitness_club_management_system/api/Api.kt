@@ -6,6 +6,7 @@ import com.upang.fitness_club_management_system.model.ConfirmEmailRequest
 import com.upang.fitness_club_management_system.model.ConfirmEmailResponse
 import com.upang.fitness_club_management_system.model.Event
 import com.upang.fitness_club_management_system.model.FetchInventoryResponse
+import com.upang.fitness_club_management_system.model.FetchTrainerProfileResponse
 import com.upang.fitness_club_management_system.model.HighlightResponse
 import com.upang.fitness_club_management_system.model.LoginRequest
 import com.upang.fitness_club_management_system.model.LoginResponse
@@ -17,6 +18,7 @@ import com.upang.fitness_club_management_system.model.OrderRequest
 import com.upang.fitness_club_management_system.model.OrderResponse
 import com.upang.fitness_club_management_system.model.TrainerRequestResponse
 import com.upang.fitness_club_management_system.model.postHighlightResponse
+import com.upang.fitness_club_management_system.model.FetchOrdersResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -82,4 +84,11 @@ interface Api {
 
     @GET("Api/fetchTrainerRequest.php")
     fun fetchTrainerRequest(@Query("email") email: String): Call<List<TrainerRequestResponse>>
+
+    @GET("Api/fetchTrainerProfile.php")
+    fun fetchTrainerProfile(@Query("email") email: String): Call<FetchTrainerProfileResponse>
+
+    @Headers("Content-Type: application/json")
+    @GET("Api/fetchOrders.php")
+    fun fetchOrders(@Query("email") email: String): Call<FetchOrdersResponse>
 }

@@ -57,8 +57,18 @@ class BuyProductActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         toolbar.setNavigationOnClickListener {
-            val intent = Intent(this@BuyProductActivity, Shop::class.java)
-            startActivity(intent)
+            val preferenceManager = PreferenceManager(this)
+            val role = preferenceManager.getRole()
+
+            if (role != null) {
+                if (role == "trainer") {
+                    val intent = Intent(this@BuyProductActivity, TrainerShop::class.java)
+                    startActivity(intent)
+                }
+            } else{
+                val intent = Intent(this@BuyProductActivity, Shop::class.java)
+                startActivity(intent)
+            }
         }
 
         // Set up the purchase button click listener
@@ -67,10 +77,10 @@ class BuyProductActivity : AppCompatActivity() {
 
             if (quantityText.isEmpty()) {
                 Toast.makeText(this@BuyProductActivity, "Add a Quantity", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener // Stop execution if quantity is empty
+                return@setOnClickListener
             }
 
-            val _quantity = quantityText.toIntOrNull() // Convert safely to Int
+            val _quantity = quantityText.toIntOrNull()
 
             if (_quantity == null || _quantity <= 0) {
                 Toast.makeText(this@BuyProductActivity, "Enter a valid quantity", Toast.LENGTH_SHORT).show()
@@ -160,9 +170,20 @@ class BuyProductActivity : AppCompatActivity() {
                 Log.d("ORDER_RESPONSE", "ErrorBody: ${response.errorBody()?.string()}")
 
                 if (response.isSuccessful) {
+                    Toast.makeText(this@BuyProductActivity, "Product Purchased", Toast.LENGTH_SHORT).show()
                     Log.d("ORDER_RESPONSE", "Success: ${response.body()}")
-                    val intent = Intent(this@BuyProductActivity, Shop::class.java)
-                    startActivity(intent)
+
+                    val preferenceManager = PreferenceManager(this@BuyProductActivity)
+                    val role = preferenceManager.getRole()
+                    if (role != null) {
+                        if (role == "trainer") {
+                            val intent = Intent(this@BuyProductActivity, TrainerShop::class.java)
+                            startActivity(intent)
+                        }
+                    } else{
+                        val intent = Intent(this@BuyProductActivity, Shop::class.java)
+                        startActivity(intent)
+                    }
                 } else {
                     Log.e("ORDER_RESPONSE", "Error: ${response.errorBody()?.string()}")
                 }

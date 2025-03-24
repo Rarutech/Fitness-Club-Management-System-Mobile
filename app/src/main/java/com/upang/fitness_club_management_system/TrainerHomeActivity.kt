@@ -23,7 +23,6 @@ import retrofit2.Response
 class TrainerHomeActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var highlightAdapter: HighlightAdapter
-    private lateinit var btnUpload: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -38,13 +37,7 @@ class TrainerHomeActivity : AppCompatActivity() {
         //Bottom Navigation
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        when (javaClass) {
-            TrainerHomeActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionHomeTrainer
-            TrainerScheduleActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionSchedule
-            PostHighlightActivity::class.java -> bottomNavigationView.selectedItemId = R.id.actionPost
-            TrainerClients::class.java -> bottomNavigationView.selectedItemId = R.id.actionClients
-            Shop::class.java -> bottomNavigationView.selectedItemId = R.id.actionShopTrainer
-        }
+        bottomNavigationView.selectedItemId = R.id.actionHomeTrainer
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             val targetActivity = when (item.itemId) {
@@ -52,13 +45,12 @@ class TrainerHomeActivity : AppCompatActivity() {
                 R.id.actionSchedule -> TrainerScheduleActivity::class.java
                 R.id.actionPost -> PostHighlightActivity::class.java
                 R.id.actionClients -> TrainerClients::class.java
-                R.id.actionShopTrainer -> Shop::class.java
+                R.id.actionShopTrainer -> TrainerShop::class.java
                 else -> null
             }
 
             if (targetActivity != null && targetActivity != javaClass) {
                 startActivity(Intent(this, targetActivity))
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                 finish()
             }
             true

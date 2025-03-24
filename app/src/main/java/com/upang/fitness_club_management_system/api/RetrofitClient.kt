@@ -18,4 +18,7 @@ object RetrofitClient {
             .build()
     }
 
+    fun getBaseImageUrl(): String {
+        return BASE_URL
+    }
 }

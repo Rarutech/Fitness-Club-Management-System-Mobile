@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.upang.fitness_club_management_system.R
 import com.upang.fitness_club_management_system.model.Product
+import com.upang.fitness_club_management_system.api.RetrofitClient
 
 class ShopAdapter(private val productList: List<Product>, private val onItemClick: (Product) -> Unit) : RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
 
@@ -22,8 +23,8 @@ class ShopAdapter(private val productList: List<Product>, private val onItemClic
             productName.text = product.product_name
             productPrice.text = "₱${product.price.toDouble().toInt()}"
 
-            // Construct full image URL
-            val imageUrl = "https://glider-above-hopefully.ngrok-free.app/PumpingIronGym/storage/products/${product.product_image}"
+            // Construct full image URL using RetrofitClient
+            val imageUrl = RetrofitClient.getBaseImageUrl()+ "storage/products/" + product.product_image
 
             // Load image using Glide
             Glide.with(itemView.context)
