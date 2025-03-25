@@ -19,6 +19,7 @@ import com.upang.fitness_club_management_system.model.OrderResponse
 import com.upang.fitness_club_management_system.model.TrainerRequestResponse
 import com.upang.fitness_club_management_system.model.postHighlightResponse
 import com.upang.fitness_club_management_system.model.FetchOrdersResponse
+import com.upang.fitness_club_management_system.model.FetchTrainersResponse
 import com.upang.fitness_club_management_system.model.UpdateProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
@@ -107,4 +108,7 @@ interface Api {
         @Part("email") email: RequestBody,
         @Part profile_picture: MultipartBody.Part
     ): Call<UpdateProfileResponse>
+    @Headers("Content-Type: application/json")
+    @GET("Api/fetchTrainerProfile.php")
+    fun fetchAllTrainers(): Call<FetchTrainersResponse>
 }

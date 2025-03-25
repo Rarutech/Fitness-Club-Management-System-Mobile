@@ -72,39 +72,12 @@
             android:gravity="center"
             android:padding="20dp">
 
-            <ImageView
-                android:layout_width="320dp"
-                android:layout_height="110dp"
-                android:background="@drawable/black_rectangle"
-                android:contentDescription="1st Black Rectangle" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTrainers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="320dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/black_rectangle"
-                android:contentDescription="1st Black Rectangle" />
-
-            <ImageView
-                android:layout_width="320dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/black_rectangle"
-                android:contentDescription="1st Black Rectangle" />
-
-            <ImageView
-                android:layout_width="320dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/black_rectangle"
-                android:contentDescription="1st Black Rectangle" />
-
-            <ImageView
-                android:layout_width="320dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/black_rectangle"
-                android:contentDescription="1st Black Rectangle" />
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </ScrollView>
