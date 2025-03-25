@@ -42,5 +42,22 @@ class PreferenceManager(context: Context) {
         prefs.edit().remove("CURRENT_ROLE").apply()
     }
 
+    // In PreferenceManager.kt
+
+    fun saveFullName(fullName: String) {
+        prefs.edit().putString("CURRENT_FULLNAME", fullName).apply()
+    }
+
+    fun getFullName(): String? {
+        return prefs.getString("CURRENT_FULLNAME", null)
+    }
+
+    fun saveAboutMe(aboutMe: String) {
+        prefs.edit().putString("CURRENT_ABOUTME", aboutMe).apply()
+    }
+
+    fun getAboutMe(): String? {
+        return prefs.getString("CURRENT_ABOUTME", null)
+    }
 
 }

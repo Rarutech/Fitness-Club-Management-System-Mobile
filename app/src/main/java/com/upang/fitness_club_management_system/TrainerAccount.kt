@@ -47,6 +47,7 @@ class TrainerAccount : AppCompatActivity() {
         findViewById<ImageButton>(R.id.btnSettings).setOnClickListener {
             val intent = Intent(this, Settings::class.java)
             startActivity(intent)
+            finish()
         }
 
         showLoader()

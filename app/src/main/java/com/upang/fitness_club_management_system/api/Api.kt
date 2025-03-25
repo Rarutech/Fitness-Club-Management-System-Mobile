@@ -54,7 +54,6 @@ interface Api {
 
     @Multipart
     @POST("Api/postHighlights.php")
-
     fun uploadPost(
         @Part("user_email") userEmail: RequestBody,
         @Part("caption") caption: RequestBody,

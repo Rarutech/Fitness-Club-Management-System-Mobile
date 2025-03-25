@@ -2,6 +2,7 @@ package com.upang.fitness_club_management_system
 
 import android.app.ProgressDialog
 import android.content.ContentResolver
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
@@ -62,6 +63,13 @@ class EditTrainerProfile : AppCompatActivity() {
         progressDialog.setMessage("Uploading... Please wait")
         progressDialog.setCancelable(false)
 
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbarEditProfile)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
+
         fetchUserProfile()
         showLoader()
 
@@ -70,7 +78,9 @@ class EditTrainerProfile : AppCompatActivity() {
         }
         tvSaveBtn.setOnClickListener {
             updateProfile()
-            updatePicture()
+            if (selectedImageUri != null){
+                updatePicture()
+            }
         }
     }
 
@@ -78,13 +88,21 @@ class EditTrainerProfile : AppCompatActivity() {
         val preferenceManager = PreferenceManager(this)
         val api = RetrofitClient.instance.create(Api::class.java)
         val email = preferenceManager.getEmail()
-        val fullname = etFullname.text.toString()
-        val aboutMe = etAboutMe.text.toString()
+        var fullname = etFullname.text.toString()
+        var aboutMe = etAboutMe.text.toString()
 
-        if (email.isNullOrEmpty() || fullname.isEmpty() || aboutMe.isEmpty()) {
-            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+        if (email.isNullOrEmpty()) {
             return
         }
+        if (fullname.isEmpty()) {
+            fullname = preferenceManager.getFullName() ?: ""
+        }
+
+        if (aboutMe.isEmpty()) {
+            aboutMe = preferenceManager.getAboutMe() ?: ""
+        }
+
+        Log.d("EditTrainerProfile", "Updating profile with email: $email, fullname: $fullname, aboutMe: $aboutMe")
 
         val updateRequest = UpdateTrainerProfileRequest(email, fullname, aboutMe)
         api.updateTrainerProfile(updateRequest).enqueue(object : Callback<UpdateTrainerProfileResponse> {
@@ -94,6 +112,9 @@ class EditTrainerProfile : AppCompatActivity() {
             ) {
                 if (response.isSuccessful && response.body()?.status == "success") {
                     Toast.makeText(this@EditTrainerProfile, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@EditTrainerProfile, TrainerAccount::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this@EditTrainerProfile, "Failed to update profile", Toast.LENGTH_SHORT).show()
                 }
@@ -110,29 +131,41 @@ class EditTrainerProfile : AppCompatActivity() {
         val api = RetrofitClient.instance.create(Api::class.java)
         val email = preferenceManager.getEmail()
 
-        if (email.isNullOrEmpty() || selectedImageUri == null) {
-            Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show()
+        if (email.isNullOrEmpty()) {
+            Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val file = createFileFromUri(selectedImageUri!!)
+        if (!file.exists() || file.length() == 0L) {
+            Toast.makeText(this, "File does not exist or is empty", Toast.LENGTH_SHORT).show()
             return
         }
 
         val emailRequestBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
-        val file = createFileFromUri(selectedImageUri!!)
-        val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+        val requestFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val body = MultipartBody.Part.createFormData("profile_picture", file.name, requestFile)
+        Log.d("EditTrainerProfile", "Uploading file: ${file.name}, size: ${file.length()} bytes")
 
         progressDialog.show()
         api.updateProfilePic(emailRequestBody, body).enqueue(object : Callback<UpdateProfileResponse> {
             override fun onResponse(call: Call<UpdateProfileResponse>, response: Response<UpdateProfileResponse>) {
                 progressDialog.dismiss()
                 if (response.isSuccessful) {
-                    Toast.makeText(this@EditTrainerProfile, "Profile picture updated successfully", Toast.LENGTH_SHORT).show()
+                    Log.d("EditTrainerProfile", "Upload success: ${response.body()?.profile_picture}")
+                    Toast.makeText(this@EditTrainerProfile, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@EditTrainerProfile, TrainerAccount::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
+                    Log.e("EditTrainerProfile", "Upload failed: ${response.code()} - ${response.message()}")
                     Toast.makeText(this@EditTrainerProfile, "Failed to update profile picture", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<UpdateProfileResponse>, t: Throwable) {
                 progressDialog.dismiss()
+                Log.e("EditTrainerProfile", "Error: ${t.message}", t)
                 Toast.makeText(this@EditTrainerProfile, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
@@ -143,11 +176,17 @@ class EditTrainerProfile : AppCompatActivity() {
         val fileName = getFileName(uri)
         val file = File(cacheDir, fileName)
 
-        contentResolver.openInputStream(uri)?.use { inputStream ->
-            FileOutputStream(file).use { outputStream ->
-                inputStream.copyTo(outputStream)
+        try {
+            contentResolver.openInputStream(uri)?.use { inputStream ->
+                FileOutputStream(file).use { outputStream ->
+                    inputStream.copyTo(outputStream)
+                }
             }
+            Log.d("EditTrainerProfile", "File successfully created: ${file.absolutePath}")
+        } catch (e: Exception) {
+            Log.e("EditTrainerProfile", "Error creating file: ${e.message}")
         }
+
         return file
     }
 
@@ -192,6 +231,11 @@ class EditTrainerProfile : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val profile = response.body()
                     if (profile != null) {
+                        val preferenceManager = PreferenceManager(this@EditTrainerProfile)
+                        val currentName = profile.fullname
+                        val currentAboutMe = profile.about
+                        preferenceManager.saveFullName(currentName)
+                        preferenceManager.saveAboutMe(currentAboutMe)
                         val profileImageView = findViewById<ImageView>(R.id.ivBtn)
                         Glide.with(this@EditTrainerProfile)
                             .load(RetrofitClient.getBaseImageUrl() + "storage/profiles/" + profile.profile_picture)
