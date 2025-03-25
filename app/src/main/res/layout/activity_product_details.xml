@@ -11,9 +11,8 @@
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarProductDetails"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:paddingTop="5dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,16 +29,17 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarProductDetails">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarProductDetails"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:layout_marginBottom="16dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
                 android:layout_width="350dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:contentDescription="Product Image"/>
+                android:contentDescription="Product Image" />
 
             <!-- Product Name -->
             <TextView
@@ -108,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="150dp"
+                android:layout_marginBottom="50dp"
                 android:fontFamily="@font/inter_regular"
                 android:text="📍 In-Store Pickup Only: Place your order through the app and pick it up at our gym!"
                 android:textSize="16sp"
@@ -117,17 +117,15 @@
             <!-- Buy Now Button -->
             <Button
                 android:id="@+id/btnBuyNow"
-                android:layout_width="350dp"
-                android:layout_height="66dp"
+                android:layout_width="320dp"
+                android:layout_height="55dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="50dp"
                 android:background="@drawable/blue_button"
                 android:fontFamily="@font/inter_regular"
                 android:text="Buy Now"
                 android:textSize="16sp" />
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"/>
         </LinearLayout>
     </ScrollView>
 
