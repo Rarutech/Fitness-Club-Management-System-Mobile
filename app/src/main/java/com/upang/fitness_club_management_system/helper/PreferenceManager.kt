@@ -60,4 +60,8 @@ class PreferenceManager(context: Context) {
         return prefs.getString("CURRENT_ABOUTME", null)
     }
 
+    fun clear() {
+        prefs.edit().clear().apply()
+    }
+
 }
