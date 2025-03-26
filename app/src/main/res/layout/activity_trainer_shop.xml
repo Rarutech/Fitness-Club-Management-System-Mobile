@@ -14,7 +14,7 @@
     </LinearLayout>
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarShop"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,19 +24,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         android:paddingTop="5dp"
-        app:title="Trainer Shop"
+        app:title="Shop"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
 
-    <View
-        android:id="@+id/view3"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#D5D5D5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarShop"
-        app:layout_constraintVertical_bias="0.076" />
 
     <!-- Your weekly overview -->
 

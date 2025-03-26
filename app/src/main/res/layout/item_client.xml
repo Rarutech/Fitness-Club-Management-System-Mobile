@@ -2,14 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
-    android:background="#F5F5F5">
+    android:background="#FFFFFF">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circular_border">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@drawable/card_gradient"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="0dp"
         android:padding="30dp">
 
         <LinearLayout
@@ -18,106 +26,165 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!-- Name Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="8dp">
+                android:layout_marginTop="5dp"
+                android:paddingBottom="3dp">
+
+                <!-- Person Icon -->
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/tao"
+                    android:contentDescription="Person Icon"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="8dp"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Name:"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333" />
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/trineeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="John"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#1E88E5" />
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#F1F1F1"/>
+
+            <!-- Training Plan Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="8dp">
+                android:layout_marginTop="5dp"
+                android:paddingBottom="8dp"
+                android:paddingTop="3dp">
+
+                <!-- Calendar Icon -->
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/calendar"
+                    android:contentDescription="Calendar Icon"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="8dp"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Training Plan:"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333" />
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/trainingPlan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Weight Loss"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#1E88E5" />
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#F1F1F1"/>
+
+            <!-- Last Session Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="8dp">
+                android:layout_marginTop="5dp"
+                android:paddingBottom="8dp"
+                android:paddingTop="3dp">
+
+                <!-- Time Icon -->
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/time"
+                    android:contentDescription="Time Icon"
+                    android:layout_marginEnd="8dp"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Last Session"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333" />
+                    android:text="Last Session:"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/eventDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="August 15"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#1E88E5" />
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black" />
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#F1F1F1"/>
 
+            <!-- Status Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="8dp">
+                android:paddingBottom="8dp"
+                android:paddingTop="3dp"
+                android:layout_marginTop="5dp">
+
+                <!-- Check Icon -->
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/check"
+                    android:contentDescription="Person Icon"
+                    android:layout_marginEnd="8dp"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Status:"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333" />
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Active"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#1E88E5" />
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
+</FrameLayout>
 </LinearLayout>

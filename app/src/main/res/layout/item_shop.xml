@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="10dp">
 
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="180dp"
-            android:layout_height="220dp"
-            android:src="@drawable/gray_rectangle"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gray_bg_shop"
+        android:minHeight="220dp">
+
         <ImageView
             android:id="@+id/productImage"
             android:layout_width="150dp"
@@ -27,6 +27,7 @@
         android:text="Product name"
         android:fontFamily="@font/poppins_regular"
         android:textSize="15sp"
+        android:layout_marginTop="8dp"
         android:layout_gravity="center"/>
 
     <TextView
@@ -36,8 +37,7 @@
         android:text="Price name"
         android:textStyle="bold"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/poppins_regular"
-        android:textSize="15sp"
-        android:layout_gravity="center"/>
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="17sp" />
 
 </LinearLayout>

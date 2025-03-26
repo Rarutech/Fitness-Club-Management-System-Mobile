@@ -5,7 +5,7 @@
     <!--White Color -->
     <solid android:color="@color/white"/>
 
-    <!-- Border Radiue -->
+    <!-- Border Radius -->
     <corners android:radius="8dp"/>
 
     <!-- Radius Color -->
