@@ -2,19 +2,19 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="TrainerClients (1)">
+      <SelectionState runConfigName="EditTrainerProfile (3)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="LoginPage (1)">
+      <SelectionState runConfigName="TrainerAccount">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="BuyProductActivity">
+      <SelectionState runConfigName="LoginPage">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ProductDetailsActivity">
+      <SelectionState runConfigName="EditTrainerProfile (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="BuyProductActivity (1)">
+      <SelectionState runConfigName="BookClassDetails">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -22,7 +22,7 @@
         android:icon="@drawable/plus"
         android:title="Add Post"/>
 
-    <!-- CLients Icon -->
+    <!-- Clients Icon -->
     <item
         android:id="@+id/actionClients"
         android:icon="@drawable/clients"
