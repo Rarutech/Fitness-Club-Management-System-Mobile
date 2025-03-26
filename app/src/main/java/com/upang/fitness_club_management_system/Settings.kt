@@ -23,7 +23,8 @@ class Settings : AppCompatActivity() {
 
         val toolbar = findViewById<Toolbar>(R.id.toolbarSettings)
         toolbar.setNavigationOnClickListener {
-            finish()
+            val intent = Intent(this, TrainerAccount::class.java)
+            startActivity(intent)
         }
         val editProfile = findViewById<TextView>(R.id.tvEditProfile)
         editProfile.setOnClickListener {

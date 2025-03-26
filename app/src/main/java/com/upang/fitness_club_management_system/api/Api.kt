@@ -19,10 +19,17 @@ import com.upang.fitness_club_management_system.model.OrderResponse
 import com.upang.fitness_club_management_system.model.TrainerRequestResponse
 import com.upang.fitness_club_management_system.model.postHighlightResponse
 import com.upang.fitness_club_management_system.model.FetchOrdersResponse
+import com.upang.fitness_club_management_system.model.FetchTrainersResponse
+import com.upang.fitness_club_management_system.model.UpdateProfileRequest
+import com.upang.fitness_club_management_system.model.UpdateProfileResponse
+import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
+import com.upang.fitness_club_management_system.model.UpdateTrainerProfileResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
@@ -48,7 +55,6 @@ interface Api {
 
     @Multipart
     @POST("Api/postHighlights.php")
-
     fun uploadPost(
         @Part("user_email") userEmail: RequestBody,
         @Part("caption") caption: RequestBody,
@@ -91,4 +97,18 @@ interface Api {
     @Headers("Content-Type: application/json")
     @GET("Api/fetchOrders.php")
     fun fetchOrders(@Query("email") email: String): Call<FetchOrdersResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("Api/updateTrainerProfile.php")
+    fun updateTrainerProfile(@Body updateTrainerProfileRequest: UpdateTrainerProfileRequest): Call<UpdateTrainerProfileResponse>
+
+    @Multipart
+    @POST("Api/updateProfilePic.php")
+    fun updateProfilePic(
+        @Part("email") email: RequestBody,
+        @Part profile_picture: MultipartBody.Part
+    ): Call<UpdateProfileResponse>
+    @Headers("Content-Type: application/json")
+    @GET("Api/fetchTrainerProfile.php")
+    fun fetchAllTrainers(): Call<FetchTrainersResponse>
 }

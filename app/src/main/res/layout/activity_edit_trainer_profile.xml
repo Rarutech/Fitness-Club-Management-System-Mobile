@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     tools:context=".EditProfile">
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -43,6 +52,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,6 +68,7 @@
             android:layout_height="95dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="Avatar"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +81,8 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_marginStart="28dp"
+            android:layout_marginTop="50dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Name"
             android:textColor="@color/black"
@@ -123,13 +134,12 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etAboutMe"
             android:layout_width="350dp"
-            android:layout_height="66dp"
+            android:layout_height="350dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="37dp"
             android:background="@drawable/edittext_border"
             android:fontFamily="@font/poppins_medium"
-            android:hint="About Me"
             android:paddingLeft="16dp"
             android:paddingTop="9dp"
             android:textColor="#B0B0B0"
