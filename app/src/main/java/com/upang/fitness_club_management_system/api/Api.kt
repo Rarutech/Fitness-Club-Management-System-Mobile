@@ -2,6 +2,8 @@ package com.upang.fitness_club_management_system.api
 
 import com.upang.fitness_club_management_system.model.AuthRequest
 import com.upang.fitness_club_management_system.model.AuthResponse
+import com.upang.fitness_club_management_system.model.BookTrainerRequest
+import com.upang.fitness_club_management_system.model.BookTrainerResponse
 import com.upang.fitness_club_management_system.model.ConfirmEmailRequest
 import com.upang.fitness_club_management_system.model.ConfirmEmailResponse
 import com.upang.fitness_club_management_system.model.Event
@@ -111,4 +113,8 @@ interface Api {
     @Headers("Content-Type: application/json")
     @GET("Api/fetchTrainerProfile.php")
     fun fetchAllTrainers(): Call<FetchTrainersResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("Api/trainerRequest.php")
+    fun requestTrainer(@Body request: BookTrainerRequest): Call<BookTrainerResponse>
 }
