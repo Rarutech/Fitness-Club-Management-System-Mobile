@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".TraineeAppointments"
+            android:exported="false" />
+        <activity
+            android:name=".Reschedule"
+            android:exported="false" />
+        <activity
             android:name=".BookTrainerSuccess"
             android:exported="true" />
         <activity
