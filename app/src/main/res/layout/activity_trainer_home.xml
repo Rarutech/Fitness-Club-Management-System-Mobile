@@ -11,29 +11,20 @@
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarHome"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:paddingTop="5dp"
         android:visibility="visible"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:title="Home"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
 
-    <View
-        android:id="@+id/view4"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#D5D5D5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarHome"
-        app:layout_constraintVertical_bias="0.076" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -76,37 +67,39 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarHome">
 
         <!-- Monthly Highlights -->
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_marginTop="50dp">
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
                 android:fontFamily="@font/inter_regular"
                 android:text="Monthly Highlights"
                 android:textSize="20sp"
-                android:layout_marginTop="70dp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
                 android:nestedScrollingEnabled="true"
+                android:padding="8dp"
                 android:scrollbars="vertical" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"
+                android:layout_marginTop="20dp"
                 android:background="#D5D5D5" />
 
             <!-- Upcoming Schedule -->
@@ -121,7 +114,7 @@
 
             <!-- Background -->
             <ImageView
-                android:layout_width="350dp"
+                android:layout_width="320dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"

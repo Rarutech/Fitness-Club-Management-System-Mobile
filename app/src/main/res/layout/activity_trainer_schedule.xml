@@ -11,7 +11,7 @@
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarHome"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:paddingTop="5dp"
         android:visibility="visible"
@@ -23,17 +23,6 @@
         app:layout_constraintVertical_bias="0.0"
         app:title="Schedule"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
-
-    <View
-        android:id="@+id/view4"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#D5D5D5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarHome"
-        app:layout_constraintVertical_bias="0.076" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -76,8 +65,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarHome">
 
+        <!-- Calendar Layout -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,7 +79,7 @@
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="75dp"
+                android:layout_marginTop="70dp"
                 app:mcv_showOtherDates="all" />
 
             <androidx.recyclerview.widget.RecyclerView
