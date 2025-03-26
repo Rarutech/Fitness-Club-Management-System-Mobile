@@ -1,6 +1,7 @@
 package com.upang.fitness_club_management_system
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,12 +22,19 @@ import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.FetchTrainerProfileResponse
+import com.upang.fitness_club_management_system.model.TrainerFetchApiResponse
+import com.upang.fitness_club_management_system.model.TrainerFetchData
+import com.upang.fitness_club_management_system.model.TrainerRequestApiResponse
 import com.upang.fitness_club_management_system.model.TrainerRequestResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class BookTrainerSuccess : AppCompatActivity() {
+    private lateinit var btnReschedule: Button
+    private lateinit var btnCancel: Button
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,18 +46,31 @@ class BookTrainerSuccess : AppCompatActivity() {
             insets
 
         }
-        initViews()
-        fetchUserProfile()
-    }
-    private fun initViews() {
+        btnReschedule = findViewById(R.id.btnReschedule)
         sharedPreferences = getSharedPreferences("TrainerPrefs", Context.MODE_PRIVATE)
+        fetchUserProfile()
+        fetchEvents()
+
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, BookClass::class.java)
+            startActivity(intent)
+        }
+
+
+        btnReschedule.setOnClickListener{
+            val intent = Intent(this, Reschedule::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
+
     private fun fetchUserProfile() {
         val api = RetrofitClient.instance.create(Api::class.java)
         val trainerEmail = sharedPreferences.getString("selected_trainer_email", null)
 
         if (trainerEmail == null) {
-            Log.e("TrainerAccount", "Email is null")
+            Log.e("BookTrainerSuccess", "Email is null")
             Toast.makeText(this, "Failed to fetch profile: Email is null", Toast.LENGTH_SHORT).show()
             return
         }
@@ -65,47 +87,78 @@ class BookTrainerSuccess : AppCompatActivity() {
                             .load(RetrofitClient.getBaseImageUrl() + "storage/profiles/" + profile.profile_picture)
                             .into(profileImageView)
                     } else {
-                        Log.e("TrainerAccount", "Profile is null")
+                        Log.e("BookTrainerSuccess", "Profile is null")
                         Toast.makeText(this@BookTrainerSuccess, "Failed to fetch profile: Profile is null", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    Log.e("TrainerAccount", "Error: ${response.code()} - ${response.message()}")
+                    Log.e("BookTrainerSuccess", "Error: ${response.code()} - ${response.message()}")
                     Toast.makeText(this@BookTrainerSuccess, "Failed to fetch profile: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<FetchTrainerProfileResponse>, t: Throwable) {
-                Log.e("TrainerAccount", "Network request failed: ${t.message}", t)
+                Log.e("BookTrainerSuccess", "Network request failed: ${t.message}", t)
                 Toast.makeText(this@BookTrainerSuccess, "Failed to fetch profile: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun fetchEvents() {
-        val preferenceManager = PreferenceManager(this)
-        val email = preferenceManager.getEmail()
-        if (email == null) {
-            Toast.makeText(this, "Email not found. Please log in.", Toast.LENGTH_SHORT).show()
+        val trainerEmail = sharedPreferences.getString("selected_trainer_email", null)
+
+        if (trainerEmail == null) {
+            Log.e("BookTrainerSuccess", "Trainer email is null")
+            Toast.makeText(this, "Error: Trainer email is null", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val request_id = sharedPreferences.getString(trainerEmail, null)
+
+        if (request_id == null) {
+            Log.e("BookTrainerSuccess", "Request ID is null")
+            Toast.makeText(this, "Error: No request ID found for this trainer", Toast.LENGTH_SHORT).show()
             return
         }
 
         val api = RetrofitClient.instance.create(Api::class.java)
-        api.fetchTrainerRequestId().enqueue(object : Callback<List<TrainerRequestResponse>> {
+        api.fetchTrainerRequestId(request_id).enqueue(object : Callback<TrainerFetchApiResponse> {
             override fun onResponse(
-                call: Call<List<TrainerRequestResponse>>,
-                response: Response<List<TrainerRequestResponse>>
+                call: Call<TrainerFetchApiResponse>,
+                response: Response<TrainerFetchApiResponse>
             ) {
                 if (response.isSuccessful && response.body() != null) {
+                    val request = response.body()?.request
 
+                    Log.d("BookTrainerSuccess", "Request fetched: $request")
+
+                    val formattedStartTime = formatTime(request?.time_start)
+                    val formattedEndTime = formatTime(request?.time_end)
+
+                    findViewById<TextView>(R.id.tvName).text = request?.date_of_training ?: "No date"
+                    findViewById<TextView>(R.id.tvTime).text = "$formattedStartTime - $formattedEndTime"
+                    findViewById<TextView>(R.id.tvDescription).text = request?.description ?: "No description"
                 } else {
                     Toast.makeText(applicationContext, "Failed to load data", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            override fun onFailure(call: Call<List<TrainerRequestResponse>>, t: Throwable) {
-                Log.e("TrainerClients", "API call failed: ${t.message}")
+            override fun onFailure(call: Call<TrainerFetchApiResponse>, t: Throwable) {
+                Log.e("BookTrainerSuccess", "API call failed: ${t.message}")
                 Toast.makeText(applicationContext, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+
+    }
+
+    private fun formatTime(time: String?): String {
+        if (time.isNullOrEmpty()) return "No time"
+
+        return try {
+            val inputFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("h:mm a", Locale.getDefault()) // Converts to "8:00 AM"
+            val date = inputFormat.parse(time)
+            outputFormat.format(date ?: return "Invalid time")
+        } catch (e: Exception) {
+            "Invalid time"
+        }
     }
 }

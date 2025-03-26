@@ -9,7 +9,6 @@ data class Event(
     @SerializedName("end_time") val end_time: String,
     @SerializedName("status") val status: String? = null,
 
-
     val assignment_id: Int? = null,
     val request_id: Int? = null,
     val user_email: String? = null,

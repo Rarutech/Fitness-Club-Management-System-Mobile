@@ -23,6 +23,9 @@ import com.upang.fitness_club_management_system.model.postHighlightResponse
 import com.upang.fitness_club_management_system.model.FetchOrdersResponse
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
 import com.upang.fitness_club_management_system.model.PaymentIntentResponse
+import com.upang.fitness_club_management_system.model.TraineePendingResponse
+import com.upang.fitness_club_management_system.model.TrainerFetchApiResponse
+import com.upang.fitness_club_management_system.model.TrainerRequestApiResponse
 import com.upang.fitness_club_management_system.model.UpdateProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileResponse
@@ -89,7 +92,7 @@ interface Api {
     fun sendOrder(@Body orderRequest: OrderRequest): Call<OrderResponse>
 
     @GET("Api/fetchTrainerRequest.php")
-    fun fetchTrainerRequest(@Query("email") email: String): Call<List<TrainerRequestResponse>>
+    fun fetchTrainerRequest(@Query("email") email: String): Call<TrainerRequestApiResponse>
 
     @GET("Api/fetchTrainerProfile.php")
     fun fetchTrainerProfile(@Query("email") email: String): Call<FetchTrainerProfileResponse>
@@ -117,14 +120,16 @@ interface Api {
     fun requestTrainer(@Body request: BookTrainerRequest): Call<BookTrainerResponse>
 
     @GET("Api/fetchTrainerRequest.php")
-    fun fetchTrainerRequestId(@Query("request_id") email: String): Call<List<TrainerRequestResponse>>
+    fun fetchTrainerRequestId(@Query("request_id") request_id: String): Call<TrainerFetchApiResponse>
 
+    @Headers("Content-Type: application/json")
+    @POST("Api/acceptTraineeRequest.php")
+    fun acceptTrainer(@Body request: RequestBody): Call<TraineePendingResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("Api/cancelTraineeRequest.php")
+    fun rejectTrainer(@Body request: RequestBody): Call<TraineePendingResponse>
 
     @POST("Api/create_payment_intent.php")
-    fun createPaymentIntent(
-        @Body request: Int
-    ): Call<PaymentIntentResponse>
-
-
-
+    fun createPaymentIntent(@Body request: HashMap<String, Int>): Call<PaymentIntentResponse>
 }

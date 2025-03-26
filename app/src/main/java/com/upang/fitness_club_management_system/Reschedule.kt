@@ -2,11 +2,15 @@ package com.upang.fitness_club_management_system
 
 import android.app.TimePickerDialog
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
+import android.widget.Button
+import android.widget.CalendarView
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,16 +18,14 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
-import com.upang.fitness_club_management_system.helper.PreferenceManager
-import com.upang.fitness_club_management_system.model.BookTrainerRequest
-import com.upang.fitness_club_management_system.model.BookTrainerResponse
 import com.upang.fitness_club_management_system.model.FetchTrainerProfileResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 
-class BookTrainerClass : AppCompatActivity() {
+class Reschedule : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var calendarView: CalendarView
     private lateinit var selectStartTimeButton: Button
@@ -35,22 +37,19 @@ class BookTrainerClass : AppCompatActivity() {
     private var selectedDate: String = ""
     private var selectedStartTime: String = ""
     private var selectedEndTime: String = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_book_trainer_class)
+        setContentView(R.layout.activity_reschedule)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         initViews()
         setupListeners()
         fetchUserProfile()
     }
-
     private fun initViews() {
         btnBookTrainer = findViewById(R.id.btnBookClass)
         etDescription = findViewById(R.id.etDescription)
@@ -61,7 +60,6 @@ class BookTrainerClass : AppCompatActivity() {
         calendarView = findViewById(R.id.calendarView)
         sharedPreferences = getSharedPreferences("TrainerPrefs", Context.MODE_PRIVATE)
     }
-
     private fun setupListeners() {
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, month + 1, dayOfMonth)
@@ -71,7 +69,6 @@ class BookTrainerClass : AppCompatActivity() {
         selectStartTimeButton.setOnClickListener { showTimePicker(true) }
         selectEndTimeButton.setOnClickListener { showTimePicker(false) }
     }
-
     private fun showTimePicker(isStartTime: Boolean) {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
@@ -103,80 +100,35 @@ class BookTrainerClass : AppCompatActivity() {
             return
         }
 
-        api.fetchTrainerProfile(trainerEmail).enqueue(object : Callback<FetchTrainerProfileResponse> {
+        api.fetchTrainerProfile(trainerEmail).enqueue(object :
+            Callback<FetchTrainerProfileResponse> {
             override fun onResponse(call: Call<FetchTrainerProfileResponse>, response: Response<FetchTrainerProfileResponse>) {
                 if (response.isSuccessful) {
                     val profile = response.body()
                     if (profile != null) {
                         findViewById<TextView>(R.id.tvName).text = profile.fullname
                         val profileImageView = findViewById<ImageView>(R.id.ivProfile)
-                        Glide.with(this@BookTrainerClass)
+                        Glide.with(this@Reschedule)
                             .load(RetrofitClient.getBaseImageUrl() + "storage/profiles/" + profile.profile_picture)
                             .into(profileImageView)
                     } else {
                         Log.e("TrainerAccount", "Profile is null")
-                        Toast.makeText(this@BookTrainerClass, "Failed to fetch profile: Profile is null", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Reschedule, "Failed to fetch profile: Profile is null", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Log.e("TrainerAccount", "Error: ${response.code()} - ${response.message()}")
-                    Toast.makeText(this@BookTrainerClass, "Failed to fetch profile: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@Reschedule, "Failed to fetch profile: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<FetchTrainerProfileResponse>, t: Throwable) {
                 Log.e("TrainerAccount", "Network request failed: ${t.message}", t)
-                Toast.makeText(this@BookTrainerClass, "Failed to fetch profile: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Reschedule, "Failed to fetch profile: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun bookTrainer() {
-        val preferenceManager = PreferenceManager(this)
-        val userEmail = preferenceManager.getEmail()
-        val trainerEmail = sharedPreferences.getString("selected_trainer_email", null) ?: return
-        val description = etDescription.text.toString()
 
-        if (selectedDate.isEmpty() || selectedStartTime.isEmpty() || selectedEndTime.isEmpty() || description.isEmpty() || userEmail.isNullOrEmpty()) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val api = RetrofitClient.instance.create(Api::class.java)
-        val request = BookTrainerRequest(userEmail, trainerEmail, selectedDate, selectedStartTime, selectedEndTime, description)
-        Log.e("BookTrainerClass", "$userEmail, $trainerEmail, $selectedDate, $selectedStartTime, $selectedEndTime, $description")
-
-        api.requestTrainer(request).enqueue(object : Callback<BookTrainerResponse> {
-            override fun onResponse(call: Call<BookTrainerResponse>, response: Response<BookTrainerResponse>) {
-                if (response.isSuccessful) {
-                    val body = response.body()
-                    if (body?.status == "success") {
-                        Toast.makeText(this@BookTrainerClass, "Trainer booked successfully!", Toast.LENGTH_SHORT).show()
-                        saveRequestId(trainerEmail, body.request_id.toString())
-                        Log.e("BookTrainerClass", "Request ID: ${body.request_id}")
-                        val intent = Intent(this@BookTrainerClass, BookTrainerSuccess::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this@BookTrainerClass, "Booking failed: ${body?.message ?: "Unknown error"}", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    Toast.makeText(this@BookTrainerClass, "Booking failed: ${response.message()}", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<BookTrainerResponse>, t: Throwable) {
-                Toast.makeText(this@BookTrainerClass, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-                Log.e("BookTrainerClass", "Error: ${t.message}", t)
-            }
-        })
     }
-
-    private fun saveRequestId(trainerEmail: String, requestId: String) {
-        val sharedPreferences = getSharedPreferences("TrainerPrefs", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString(trainerEmail, requestId) // Use trainerEmail as the key
-        editor.apply()
-        Log.d("BookTrainerClass", "Saved request_id: $requestId for trainer: $trainerEmail")
-    }
-
 }

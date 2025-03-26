@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
+    android:orientation="vertical"
     android:background="#FFFFFF">
 
     <FrameLayout
@@ -187,4 +188,22 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </FrameLayout>
+    <LinearLayout
+        android:id="@+id/llButtons"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btnAccept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Accept"/>
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btnReject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reject"/>
+    </LinearLayout>
 </LinearLayout>
