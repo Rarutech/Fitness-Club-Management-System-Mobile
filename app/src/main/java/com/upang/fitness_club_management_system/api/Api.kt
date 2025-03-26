@@ -111,4 +111,10 @@ interface Api {
     @Headers("Content-Type: application/json")
     @GET("Api/fetchTrainerProfile.php")
     fun fetchAllTrainers(): Call<FetchTrainersResponse>
+
+    @FormUrlEncoded
+    @POST("create_payment_intent.php") // Adjust path based on your server structure
+    fun createPaymentIntent(
+        @Field("amount") amount: Int
+    ): Call<PaymentIntentResponse>
 }
