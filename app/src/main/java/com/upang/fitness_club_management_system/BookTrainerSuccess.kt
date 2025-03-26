@@ -90,7 +90,7 @@ class BookTrainerSuccess : AppCompatActivity() {
         }
 
         val api = RetrofitClient.instance.create(Api::class.java)
-        api.fetchTrainerRequest(email).enqueue(object : Callback<List<TrainerRequestResponse>> {
+        api.fetchTrainerRequestId().enqueue(object : Callback<List<TrainerRequestResponse>> {
             override fun onResponse(
                 call: Call<List<TrainerRequestResponse>>,
                 response: Response<List<TrainerRequestResponse>>

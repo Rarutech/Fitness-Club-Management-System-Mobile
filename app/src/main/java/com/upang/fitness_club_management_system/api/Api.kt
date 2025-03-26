@@ -119,9 +119,15 @@ interface Api {
     @POST("Api/trainerRequest.php")
     fun requestTrainer(@Body request: BookTrainerRequest): Call<BookTrainerResponse>
 
+    @GET("Api/fetchTrainerRequest.php")
+    fun fetchTrainerRequestId(@Query("request_id") email: String): Call<List<TrainerRequestResponse>>
+
+
     @POST("Api/create_payment_intent.php")
     fun createPaymentIntent(
         @Body request: HashMap<String, Int>
     ): Call<PaymentIntentResponse>
+
+
 
 }

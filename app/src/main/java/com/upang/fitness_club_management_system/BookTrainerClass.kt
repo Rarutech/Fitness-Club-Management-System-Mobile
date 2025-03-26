@@ -149,6 +149,7 @@ class BookTrainerClass : AppCompatActivity() {
                     val body = response.body()
                     if (body?.status == "success") {
                         Toast.makeText(this@BookTrainerClass, "Trainer booked successfully!", Toast.LENGTH_SHORT).show()
+                        
                     } else {
                         Toast.makeText(this@BookTrainerClass, "Booking failed: ${body?.message ?: "Unknown error"}", Toast.LENGTH_SHORT).show()
                     }
