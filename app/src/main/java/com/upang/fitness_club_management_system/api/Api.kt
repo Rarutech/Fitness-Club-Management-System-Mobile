@@ -2,6 +2,8 @@ package com.upang.fitness_club_management_system.api
 
 import com.upang.fitness_club_management_system.model.AuthRequest
 import com.upang.fitness_club_management_system.model.AuthResponse
+import com.upang.fitness_club_management_system.model.BookTrainerRequest
+import com.upang.fitness_club_management_system.model.BookTrainerResponse
 import com.upang.fitness_club_management_system.model.ConfirmEmailRequest
 import com.upang.fitness_club_management_system.model.ConfirmEmailResponse
 import com.upang.fitness_club_management_system.model.Event
@@ -20,7 +22,7 @@ import com.upang.fitness_club_management_system.model.TrainerRequestResponse
 import com.upang.fitness_club_management_system.model.postHighlightResponse
 import com.upang.fitness_club_management_system.model.FetchOrdersResponse
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
-import com.upang.fitness_club_management_system.model.UpdateProfileRequest
+import com.upang.fitness_club_management_system.model.PaymentIntentResponse
 import com.upang.fitness_club_management_system.model.UpdateProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileResponse
@@ -28,8 +30,6 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
@@ -111,4 +111,20 @@ interface Api {
     @Headers("Content-Type: application/json")
     @GET("Api/fetchTrainerProfile.php")
     fun fetchAllTrainers(): Call<FetchTrainersResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("Api/trainerRequest.php")
+    fun requestTrainer(@Body request: BookTrainerRequest): Call<BookTrainerResponse>
+
+    @GET("Api/fetchTrainerRequest.php")
+    fun fetchTrainerRequestId(@Query("request_id") email: String): Call<List<TrainerRequestResponse>>
+
+
+    @POST("Api/create_payment_intent.php")
+    fun createPaymentIntent(
+        @Body request: Int
+    ): Call<PaymentIntentResponse>
+
+
+
 }

@@ -1,61 +1,48 @@
 package com.upang.fitness_club_management_system
 
-import android.content.Intent
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
+import android.widget.CalendarView
+import android.widget.EditText
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.upang.fitness_club_management_system.adapter.TrainerClientAdapter
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.FetchTrainerProfileResponse
+import com.upang.fitness_club_management_system.model.TrainerRequestResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.content.SharedPreferences
-import android.content.Context
 
-class BookClassDetails : AppCompatActivity() {
-    private lateinit var progressBar: ProgressBar
-    private lateinit var btnBookClass: Button
+class BookTrainerSuccess : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_book_class_details)
+        setContentView(R.layout.activity_book_trainer_success)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener {
-            val intent = Intent(this@BookClassDetails, BookClass::class.java)
-            startActivity(intent)
-        }
-        btnBookClass = findViewById(R.id.btnBookClass)
-        btnBookClass.setOnClickListener{
-            val intent = Intent(this, BookTrainerClass::class.java)
-            startActivity(intent)
-        }
 
-        progressBar = findViewById(R.id.progressBar)
-        sharedPreferences = getSharedPreferences("TrainerPrefs", Context.MODE_PRIVATE)
+        }
+        initViews()
         fetchUserProfile()
     }
-
+    private fun initViews() {
+        sharedPreferences = getSharedPreferences("TrainerPrefs", Context.MODE_PRIVATE)
+    }
     private fun fetchUserProfile() {
         val api = RetrofitClient.instance.create(Api::class.java)
         val trainerEmail = sharedPreferences.getString("selected_trainer_email", null)
@@ -66,33 +53,58 @@ class BookClassDetails : AppCompatActivity() {
             return
         }
 
-        api.fetchTrainerProfile(trainerEmail).enqueue(object : Callback<FetchTrainerProfileResponse> {
-            override fun onResponse(
-                call: Call<FetchTrainerProfileResponse>,
-                response: Response<FetchTrainerProfileResponse>
-            ) {
+        api.fetchTrainerProfile(trainerEmail).enqueue(object :
+            Callback<FetchTrainerProfileResponse> {
+            override fun onResponse(call: Call<FetchTrainerProfileResponse>, response: Response<FetchTrainerProfileResponse>) {
                 if (response.isSuccessful) {
                     val profile = response.body()
                     if (profile != null) {
                         findViewById<TextView>(R.id.tvName).text = profile.fullname
-                        findViewById<TextView>(R.id.tvAbout).text = profile.about
                         val profileImageView = findViewById<ImageView>(R.id.ivProfile)
-                        Glide.with(this@BookClassDetails)
+                        Glide.with(this@BookTrainerSuccess)
                             .load(RetrofitClient.getBaseImageUrl() + "storage/profiles/" + profile.profile_picture)
                             .into(profileImageView)
                     } else {
                         Log.e("TrainerAccount", "Profile is null")
-                        Toast.makeText(this@BookClassDetails, "Failed to fetch profile: Profile is null", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@BookTrainerSuccess, "Failed to fetch profile: Profile is null", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Log.e("TrainerAccount", "Error: ${response.code()} - ${response.message()}")
-                    Toast.makeText(this@BookClassDetails, "Failed to fetch profile: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@BookTrainerSuccess, "Failed to fetch profile: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<FetchTrainerProfileResponse>, t: Throwable) {
                 Log.e("TrainerAccount", "Network request failed: ${t.message}", t)
-                Toast.makeText(this@BookClassDetails, "Failed to fetch profile: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BookTrainerSuccess, "Failed to fetch profile: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun fetchEvents() {
+        val preferenceManager = PreferenceManager(this)
+        val email = preferenceManager.getEmail()
+        if (email == null) {
+            Toast.makeText(this, "Email not found. Please log in.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val api = RetrofitClient.instance.create(Api::class.java)
+        api.fetchTrainerRequestId().enqueue(object : Callback<List<TrainerRequestResponse>> {
+            override fun onResponse(
+                call: Call<List<TrainerRequestResponse>>,
+                response: Response<List<TrainerRequestResponse>>
+            ) {
+                if (response.isSuccessful && response.body() != null) {
+
+                } else {
+                    Toast.makeText(applicationContext, "Failed to load data", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<TrainerRequestResponse>>, t: Throwable) {
+                Log.e("TrainerClients", "API call failed: ${t.message}")
+                Toast.makeText(applicationContext, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }

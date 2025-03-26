@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".BookTrainerSuccess"
+            android:exported="true" />
+        <activity
+            android:name=".BookTrainerClass"
+            android:exported="true" />
+        <activity
             android:name=".BookClassDetails"
             android:exported="true" />
         <activity
