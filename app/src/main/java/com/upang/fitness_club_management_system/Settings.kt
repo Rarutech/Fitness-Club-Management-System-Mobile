@@ -40,6 +40,29 @@ class Settings : AppCompatActivity() {
                 return@setOnClickListener
             }
         }
+        val changePassword = findViewById<TextView>(R.id.tvChangePass)
+        changePassword.setOnClickListener {
+            val intent = Intent(this, CreateNewPassword::class.java)
+            startActivity(intent)
+        }
+        val logout = findViewById<TextView>(R.id.tvLogout)
+        logout.setOnClickListener {
+            val preferenceManager = PreferenceManager(this)
+            preferenceManager.clear()
+            val intent = Intent(this, LoginPage::class.java)
+            startActivity(intent)
+            finish()
+        }
+        val tvAboutUs = findViewById<TextView>(R.id.tvAboutUs)
+        tvAboutUs.setOnClickListener {
+            val intent = Intent(this, AboutUs::class.java)
+            startActivity(intent)
+        }
+        val privacyPolicy = findViewById<TextView>(R.id.PrivacyPolicy)
+        privacyPolicy.setOnClickListener {
+            val intent = Intent(this, PrivacyPolicy::class.java)
+            startActivity(intent)
+        }
     }
 
 }
