@@ -42,8 +42,7 @@ class PostHighlightActivity : AppCompatActivity() {
     private val selectedImages = ArrayList<Uri>()
     private lateinit var progressDialog: ProgressDialog
 
-    private val imagePickerLauncher =
-        registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris ->
+    private val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris ->
             if (uris.isNotEmpty()) {
                 selectedImages.addAll(uris)
                 selectedImageAdapter.notifyDataSetChanged()
@@ -109,7 +108,6 @@ class PostHighlightActivity : AppCompatActivity() {
         }
         return parts
     }
-
 
     private fun getRealPathFromURI(uri: Uri): String {
         val contentResolver: ContentResolver = contentResolver
