@@ -93,6 +93,7 @@
 
     <!--Card Information-->
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
@@ -106,112 +107,35 @@
         app:layout_constraintVertical_bias="0.401" />
 
     <!-- Card Number -->
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etCardNumber"
-        android:layout_width="320dp"
-        android:layout_height="55dp"
-        android:inputType="number"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/edittext_border"
-        android:fontFamily="@font/poppins_medium"
-        android:hint="Card Number"
-        android:paddingLeft="16dp"
-        android:paddingTop="6dp"
-        android:textColorHint="#B0B0B0"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
 
     <!-- Expiry Date -->
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etExpiryDate"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:inputType="date"
-        android:maxLength="5"
-        android:digits="0123456789/"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/edittext_border"
-        android:fontFamily="@font/poppins_medium"
-        android:hint="Expiry (MM/YY)"
-        android:paddingLeft="16dp"
-        android:paddingTop="6dp"
-        android:textColor="@color/black"
-        android:textColorHint="#B0B0B0"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.007"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.569" />
 
     <!-- CVV -->
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etCVV"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:inputType="number"
-        android:maxLength="3"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/edittext_border"
-        android:fontFamily="@font/poppins_medium"
-        android:hint="CVV"
-        android:paddingLeft="16dp"
-        android:paddingTop="6dp"
-        android:textColor="@color/black"
-        android:textColorHint="#B0B0B0"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.569" />
 
     <!-- Card Holder Name -->
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etCardName"
-        android:layout_width="320dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/edittext_border"
-        android:fontFamily="@font/poppins_medium"
-        android:hint="Card Holder Name"
-        android:paddingLeft="16dp"
-        android:paddingTop="6dp"
-        android:textColorHint="#B0B0B0"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.682" />
 
     <!-- Confirm Button -->
-    <Button
-        android:id="@+id/btnCardConfirm"
-        android:layout_width="320dp"
-        android:layout_height="55dp"
-        android:background="@drawable/blue_button"
-        android:fontFamily="@font/inter_regular"
-        android:text="Confirm"
-        android:textSize="16sp"
+
+    <com.stripe.android.view.CardInputWidget
+        android:id="@+id/cardInputWidget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/payButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Pay Now"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardInputWidget" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

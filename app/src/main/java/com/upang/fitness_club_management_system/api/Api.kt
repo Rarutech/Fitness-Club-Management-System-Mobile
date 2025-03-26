@@ -23,7 +23,6 @@ import com.upang.fitness_club_management_system.model.postHighlightResponse
 import com.upang.fitness_club_management_system.model.FetchOrdersResponse
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
 import com.upang.fitness_club_management_system.model.PaymentIntentResponse
-import com.upang.fitness_club_management_system.model.UpdateProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileResponse
@@ -31,8 +30,6 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
@@ -125,7 +122,7 @@ interface Api {
 
     @POST("Api/create_payment_intent.php")
     fun createPaymentIntent(
-        @Body request: HashMap<String, Int>
+        @Body request: Int
     ): Call<PaymentIntentResponse>
 
 
