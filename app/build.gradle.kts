@@ -36,7 +36,6 @@ android {
 }
 
 dependencies {
-
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
@@ -45,6 +44,7 @@ dependencies {
     implementation("com.prolificinteractive:material-calendarview:1.4.3")
     implementation("com.github.dhaval2404:imagepicker:2.1")
     implementation("com.stripe:stripe-android:21.6.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

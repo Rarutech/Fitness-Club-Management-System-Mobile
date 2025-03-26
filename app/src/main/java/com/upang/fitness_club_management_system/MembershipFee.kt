@@ -63,7 +63,7 @@ class MembershipFee : AppCompatActivity() {
 
     private fun startPaymentFlow(clientSecret: String) {
         val stripe = Stripe(this, PaymentConfiguration.getInstance(this).publishableKey)
-        val paymentIntentParams = ConfirmPaymentIntentParams.create(clientSecret) // ✅ FIXED
+        val paymentIntentParams = ConfirmPaymentIntentParams.create(clientSecret)
 
         stripe.confirmPayment(this, paymentIntentParams)
     }

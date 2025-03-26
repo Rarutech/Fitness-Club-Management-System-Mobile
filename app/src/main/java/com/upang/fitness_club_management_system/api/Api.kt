@@ -22,6 +22,7 @@ import com.upang.fitness_club_management_system.model.TrainerRequestResponse
 import com.upang.fitness_club_management_system.model.postHighlightResponse
 import com.upang.fitness_club_management_system.model.FetchOrdersResponse
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
+import com.upang.fitness_club_management_system.model.PaymentIntentResponse
 import com.upang.fitness_club_management_system.model.UpdateProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
@@ -117,4 +118,11 @@ interface Api {
     @Headers("Content-Type: application/json")
     @POST("Api/trainerRequest.php")
     fun requestTrainer(@Body request: BookTrainerRequest): Call<BookTrainerResponse>
+
+    @FormUrlEncoded
+    @POST("create_payment_intent.php") // Adjust path based on your server structure
+    fun createPaymentIntent(
+        @Field("amount") amount: Int
+    ): Call<PaymentIntentResponse>
+
 }
