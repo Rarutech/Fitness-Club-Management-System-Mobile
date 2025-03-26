@@ -10,7 +10,7 @@
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarAboutUs"
+        android:id="@+id/toolbarPrivacyPolicy"
         android:layout_width="411dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
