@@ -119,10 +119,9 @@ interface Api {
     @POST("Api/trainerRequest.php")
     fun requestTrainer(@Body request: BookTrainerRequest): Call<BookTrainerResponse>
 
-    @FormUrlEncoded
-    @POST("create_payment_intent.php") // Adjust path based on your server structure
+    @POST("Api/create_payment_intent.php")
     fun createPaymentIntent(
-        @Field("amount") amount: Int
+        @Body request: HashMap<String, Int>
     ): Call<PaymentIntentResponse>
 
 }

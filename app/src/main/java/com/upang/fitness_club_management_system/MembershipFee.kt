@@ -1,6 +1,7 @@
 package com.upang.fitness_club_management_system
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -39,27 +40,36 @@ class MembershipFee : AppCompatActivity() {
 
     private fun createPaymentIntent(amount: Int) {
         val api = RetrofitClient.instance.create(Api::class.java)
+        val requestBody = hashMapOf("amount" to amount) // Send JSON body
 
-        api.createPaymentIntent(amount).enqueue(object : Callback<PaymentIntentResponse> {
+        api.createPaymentIntent(requestBody).enqueue(object : Callback<PaymentIntentResponse> {
             override fun onResponse(call: Call<PaymentIntentResponse>, response: Response<PaymentIntentResponse>) {
+                val rawResponse = response.body()?.toString() ?: response.errorBody()?.string()
+                Log.e("PaymentIntent", "Raw API Response: $rawResponse")
+
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        if (it.error == null) {
+                        if (!it.clientSecret.isNullOrEmpty()) {
+                            Log.d("PaymentIntent", "Client Secret received: ${it.clientSecret}")
                             startPaymentFlow(it.clientSecret)
                         } else {
+                            Log.e("PaymentIntent", "Error received: ${it.error}")
                             Toast.makeText(this@MembershipFee, "Error: ${it.error}", Toast.LENGTH_LONG).show()
                         }
                     }
                 } else {
+                    Log.e("PaymentIntent", "Failed to get client secret: $rawResponse")
                     Toast.makeText(this@MembershipFee, "Failed to get client secret", Toast.LENGTH_LONG).show()
                 }
             }
 
             override fun onFailure(call: Call<PaymentIntentResponse>, t: Throwable) {
+                Log.e("PaymentIntent", "API Call Failed: ${t.message}", t)
                 Toast.makeText(this@MembershipFee, "Error: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }
+
 
     private fun startPaymentFlow(clientSecret: String) {
         val stripe = Stripe(this, PaymentConfiguration.getInstance(this).publishableKey)
