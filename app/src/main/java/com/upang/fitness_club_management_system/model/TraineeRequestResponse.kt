@@ -1,6 +1,6 @@
 package com.upang.fitness_club_management_system.model
 
-data class TrainerRequestResponse(
+data class TraineeRequestResponse(
     val request_id: Int,
     val user_email: String,
     val trainer_name: String,
@@ -13,10 +13,8 @@ data class TrainerRequestResponse(
     val description: String,
     val trainer_email: String
 )
-
-// Wrapper for the API response
-data class TrainerRequestApiResponse(
+data class TraineeRequestApiResponse(
     val status: String,
     val message: String,
-    val requests: List<TrainerRequestResponse>
+    val requests: List<TraineeRequestResponse>
 )

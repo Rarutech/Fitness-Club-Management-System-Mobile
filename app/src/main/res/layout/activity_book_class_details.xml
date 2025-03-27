@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarAboutUs"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -137,6 +137,7 @@
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:id="@+id/btnBookClass"
                 android:layout_width="320dp"
                 android:layout_height="55dp"
                 android:background="@drawable/blue_button"

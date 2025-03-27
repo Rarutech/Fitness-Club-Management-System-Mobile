@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.upang.fitness_club_management_system.adapter.ShopAdapter
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
@@ -41,6 +42,32 @@ class Shop : AppCompatActivity() {
 
         shopRecyclerView = findViewById(R.id.shopRecyclerView)
         shopRecyclerView.layoutManager = GridLayoutManager(this, 2) // 2 items per row
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.selectedItemId = R.id.actionHome
+
+        when (javaClass) {
+            Trainee_Home::class.java -> bottomNavigationView.selectedItemId = R.id.actionHome
+            Progress::class.java -> bottomNavigationView.selectedItemId = R.id.actionProgress
+            BookClass::class.java -> bottomNavigationView.selectedItemId = R.id.actionClasses
+            Shop::class.java -> bottomNavigationView.selectedItemId = R.id.actionShop
+        }
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            val targetActivity = when (item.itemId) {
+                R.id.actionHome -> Trainee_Home::class.java
+                R.id.actionProgress -> Progress::class.java
+                R.id.actionClasses -> BookClass::class.java
+                R.id.actionShop -> Shop::class.java
+                else -> null
+            }
+
+            if (targetActivity != null && targetActivity != javaClass) {
+                startActivity(Intent(this, targetActivity))
+                finish()
+            }
+            true
+        }
 
         fetchInventory()
     }

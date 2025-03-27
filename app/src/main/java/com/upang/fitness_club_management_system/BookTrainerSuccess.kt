@@ -33,6 +33,8 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class BookTrainerSuccess : AppCompatActivity() {
+    private lateinit var btnReschedule: Button
+    private lateinit var btnCancel: Button
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +46,16 @@ class BookTrainerSuccess : AppCompatActivity() {
             insets
 
         }
+        sharedPreferences = getSharedPreferences("TrainerPrefs", Context.MODE_PRIVATE)
+        fetchUserProfile()
+        fetchEvents()
 
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         toolbar.setNavigationOnClickListener {
             val intent = Intent(this, BookClass::class.java)
             startActivity(intent)
         }
+
     }
 
     private fun fetchUserProfile() {
