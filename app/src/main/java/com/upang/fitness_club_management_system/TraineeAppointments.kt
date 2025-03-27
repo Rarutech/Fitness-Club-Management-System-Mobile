@@ -29,13 +29,6 @@ class TraineeAppointments : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.rvTrainers)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar) // Set the toolbar as the action bar
-
-        // Enable back button functionality
-        toolbar.setNavigationOnClickListener {
-            finish() // Closes the current activity and goes back
-        }
 
         fetchAppointments()
     }

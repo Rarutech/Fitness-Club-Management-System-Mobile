@@ -14,7 +14,7 @@
       <SelectionState runConfigName="TrainerAccount">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TrainerShop">
+      <SelectionState runConfigName="BookTrainerSuccess">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

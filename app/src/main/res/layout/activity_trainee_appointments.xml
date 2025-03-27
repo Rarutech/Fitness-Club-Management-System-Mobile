@@ -65,21 +65,4 @@
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </LinearLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:menu="@menu/button_nav_menu_trainer"
-        app:labelVisibilityMode="labeled"
-        app:itemBackground="@color/white"
-        android:elevation="5dp"
-        app:itemRippleColor="@android:color/transparent"
-        app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color"
-        app:itemTextAppearanceActive="@style/BottomNavTextAppearance"
-        app:itemTextAppearanceInactive="@style/BottomNavTextAppearance"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

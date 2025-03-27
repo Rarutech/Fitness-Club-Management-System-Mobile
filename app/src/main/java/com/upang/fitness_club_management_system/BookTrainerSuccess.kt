@@ -33,8 +33,6 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class BookTrainerSuccess : AppCompatActivity() {
-    private lateinit var btnReschedule: Button
-    private lateinit var btnCancel: Button
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,22 +122,23 @@ class BookTrainerSuccess : AppCompatActivity() {
 
                     Log.d("BookTrainerSuccess", "Request fetched: $request")
 
+                    val formattedDate = formatDate(request?.date_of_training)
                     val formattedStartTime = formatTime(request?.time_start)
                     val formattedEndTime = formatTime(request?.time_end)
 
-                    findViewById<TextView>(R.id.tvName).text = request?.date_of_training ?: "No date"
+                    findViewById<TextView>(R.id.tvDate).text = formattedDate ?: "No date"
                     findViewById<TextView>(R.id.tvTime).text = "$formattedStartTime - $formattedEndTime"
                     findViewById<TextView>(R.id.tvDescription).text = request?.description ?: "No description"
                 } else {
                     Toast.makeText(applicationContext, "Failed to load data", Toast.LENGTH_SHORT).show()
                 }
             }
+
             override fun onFailure(call: Call<TrainerFetchApiResponse>, t: Throwable) {
                 Log.e("BookTrainerSuccess", "API call failed: ${t.message}")
                 Toast.makeText(applicationContext, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
-
     }
 
     private fun formatTime(time: String?): String {
@@ -152,6 +151,20 @@ class BookTrainerSuccess : AppCompatActivity() {
             outputFormat.format(date ?: return "Invalid time")
         } catch (e: Exception) {
             "Invalid time"
+        }
+    }
+    
+    private fun formatDate(dateString: String?): String? {
+        if (dateString.isNullOrEmpty()) return null
+
+        return try {
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Assuming API date format is YYYY-MM-DD
+            val outputFormat = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault()) // Format to "March 15, 2020"
+            val date = inputFormat.parse(dateString)
+            date?.let { outputFormat.format(it) }
+        } catch (e: Exception) {
+            Log.e("DateFormatError", "Error formatting date: ${e.message}")
+            null
         }
     }
 }
