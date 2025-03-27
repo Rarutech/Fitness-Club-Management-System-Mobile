@@ -144,23 +144,4 @@
         android:layout_height="50sp"
         android:textStyle="bold"
         android:text="3rd floor Espino Bldg. Burgos st. Dagupan City, Dagupan City, Philippines"/>
-    <LinearLayout
-        android:layout_marginTop="20sp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btnReschedule"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reschedule"/>
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancel"/>
-    </LinearLayout>
-
 </LinearLayout>

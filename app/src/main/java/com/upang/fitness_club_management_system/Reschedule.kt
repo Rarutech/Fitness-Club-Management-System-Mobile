@@ -2,6 +2,7 @@ package com.upang.fitness_club_management_system
 
 import android.app.TimePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
+import com.upang.fitness_club_management_system.model.BookTrainerResponse
+import com.upang.fitness_club_management_system.model.EditBookTrainerRequest
 import com.upang.fitness_club_management_system.model.FetchTrainerProfileResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -69,6 +72,7 @@ class Reschedule : AppCompatActivity() {
         selectStartTimeButton.setOnClickListener { showTimePicker(true) }
         selectEndTimeButton.setOnClickListener { showTimePicker(false) }
     }
+
     private fun showTimePicker(isStartTime: Boolean) {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
@@ -129,6 +133,59 @@ class Reschedule : AppCompatActivity() {
     }
 
     private fun bookTrainer() {
+        val api = RetrofitClient.instance.create(Api::class.java)
+        val sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE)
+        val requestId = sharedPreferences.getString("request_id", null)?.toInt()
 
+        if (requestId == null) {
+            Toast.makeText(this, "Error: Request ID is missing", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (selectedDate.isEmpty()) {
+            Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (selectedStartTime.isEmpty()) {
+            Toast.makeText(this, "Please select a start time", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (selectedEndTime.isEmpty()) {
+            Toast.makeText(this, "Please select an end time", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (etDescription.text.toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please enter a description", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val editBookTrainerRequest = EditBookTrainerRequest(
+            requestId,
+            selectedDate,
+            selectedStartTime,
+            selectedEndTime,
+            etDescription.text.toString().trim()
+        )
+
+        api.editRequestTrainer(editBookTrainerRequest).enqueue(object : Callback<BookTrainerResponse> {
+            override fun onResponse(call: Call<BookTrainerResponse>, response: Response<BookTrainerResponse>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@Reschedule, "Rescheduled", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@Reschedule, TraineeAppointments::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this@Reschedule, "Failed to reschedule", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<BookTrainerResponse>, t: Throwable) {
+                Toast.makeText(this@Reschedule, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
+
 }

@@ -46,7 +46,6 @@ class BookTrainerSuccess : AppCompatActivity() {
             insets
 
         }
-        btnReschedule = findViewById(R.id.btnReschedule)
         sharedPreferences = getSharedPreferences("TrainerPrefs", Context.MODE_PRIVATE)
         fetchUserProfile()
         fetchEvents()
@@ -57,12 +56,6 @@ class BookTrainerSuccess : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-        btnReschedule.setOnClickListener{
-            val intent = Intent(this, Reschedule::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 
     private fun fetchUserProfile() {
