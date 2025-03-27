@@ -2,37 +2,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
     android:outlineAmbientShadowColor="@color/black"
     android:outlineSpotShadowColor="@color/black">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circular_border">
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp">
+
         <ImageView
             android:id="@+id/ivTrainerProfile"
             android:layout_width="100dp"
             android:layout_height="100dp"/>
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="-5dp">
+
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trainer Name"/>
+                android:text="Trainer Name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/inter_regular"/>
 
             <TextView
                 android:id="@+id/tvRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fitness Coach"/>
+                android:text="Fitness Coach"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="16sp"
+                android:layout_marginStart="5dp"
+                android:textColor="#808080"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rating" />
+                android:text="Rating"
+                android:textSize="15sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="27dp"/>
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textSize="15sp"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/inter_regular"/>
+
         </LinearLayout>
+
     </LinearLayout>
+
+    </FrameLayout>
+
 </LinearLayout>
