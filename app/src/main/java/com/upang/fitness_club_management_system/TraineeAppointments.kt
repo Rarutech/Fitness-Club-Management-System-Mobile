@@ -30,6 +30,12 @@ class TraineeAppointments : AppCompatActivity() {
         recyclerView = findViewById(R.id.rvTrainers)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
+
         fetchAppointments()
     }
 

@@ -153,7 +153,7 @@ class BookTrainerSuccess : AppCompatActivity() {
             "Invalid time"
         }
     }
-    
+
     private fun formatDate(dateString: String?): String? {
         if (dateString.isNullOrEmpty()) return null
 

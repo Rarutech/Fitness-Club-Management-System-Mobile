@@ -11,10 +11,10 @@
       <SelectionState runConfigName="TraineeAppointments">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TrainerAccount">
+      <SelectionState runConfigName="BookTrainerSuccess">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="BookTrainerSuccess">
+      <SelectionState runConfigName="RateTrainer">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

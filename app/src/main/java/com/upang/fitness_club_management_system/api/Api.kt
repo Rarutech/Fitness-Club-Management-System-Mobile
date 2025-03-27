@@ -20,16 +20,17 @@ import com.upang.fitness_club_management_system.model.SignUpRequest
 import com.upang.fitness_club_management_system.model.SignUpResponse
 import com.upang.fitness_club_management_system.model.OrderRequest
 import com.upang.fitness_club_management_system.model.OrderResponse
-import com.upang.fitness_club_management_system.model.TrainerRequestResponse
 import com.upang.fitness_club_management_system.model.postHighlightResponse
 import com.upang.fitness_club_management_system.model.FetchOrdersResponse
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
 import com.upang.fitness_club_management_system.model.PaymentIntentResponse
+import com.upang.fitness_club_management_system.model.RateTrainerRequest
+import com.upang.fitness_club_management_system.model.RateTrainerResponse
 import com.upang.fitness_club_management_system.model.TraineePendingResponse
 import com.upang.fitness_club_management_system.model.TraineeRequestApiResponse
-import com.upang.fitness_club_management_system.model.TraineeRequestResponse
 import com.upang.fitness_club_management_system.model.TrainerFetchApiResponse
 import com.upang.fitness_club_management_system.model.TrainerRequestApiResponse
+import com.upang.fitness_club_management_system.model.TrainerReviewResponse
 import com.upang.fitness_club_management_system.model.UpdateProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileResponse
@@ -135,10 +136,6 @@ interface Api {
     @POST("Api/trainerRequest.php")
     fun requestTrainer(@Body request: BookTrainerRequest): Call<BookTrainerResponse>
 
-    @Headers("Content-Type: application/json")
-    @POST("Api/editTrainerRequest.php")
-    fun editRequestTrainer(@Body request: EditBookTrainerRequest): Call<BookTrainerResponse>
-
     //Fetch Trainer Request by ID
     @GET("Api/fetchTrainerRequest.php")
     fun fetchTrainerRequestId(@Query("request_id") request_id: String): Call<TrainerFetchApiResponse>
@@ -159,6 +156,20 @@ interface Api {
     @FormUrlEncoded
     @POST("Api/cancelSchedule.php")
     fun cancelSchedule(@Field("request_id") requestId: Int): Call<CancelScheduleResponse>
+
+    //Reschedule
+    @Headers("Content-Type: application/json")
+    @POST("Api/editTrainerRequest.php")
+    fun editRequestTrainer(@Body request: EditBookTrainerRequest): Call<BookTrainerResponse>
+
+
+    //Review Trainer
+    @Headers("Content-Type: application/json")
+    @POST("Api/rateTrainer.php")
+    fun rateTrainer(@Body request: RateTrainerRequest): Call<RateTrainerResponse>
+
+    @GET("Api/fetchAllReview.php")
+    fun fetchTrainerReviews(@Query("trainer_email") email: String): Call<TrainerReviewResponse>
 
     @POST("Api/create_payment_intent.php")
     fun createPaymentIntent(@Body request: HashMap<String, Int>): Call<PaymentIntentResponse>
