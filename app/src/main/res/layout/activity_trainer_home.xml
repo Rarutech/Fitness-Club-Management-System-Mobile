@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="#FFFFFF"
     tools:context=".TrainerHomeActivity">
 
@@ -22,46 +23,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:title="Home"
-        android:layout_marginTop="35dp"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
 
 
+    <!-- Search and Account Icons -->
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarHome"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarHome"
-        app:layout_constraintVertical_bias="0.001">
+        android:elevation="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="@id/toolbarHome"
+        app:layout_constraintBottom_toBottomOf="@id/toolbarHome"
+        app:layout_constraintEnd_toEndOf="@id/toolbarHome">
 
         <!-- Notification Icon -->
         <ImageButton
             android:id="@+id/btnNotification"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:background="@null"
-            android:contentDescription="Search"
-            android:src="@drawable/notification"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:contentDescription="Notification"
+            android:src="@drawable/notification" />
 
         <!-- Account Icon -->
         <ImageButton
             android:id="@+id/btnAccount"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:background="@null"
             android:contentDescription="Account"
-            android:src="@drawable/account" />
+            android:src="@drawable/account"  />
     </LinearLayout>
 
     <ScrollView
@@ -75,9 +70,9 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -94,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="true"
                 android:padding="8dp"
+                android:layout_marginTop="20dp"
                 android:scrollbars="vertical" />
 
             <View

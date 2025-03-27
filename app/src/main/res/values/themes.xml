@@ -4,6 +4,8 @@
         <item name="colorPrimary">#2196F3</item> <!-- Change to blue -->
         <item name="colorPrimaryContainer">#1976D2</item> <!-- Darker blue -->
         <item name="android:colorButtonNormal">#2196F3</item> <!-- Default button color -->
+        <item name="android:statusBarColor">#FFFFFF</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.FitnessClubManagementSystem" parent="Base.Theme.FitnessClubManagementSystem" />

@@ -35,15 +35,15 @@
         app:layout_constraintBottom_toBottomOf="@id/toolbarProgress"
         app:layout_constraintEnd_toEndOf="@id/toolbarProgress">
 
-        <!-- Search Icon -->
+        <!-- Notification Icon -->
         <ImageButton
-            android:id="@+id/btnSearch"
+            android:id="@+id/btnNotification"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="10dp"
             android:background="@null"
             android:contentDescription="Search"
-            android:src="@drawable/search" />
+            android:src="@drawable/notification" />
 
         <!-- Account Icon -->
         <ImageButton
@@ -53,7 +53,7 @@
             android:layout_margin="10dp"
             android:background="@null"
             android:contentDescription="Account"
-            android:src="@drawable/account" />
+            android:src="@drawable/account"/>
     </LinearLayout>
     
     <!-- Total -->

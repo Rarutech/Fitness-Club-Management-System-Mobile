@@ -5,15 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="#FFFFFF"
     tools:context=".Trainee_Home">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarHome"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:visibility="visible"
+        android:elevation="4dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -24,53 +27,38 @@
         app:title="Home"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#D5D5D5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarHome"
-        app:layout_constraintVertical_bias="0.076" />
 
-
+    <!-- Search and Account Icons -->
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarHome"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarHome"
-        app:layout_constraintVertical_bias="0.001">
+        android:elevation="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="@id/toolbarHome"
+        app:layout_constraintBottom_toBottomOf="@id/toolbarHome"
+        app:layout_constraintEnd_toEndOf="@id/toolbarHome">
 
-        <!-- Search Icon -->
+        <!-- Notification Icon -->
         <ImageButton
-            android:id="@+id/btnSearch"
+            android:id="@+id/btnNotification"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:background="@null"
-            android:contentDescription="Search"
-            android:src="@drawable/search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:contentDescription="Notification"
+            android:src="@drawable/notification" />
 
         <!-- Account Icon -->
         <ImageButton
             android:id="@+id/btnAccount"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:background="@null"
             android:contentDescription="Account"
-            android:src="@drawable/account" />
+            android:src="@drawable/account"  />
     </LinearLayout>
 
     <!-- Scrollable Content -->
@@ -85,36 +73,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Your weekly overview -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
-                android:text="Your weekly overview"
-                android:textSize="18sp"
-                android:layout_marginTop="70dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.07"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/toolbarHome"
-                app:layout_constraintVertical_bias="0.1" />
-
-            <!-- Workout, Duration, and Volume Code Here... -->
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="1.5dp"
-                android:background="#D5D5D5"
-                android:layout_marginTop="55dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/toolbarHome"
-                app:layout_constraintVertical_bias="0.216" />
-
             <!-- Monthly Highlights -->
             <TextView
                 android:layout_width="wrap_content"
@@ -123,7 +81,7 @@
                 android:text="Monthly Highlights"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="70dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.055"
@@ -133,16 +91,12 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:scrollbars="vertical" />
-
-            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="380dp">
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                android:padding="8dp"
+                android:scrollbars="vertical"
+                android:layout_marginBottom="20dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -153,14 +107,13 @@
                     android:textSize="20sp"/>
                 
                 <ImageView
-                    android:layout_width="350dp"
+                    android:layout_width="320dp"
                     android:layout_height="125dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_gravity="center"
                     android:background="@drawable/black_rectangle"
                     android:contentDescription="Rectangle"/>
 
-            </LinearLayout>
         </LinearLayout>
         
 

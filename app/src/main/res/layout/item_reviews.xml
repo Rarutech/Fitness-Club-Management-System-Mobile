@@ -5,37 +5,51 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_margin="20sp"
+        android:layout_margin="20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/ivProfile"
                 android:layout_width="80dp"
                 android:layout_height="80dp"/>
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp">
+
                 <TextView
                     android:id="@+id/tvRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="⭐4.5"/>
+                    android:textSize="18sp"
+                    android:text="⭐4.5"
+                    android:layout_marginBottom="5dp"/>
+
                 <TextView
                     android:id="@+id/tvComment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Anakan mo ako plsss!!"/>
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="18sp"
+                    android:text="Anakan mo ako plsss!!"
+                    android:layout_marginBottom="5dp"/>
+
                 <TextView
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="- Mama mo"/>
+                    android:text="- Mama mo"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="16sp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
