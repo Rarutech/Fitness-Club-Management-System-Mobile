@@ -17,19 +17,22 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
-import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.FetchTrainerProfileResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.content.SharedPreferences
 import android.content.Context
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.upang.fitness_club_management_system.api.ReviewsAdapter
+import com.upang.fitness_club_management_system.model.TrainerReviewResponse
 
 class BookClassDetails : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var btnBookClass: Button
     private lateinit var sharedPreferences: SharedPreferences
-
+    private lateinit var rvReviews: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -53,6 +56,10 @@ class BookClassDetails : AppCompatActivity() {
 
         progressBar = findViewById(R.id.progressBar)
         sharedPreferences = getSharedPreferences("TrainerPrefs", Context.MODE_PRIVATE)
+
+        rvReviews = findViewById(R.id.rvReviews)
+        rvReviews.layoutManager = LinearLayoutManager(this)
+        fetchReviews()
         fetchUserProfile()
     }
 
@@ -96,4 +103,42 @@ class BookClassDetails : AppCompatActivity() {
             }
         })
     }
+
+    private fun fetchReviews() {
+        val api = RetrofitClient.instance.create(Api::class.java)
+        val trainerEmail = sharedPreferences.getString("selected_trainer_email", null) ?: return
+        Log.e("BookClassDetails", "Email: ${trainerEmail}")
+
+        api.fetchTrainerReviews(trainerEmail).enqueue(object : Callback<TrainerReviewResponse> {
+            override fun onResponse(
+                call: Call<TrainerReviewResponse>,
+                response: Response<TrainerReviewResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val reviewsResponse = response.body()
+                    if (reviewsResponse != null && reviewsResponse.success) {
+                        val reviews = reviewsResponse.reviews
+
+                        // Set adapter for RecyclerView
+                        rvReviews.adapter = ReviewsAdapter(reviews)
+                        rvReviews.visibility = View.VISIBLE
+
+                        // Get the average rating from the first review (or calculate if needed)
+                        val averageRating = if (reviews.isNotEmpty()) reviews[0].average_rating else 0.0f
+
+                        findViewById<TextView>(R.id.tvRating).text = "⭐ ${averageRating}"
+                    } else {
+                        Toast.makeText(this@BookClassDetails, "No reviews available", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this@BookClassDetails, "Error: ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<TrainerReviewResponse>, t: Throwable) {
+                Toast.makeText(this@BookClassDetails, "Failed to fetch reviews", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
 }
