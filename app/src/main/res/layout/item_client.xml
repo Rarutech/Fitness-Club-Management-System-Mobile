@@ -188,22 +188,48 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </FrameLayout>
+
+    <!-- Buttons -->
     <LinearLayout
         android:id="@+id/llButtons"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+
+        <!-- Accept Button -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAccept"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Accept"/>
-        <Button
-            android:layout_weight="1"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:text="Accept"
+            android:textSize="16sp"
+            android:layout_marginEnd="20dp"
+            android:textAllCaps="false"
+            android:textColor="#007BFF"
+            app:icon="@drawable/check_2"
+            app:iconTint="#007BFF"
+            style="@style/CustomBlueButtonStyle"/>
+
+        <!-- Reject Button -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnReject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Reject"/>
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:text="Reject"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="#FF0000"
+            app:icon="@drawable/cancel"
+            app:iconTint="#FF0000"
+            style="@style/CustomRedButtonStyle" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="#F1F1F1"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>
