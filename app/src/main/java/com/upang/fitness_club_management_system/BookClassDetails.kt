@@ -119,12 +119,10 @@ class BookClassDetails : AppCompatActivity() {
                     if (reviewsResponse != null && reviewsResponse.success) {
                         val reviews = reviewsResponse.reviews
 
-                        // Set adapter for RecyclerView
                         rvReviews.adapter = ReviewsAdapter(reviews)
                         rvReviews.visibility = View.VISIBLE
 
-                        // Get the average rating from the first review (or calculate if needed)
-                        val averageRating = if (reviews.isNotEmpty()) reviews[0].average_rating else 0.0f
+                        val averageRating = if (reviews.isNotEmpty()) reviews[0].average_rating.toDouble() else 0.0f
 
                         findViewById<TextView>(R.id.tvRating).text = "⭐ ${averageRating}"
                     } else {

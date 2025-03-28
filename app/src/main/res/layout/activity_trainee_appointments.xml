@@ -67,6 +67,21 @@
                 android:layout_gravity="top">
 
             </androidx.recyclerview.widget.RecyclerView>
+
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvNoBooking"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="No appointments yet. Book your next session now!"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,8 @@ package com.upang.fitness_club_management_system
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
@@ -26,7 +28,6 @@ class TraineeAppointments : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_trainee_appointments)
-
         recyclerView = findViewById(R.id.rvTrainers)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -55,8 +56,17 @@ class TraineeAppointments : AppCompatActivity() {
             ) {
                 if (response.isSuccessful && response.body() != null) {
                     val appointments = response.body()!!.requests
+                    val tvNoBooking: TextView = findViewById(R.id.tvNoBooking)
+                    if (appointments.isEmpty()) {
+                        tvNoBooking.visibility = View.VISIBLE
+                        recyclerView.visibility = View.GONE
+                    } else {
+                        tvNoBooking.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                    }
                     adapter = TraineeAppointmentAdapter(appointments)
                     recyclerView.adapter = adapter
+
                 } else {
                     Toast.makeText(this@TraineeAppointments, "Failed to fetch data", Toast.LENGTH_SHORT).show()
                 }

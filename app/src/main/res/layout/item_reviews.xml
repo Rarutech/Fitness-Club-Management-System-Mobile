@@ -40,14 +40,14 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_regular"
                     android:textSize="18sp"
-                    android:text="Anakan mo ako plsss!!"
+                    android:text="Good Trainer!!"
                     android:layout_marginBottom="5dp"/>
 
                 <TextView
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="- Mama mo"
+                    android:text="- Andrew E"
                     android:fontFamily="@font/inter_regular"
                     android:textSize="16sp"/>
             </LinearLayout>
