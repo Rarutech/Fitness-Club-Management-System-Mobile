@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- Background -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/circular_border">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="0dp"
+            android:padding="30dp">
+
+            <LinearLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1dp"
+                android:orientation="vertical">
+
+                <!-- Subscription Type Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Subscription Type:"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:id="@+id/tvSubscriptionType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Monthly"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:background="#F1F1F1"/>
+
+                <!-- Subscription Status Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Active until:"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="#808080" />
+
+                    <TextView
+                        android:id="@+id/tvSubscriptionDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="March 12, 2025"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:background="#F1F1F1"/>
+
+                <!-- Next Payment Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Next payment:"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="#808080" />
+
+                    <TextView
+                        android:id="@+id/tvNextPaymentDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="April 12, 2025"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:background="#F1F1F1"/>
+
+                <!-- Payment Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Payment:"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="#808080" />
+
+                    <TextView
+                        android:id="@+id/tvPayment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="************1234"
+                        android:layout_weight="0.5"
+                        android:layout_marginTop="3dp"
+                        android:gravity="end"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+
+</LinearLayout>
