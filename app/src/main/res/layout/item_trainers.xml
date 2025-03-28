@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="-5dp">
+            android:layout_marginTop="-3dp">
 
             <TextView
                 android:id="@+id/tvName"
@@ -54,16 +54,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rating"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="27dp"/>
+                android:layout_marginTop="25dp"/>
 
             <TextView
-                android:id="@+id/tvPrice"
+                android:id="@+id/tvPricePerPlan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price"
-                android:textSize="15sp"
+                android:text="Price per plan"
+                android:textSize="14sp"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/inter_regular"/>
 
