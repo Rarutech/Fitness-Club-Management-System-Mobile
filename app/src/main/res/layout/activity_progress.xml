@@ -72,7 +72,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.096" />
 
-
     <LinearLayout
         android:id="@+id/imageTotal"
         android:layout_width="320dp"
@@ -87,14 +86,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbarProgress"
         app:layout_constraintVertical_bias="0.143">
+
+        <!-- Total Days -->
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
+
             <TextView
                 android:gravity="center"
                 android:id="@+id/tvTotalDays"
+                android:fontFamily="@font/open_sans"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0"/>
@@ -102,23 +109,38 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
                 android:text="Total Days"/>
         </LinearLayout>
+
+        <!-- Total Hours -->
         <LinearLayout
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:gravity="center"
                 android:id="@+id/tvTotalHours"
+                android:fontFamily="@font/open_sans"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0"/>
+
             <TextView
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
                 android:text="Total Hours"/>
         </LinearLayout>
     </LinearLayout>
@@ -139,17 +161,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.255" />
 
-    <!-- Calendar Background -->
-
-    <!-- Total This Week Workout -->
-
-    <!-- Bottom Navigation -->
-
+    <!-- Calendar -->
     <CalendarView
         android:id="@+id/imageCalendarBG"
         android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="345dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/black_rectangle"
         android:contentDescription="Total"
         app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
@@ -159,7 +176,7 @@
         app:layout_constraintTop_toTopOf="@+id/toolbarProgress"
         app:layout_constraintVertical_bias="0.476" />
 
-
+    <!-- Total Hours -->
     <LinearLayout
         android:layout_width="320dp"
         android:layout_height="wrap_content"
@@ -173,8 +190,8 @@
             android:id="@+id/llDate"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/black_rectangle"
             android:visibility="gone"
+            android:background="@drawable/black_rectangle"
             app:layout_constraintBottom_toTopOf="@+id/imageTotalWorkout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -191,11 +208,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:fontFamily="@font/open_sans"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
                     android:text="0" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="16sp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:text="Check-In Time" />
             </LinearLayout>
@@ -210,26 +235,35 @@
                     android:id="@+id/checkOutTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
                     android:gravity="center"
                     android:text="0" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="16sp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:text="Check-Out Time" />
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Total Workouts Per Week -->
         <LinearLayout
             android:id="@+id/imageTotalWorkout"
             android:layout_width="320dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/black_rectangle"
             android:contentDescription="Total"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="@+id/toolbarProgress"
             app:layout_constraintHorizontal_bias="0.527"
@@ -242,18 +276,27 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <!-- Week -->
                 <TextView
                     android:id="@+id/tvWeek"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="January 12 - january 18" />
+                    android:fontFamily="@font/inter_regular"
+                    android:layout_marginStart="5dp"
+                    android:textSize="14sp"
+                    android:layout_weight="0.25"
+                    android:text="January 12 - January 18" />
 
+                <!-- Total Workouts -->
                 <TextView
                     android:id="@+id/tvThisWeek"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/open_sans"
+                    android:layout_marginEnd="5dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
                     android:gravity="center"
                     android:text="0" />
             </LinearLayout>
@@ -263,23 +306,35 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <!-- Year -->
                 <TextView
                     android:id="@+id/tvYear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="#808080"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/open_sans"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
                     android:text="2025" />
 
+                <!-- Total Workouts -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:gravity="end"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="16sp"
+                    android:layout_marginTop="2.5dp"
                     android:text="Workouts" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
