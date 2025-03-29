@@ -145,6 +145,47 @@
                     android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/black" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#F1F1F1"/>
+
+            <!-- Last Session Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="8dp"
+                android:paddingTop="3dp">
+
+                <!-- Time Icon -->
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/time"
+                    android:contentDescription="Time Icon"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Last Session:"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/eventTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="August 15"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black" />
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"

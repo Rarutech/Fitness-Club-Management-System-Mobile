@@ -107,7 +107,7 @@ class BookClassDetails : AppCompatActivity() {
     private fun fetchReviews() {
         val api = RetrofitClient.instance.create(Api::class.java)
         val trainerEmail = sharedPreferences.getString("selected_trainer_email", null) ?: return
-        Log.e("BookClassDetails", "Email: ${trainerEmail}")
+        Log.e("BookClassDetails", "Email: $trainerEmail")
 
         api.fetchTrainerReviews(trainerEmail).enqueue(object : Callback<TrainerReviewResponse> {
             override fun onResponse(
@@ -122,9 +122,13 @@ class BookClassDetails : AppCompatActivity() {
                         rvReviews.adapter = ReviewsAdapter(reviews)
                         rvReviews.visibility = View.VISIBLE
 
-                        val averageRating = if (reviews.isNotEmpty()) reviews[0].average_rating.toDouble() else 0.0f
+                        val averageRating = if (reviews.isNotEmpty()) {
+                            String.format("%.1f", reviews[0].average_rating.toDouble()).toFloat()
+                        } else {
+                            0.0f
+                        }
 
-                        findViewById<TextView>(R.id.tvRating).text = "⭐ ${averageRating}"
+                        findViewById<TextView>(R.id.tvRating).text = "⭐ $averageRating"
                     } else {
                         Toast.makeText(this@BookClassDetails, "No reviews available", Toast.LENGTH_SHORT).show()
                     }
@@ -134,7 +138,8 @@ class BookClassDetails : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<TrainerReviewResponse>, t: Throwable) {
-                Toast.makeText(this@BookClassDetails, "Failed to fetch reviews", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BookClassDetails, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Log.e("BookClassDetails", "Fetch reviews failed: ${t.message}")
             }
         })
     }

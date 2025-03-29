@@ -29,6 +29,8 @@ import com.upang.fitness_club_management_system.model.PaymentIntentResponse
 import com.upang.fitness_club_management_system.model.RateTrainerRequest
 import com.upang.fitness_club_management_system.model.RateTrainerResponse
 import com.upang.fitness_club_management_system.model.TraineePendingResponse
+import com.upang.fitness_club_management_system.model.TraineeProgressDateResponse
+import com.upang.fitness_club_management_system.model.TraineeProgressResponse
 import com.upang.fitness_club_management_system.model.TraineeRequestApiResponse
 import com.upang.fitness_club_management_system.model.TrainerFetchApiResponse
 import com.upang.fitness_club_management_system.model.TrainerRequestApiResponse
@@ -185,5 +187,12 @@ interface Api {
     @POST("Api/checkout.php")
     fun checkOut(@Field("id") id: Int,
                  @Field("scanned_string") scanned_string: String): Call<CheckOutResponse>
+
+    @GET("Api/TraineeProgress.php")
+    fun TraineeProgress(@Query("email") email: String) : Call<TraineeProgressResponse>
+
+    @GET("Api/TraineeProgressDate.php")
+    fun TraineeProgressDate(@Query("email") email: String,
+                            @Query("date") date: String) : Call<TraineeProgressDateResponse>
 
 }
