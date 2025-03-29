@@ -26,6 +26,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.Intent
 import android.widget.ImageButton
+import androidx.appcompat.widget.Toolbar
 
 class TrainerAccount : AppCompatActivity() {
     private lateinit var ordersAdapter: OrdersAdapter
@@ -41,7 +42,11 @@ class TrainerAccount : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
         progressBar = findViewById(R.id.progressBar)
 
         findViewById<ImageButton>(R.id.btnSettings).setOnClickListener {

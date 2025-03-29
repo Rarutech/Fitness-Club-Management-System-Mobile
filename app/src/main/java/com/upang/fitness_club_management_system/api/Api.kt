@@ -1,5 +1,6 @@
 package com.upang.fitness_club_management_system.api
 
+import com.upang.fitness_club_management_system.ForgotPassword
 import com.upang.fitness_club_management_system.model.AuthRequest
 import com.upang.fitness_club_management_system.model.AuthResponse
 import com.upang.fitness_club_management_system.model.BookTrainerRequest
@@ -25,6 +26,7 @@ import com.upang.fitness_club_management_system.model.OrderResponse
 import com.upang.fitness_club_management_system.model.postHighlightResponse
 import com.upang.fitness_club_management_system.model.FetchOrdersResponse
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
+import com.upang.fitness_club_management_system.model.ForgotPasswordResponse
 import com.upang.fitness_club_management_system.model.PaymentIntentResponse
 import com.upang.fitness_club_management_system.model.RateTrainerRequest
 import com.upang.fitness_club_management_system.model.RateTrainerResponse
@@ -41,6 +43,7 @@ import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRespon
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -195,4 +198,8 @@ interface Api {
     fun TraineeProgressDate(@Query("email") email: String,
                             @Query("date") date: String) : Call<TraineeProgressDateResponse>
 
+    @FormUrlEncoded
+    @POST("Api/forgotPassword.php")
+    fun forgotPassword(@Field("email") email: String,
+                       @Field("new_password") new_password: String) : Call<ForgotPasswordResponse>
 }

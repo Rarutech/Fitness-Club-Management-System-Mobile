@@ -2,6 +2,7 @@ package com.upang.fitness_club_management_system
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,12 @@ class BookClass : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
+        btnAccount.setOnClickListener {
+            val intent = Intent(this,Account::class.java)
+            startActivity(intent)
         }
 
         val fabAppointment = findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.fabAppointment)

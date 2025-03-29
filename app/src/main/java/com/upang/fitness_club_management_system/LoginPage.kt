@@ -44,6 +44,9 @@ class LoginPage : AppCompatActivity() {
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val button = findViewById<Button>(R.id.btnLogin)
         val btnShowPass = findViewById<TextInputLayout>(R.id.btnShowPassLogin)
+        val tvForgotPassword = findViewById<TextView>(R.id.tvForgotPassword)
+
+
         tvSignUp = findViewById(R.id.tvSignup)
 
         progressDialog = ProgressDialog(this)
@@ -52,6 +55,12 @@ class LoginPage : AppCompatActivity() {
 
         tvSignUp.setOnClickListener {
             val intent = Intent(this@LoginPage, SignupActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        tvForgotPassword.setOnClickListener{
+            val intent = Intent(this@LoginPage,ForgotPassword::class.java)
             startActivity(intent)
             finish()
         }

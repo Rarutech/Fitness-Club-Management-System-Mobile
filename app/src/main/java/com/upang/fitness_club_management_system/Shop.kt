@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -37,7 +38,11 @@ class Shop : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
+        btnAccount.setOnClickListener {
+            val intent = Intent(this,Account::class.java)
+            startActivity(intent)
+        }
         sharedPreferences = getSharedPreferences("shop_prefs", Context.MODE_PRIVATE)
 
         shopRecyclerView = findViewById(R.id.shopRecyclerView)

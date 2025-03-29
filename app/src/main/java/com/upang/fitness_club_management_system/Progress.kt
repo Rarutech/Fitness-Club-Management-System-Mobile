@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.CalendarView
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -38,6 +40,12 @@ class Progress : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_progress)
+
+        val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
+        btnAccount.setOnClickListener {
+            val intent = Intent(this@Progress,Account::class.java)
+            startActivity(intent)
+        }
 
         // Initialize Views
         tvTotalDays = findViewById(R.id.tvTotalDays)

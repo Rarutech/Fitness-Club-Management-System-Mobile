@@ -109,41 +109,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.539" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etPassword"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        android:background="@drawable/edittext_border"
-        android:fontFamily="@font/poppins_medium"
-        android:hint="Enter your password"
-        android:inputType="textPassword"
-        android:paddingLeft="16dp"
-        android:paddingTop="6dp"
-        android:textColorHint="#B0B0B0"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.606" />
-
     <!-- Show Password Icon -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/btnShowPassLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="105dp"
         android:layout_marginTop="6dp"
         app:endIconMode="password_toggle"
         app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.601">
+        app:layout_constraintVertical_bias="0.606">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:background="@drawable/edittext_border"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Enter your password"
+            android:inputType="textPassword"
+            android:paddingLeft="16dp"
+            android:paddingTop="6dp"
+            android:textColor="@color/black"
+            android:textColorHint="#B0B0B0"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.606" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
