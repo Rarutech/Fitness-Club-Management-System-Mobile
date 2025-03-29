@@ -5,6 +5,8 @@ import com.upang.fitness_club_management_system.model.AuthResponse
 import com.upang.fitness_club_management_system.model.BookTrainerRequest
 import com.upang.fitness_club_management_system.model.BookTrainerResponse
 import com.upang.fitness_club_management_system.model.CancelScheduleResponse
+import com.upang.fitness_club_management_system.model.CheckInResponse
+import com.upang.fitness_club_management_system.model.CheckOutResponse
 import com.upang.fitness_club_management_system.model.ConfirmEmailRequest
 import com.upang.fitness_club_management_system.model.ConfirmEmailResponse
 import com.upang.fitness_club_management_system.model.EditBookTrainerRequest
@@ -173,4 +175,15 @@ interface Api {
 
     @POST("Api/create_payment_intent.php")
     fun createPaymentIntent(@Body request: HashMap<String, Int>): Call<PaymentIntentResponse>
+
+    @FormUrlEncoded
+    @POST("Api/checkin.php")
+    fun checkIn(@Field("scanned_string") scanned_string: String,
+                @Field("user_email") user_email: String): Call<CheckInResponse>
+
+    @FormUrlEncoded
+    @POST("Api/checkout.php")
+    fun checkOut(@Field("id") id: Int,
+                 @Field("scanned_string") scanned_string: String): Call<CheckOutResponse>
+
 }
