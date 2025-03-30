@@ -42,7 +42,7 @@ class TrainerAccount : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val toolbar: Toolbar = findViewById(R.id.toolbar2)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
             finish()
