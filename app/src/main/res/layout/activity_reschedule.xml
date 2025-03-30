@@ -117,7 +117,7 @@
         android:layout_height="60sp"
         android:layout_gravity="center"
         android:background="@drawable/edittext_border"
-        android:hint="eg, Weight Loss,"
+        android:hint="eg., Weight Loss,"
         android:fontFamily="@font/poppins_medium"
         android:paddingLeft="16dp"
         android:paddingTop="6dp"
@@ -129,7 +129,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
         android:fontFamily="@font/poppins_medium"
         android:textSize="20sp"
         android:layout_marginStart="16dp"
@@ -138,7 +137,7 @@
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="370dp"
-        android:layout_height="300dp"
+        android:layout_height="340dp"
         android:layout_gravity="center"/>
 
     <TextView
