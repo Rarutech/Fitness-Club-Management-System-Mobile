@@ -77,13 +77,20 @@ object Utils {
             override fun onResponse(call: Call<memberAuthResponse>, response: Response<memberAuthResponse>) {
                 if (response.isSuccessful) {
                     val result = response.body()
-                    if (result?.is_active == false) {
-                        Log.d("MembershipAuth", "Membership inactive, redirecting to MembershipFee activity")
-                        val intent = Intent(context, MembershipFee::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        context.startActivity(intent)
+                    Log.d("MembershipAuth", "Response received: $result")
+
+                    if (result != null) {
+                        Log.d("MembershipAuth", "Parsed is_active value: ${result.is_active}")
+                        if (result.is_active == true) {  // Explicit check for true
+                            Log.d("MembershipAuth", "Membership active, proceeding")
+                        } else {
+                            Log.d("MembershipAuth", "Membership inactive, redirecting to MembershipFee activity")
+                            val intent = Intent(context, MembershipFee::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            context.startActivity(intent)
+                        }
                     } else {
-                        Log.d("MembershipAuth", "Membership active")
+                        Log.e("MembershipAuth", "Response body is null")
                     }
                 } else {
                     Log.e("MembershipAuth", "Failed to authenticate membership: ${response.message()}")

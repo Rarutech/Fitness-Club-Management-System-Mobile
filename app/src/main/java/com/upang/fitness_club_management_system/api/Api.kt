@@ -44,6 +44,7 @@ import com.upang.fitness_club_management_system.model.UpdateTrainerProfileReques
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateUserProfileResponse
 import com.upang.fitness_club_management_system.model.memberAuthResponse
+import com.upang.fitness_club_management_system.model.updateMembershipResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -67,7 +68,7 @@ interface Api {
     @POST("Api/authentication.php")
     fun Authenticate(@Body request: AuthRequest): Call<AuthResponse>
 
-    @POST("Api/membershipAuthentication.php")
+    @GET("Api/membershipAuthentication.php")
     fun authenticateMembership(@Query("email") email : String) : Call<memberAuthResponse>
 
     @Headers("Content-Type: application/json")
@@ -225,5 +226,7 @@ interface Api {
     fun updateProfile(@Field("email") email:String,
                       @Field("fullname") fullname:String) : Call<UpdateUserProfileResponse>
 
-
+    @FormUrlEncoded
+    @POST("Api/updateMembership.php")
+    fun updateMembership(@Field("email") email: String) : Call<updateMembershipResponse>
 }

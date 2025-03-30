@@ -18,6 +18,8 @@ import com.upang.fitness_club_management_system.model.PaymentIntentResponse
 import com.stripe.android.view.CardInputWidget
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
+import com.upang.fitness_club_management_system.helper.PreferenceManager
+import com.upang.fitness_club_management_system.model.updateMembershipResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -124,11 +126,8 @@ class CardInformation : AppCompatActivity() {
                 Log.d("PaymentProcess", "Payment successful: ${paymentIntent.status}")
 
                 if (paymentIntent.status == StripeIntent.Status.Succeeded) {
+                    updateMembership()
                     Toast.makeText(this@CardInformation, "Payment Successful!", Toast.LENGTH_LONG).show()
-
-                    val intent = Intent(this@CardInformation, Trainee_Home::class.java)
-                    startActivity(intent)
-                    finish()
                 }
             }
 
@@ -137,5 +136,50 @@ class CardInformation : AppCompatActivity() {
                 Toast.makeText(this@CardInformation, "Payment failed: ${e.message}", Toast.LENGTH_LONG).show()
             }
         })
+    }
+
+    private fun updateMembership(){
+        val preferenceManager = PreferenceManager(this@CardInformation)
+        val email = preferenceManager.getEmail()
+
+        if (email.isNullOrEmpty()) {
+            Toast.makeText(this@CardInformation, "Error: Email not found", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val api = RetrofitClient.instance.create(Api::class.java)
+        api.updateMembership(email).enqueue(object : Callback<updateMembershipResponse> {
+            override fun onResponse(call: Call<updateMembershipResponse>, response: Response<updateMembershipResponse>) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        if (responseBody.success) {
+                            Log.d("API_SUCCESS", "Membership updated: ${responseBody.message}")
+                            Toast.makeText(this@CardInformation, "Membership updated successfully", Toast.LENGTH_SHORT).show()
+
+                            val intent = Intent(this@CardInformation, Trainee_Home::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Log.e("API_ERROR", "Update failed: ${responseBody.message}")
+                            Toast.makeText(this@CardInformation, "Update failed: ${responseBody.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Log.e("API_ERROR", "Response body is null")
+                        Toast.makeText(this@CardInformation, "Response error", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("API_ERROR", "Server error: ${response.code()} - $errorBody")
+                    Toast.makeText(this@CardInformation, "Server error: ${response.code()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<updateMembershipResponse>, t: Throwable) {
+                Log.e("API_ERROR", "Network error: ${t.message}", t)
+                Toast.makeText(this@CardInformation, "Network error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
     }
 }
