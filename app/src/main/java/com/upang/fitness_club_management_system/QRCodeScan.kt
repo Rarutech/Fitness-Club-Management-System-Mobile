@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.journeyapps.barcodescanner.BarcodeCallback
@@ -34,6 +35,22 @@ class QRCodeScan : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_qrcode_scan)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar2)
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            val preferenceManager = PreferenceManager(this)
+            val role = preferenceManager.getRole()
+            if (role == "trainer") {
+                val intent = Intent(this, TrainerAccount::class.java)
+                startActivity(intent)
+                return@setNavigationOnClickListener
+            } else if (role == "member") {
+                val intent = Intent(this, Account::class.java)
+                startActivity(intent)
+                return@setNavigationOnClickListener
+            }
+        }
 
         barcodeView = findViewById(R.id.barcode_scanner)
         txtResult = findViewById(R.id.txtResult)

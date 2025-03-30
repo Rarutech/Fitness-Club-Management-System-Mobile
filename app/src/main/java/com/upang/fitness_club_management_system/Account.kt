@@ -51,6 +51,11 @@ class Account : AppCompatActivity() {
         }
         progressBar = findViewById(R.id.progressBar)
 
+        findViewById<ImageButton>(R.id.btnQrCode).setOnClickListener {
+            val intent = Intent(this, QRCodeScan::class.java)
+            startActivity(intent)
+        }
+
         findViewById<ImageButton>(R.id.btnSettings).setOnClickListener {
             val intent = Intent(this, Settings::class.java)
             startActivity(intent)

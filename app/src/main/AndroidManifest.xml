@@ -13,10 +13,11 @@
 
     <application
         android:allowBackup="true"
+        android:label="Pump It Jonathan: Fitness Gym App"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/pumpitjonathan_icon"
+        android:roundIcon="@mipmap/pumpitjonathan_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessClubManagementSystem"
         android:usesCleartextTraffic="true"
