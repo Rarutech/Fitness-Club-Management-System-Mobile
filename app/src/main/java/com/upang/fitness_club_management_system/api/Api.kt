@@ -31,6 +31,7 @@ import com.upang.fitness_club_management_system.model.ForgotPasswordResponse
 import com.upang.fitness_club_management_system.model.PaymentIntentResponse
 import com.upang.fitness_club_management_system.model.RateTrainerRequest
 import com.upang.fitness_club_management_system.model.RateTrainerResponse
+import com.upang.fitness_club_management_system.model.TraineeEvent
 import com.upang.fitness_club_management_system.model.TraineePendingResponse
 import com.upang.fitness_club_management_system.model.TraineeProgressDateResponse
 import com.upang.fitness_club_management_system.model.TraineeProgressResponse
@@ -90,11 +91,17 @@ interface Api {
 
     @Headers("Content-Type: application/json")
     @GET("Api/fetchTrainerAssignment.php")
-    fun getEvents(@Query("date") date: String): Call<List<Event>>
+    fun getEvents(@Query("date") date: String,
+                  @Query("email") email: String): Call<List<Event>>
 
     @Headers("Content-Type: application/json")
     @GET("Api/fetchTrainerAssignment.php")
-    fun getAllEvents(): Call<List<Event>>
+    fun getAllEvents(@Query("email") email: String): Call<List<Event>>
+
+    @Headers("Content-Type: application/json")
+    @GET("Api/fetchUserAssignment.php")
+    fun getAllTraineeEvents(@Query("email") email: String): Call<List<TraineeEvent>>
+
 
     @Headers("Content-Type: application/json")
     @GET("Api/fetchInventory.php")

@@ -106,12 +106,12 @@
                     android:textStyle="bold"
                     android:textSize="20sp"/>
                 
-                <ImageView
-                    android:layout_width="320dp"
-                    android:layout_height="125dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvEvents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/black_rectangle"
                     android:contentDescription="Rectangle"/>
 
         </LinearLayout>

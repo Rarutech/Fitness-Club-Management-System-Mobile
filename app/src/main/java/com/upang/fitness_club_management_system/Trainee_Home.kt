@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,12 +15,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.upang.fitness_club_management_system.adapter.HighlightAdapter
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
+import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.HighlightResponse
+import com.upang.fitness_club_management_system.model.TraineeEvent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class Trainee_Home : AppCompatActivity() {
+    private lateinit var traineeEventAdapter: TraineeEventAdapter
+    private lateinit var rvEvents: RecyclerView
     private lateinit var recyclerView: RecyclerView
     private lateinit var highlightAdapter: HighlightAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +70,9 @@ class Trainee_Home : AppCompatActivity() {
             true
         }
 
+        rvEvents = findViewById(R.id.rvEvents)
+        rvEvents.layoutManager = LinearLayoutManager(this)
+        fetchEvents()
         fetchHighlights()
     }
     private fun fetchHighlights() {
@@ -87,6 +95,29 @@ class Trainee_Home : AppCompatActivity() {
                 Log.e("API", "Failed to fetch data: ${t.message}")
             }
 
+        })
+    }
+
+    private fun fetchEvents() {
+        val preferenceManager = PreferenceManager(this)
+        val api = RetrofitClient.instance.create(Api::class.java)
+        val email = preferenceManager.getEmail() ?: return
+        val call: Call<List<TraineeEvent>> = api.getAllTraineeEvents(email)
+
+        call.enqueue(object : Callback<List<TraineeEvent>> {
+            override fun onResponse(call: Call<List<TraineeEvent>>, response: Response<List<TraineeEvent>>) {
+                if (response.isSuccessful && response.body() != null) {
+                    traineeEventAdapter = TraineeEventAdapter(response.body()!!)
+                    rvEvents.adapter = traineeEventAdapter
+                } else {
+                    Toast.makeText(this@Trainee_Home, "No events found", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<TraineeEvent>>, t: Throwable) {
+                Log.e("API_ERROR", t.message ?: "Unknown error")
+                Toast.makeText(this@Trainee_Home, "Error fetching events", Toast.LENGTH_SHORT).show()
+            }
         })
     }
 }

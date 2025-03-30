@@ -17,12 +17,16 @@ import com.upang.fitness_club_management_system.adapter.EventAdapter
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.EventDecorator
+import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.helper.TodayDecorator
 import com.upang.fitness_club_management_system.model.Event
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.HashSet
+import java.util.Locale
 
 class TrainerScheduleActivity : AppCompatActivity() {
     private lateinit var calendarView: MaterialCalendarView
@@ -82,8 +86,10 @@ class TrainerScheduleActivity : AppCompatActivity() {
     }
 
     private fun fetchEvents() {
+        val preferenceManager = PreferenceManager(this)
         val api = RetrofitClient.instance.create(Api::class.java)
-        val call: Call<List<Event>> = api.getAllEvents() // Adjust API method to fetch all events
+        val email = preferenceManager.getEmail() ?: return
+        val call: Call<List<Event>> = api.getAllEvents(email)
 
         call.enqueue(object : Callback<List<Event>> {
             override fun onResponse(call: Call<List<Event>>, response: Response<List<Event>>) {
@@ -91,21 +97,28 @@ class TrainerScheduleActivity : AppCompatActivity() {
                     val events = response.body()!!
                     val eventDates = HashSet<CalendarDay>()
 
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    val currentDate = Date()
+
                     for (event in events) {
-                        val parts = event.assignment_date.split("-") // Format: YYYY-MM-DD
-                        if (parts.size == 3) {
-                            val year = parts[0].toInt()
-                            val month = parts[1].toInt() - 1 // CalendarDay uses 0-based months
-                            val day = parts[2].toInt()
-                            eventDates.add(CalendarDay.from(year, month, day))
+                        val eventDate: Date? = dateFormat.parse(event.assignment_date)
+
+                        if (eventDate != null && eventDate.before(currentDate)) {
+                            event.status = "Ended"
+                        } else {
+                            val parts = event.assignment_date.split("-")
+                            if (parts.size == 3) {
+                                val year = parts[0].toInt()
+                                val month = parts[1].toInt() - 1
+                                val day = parts[2].toInt()
+                                eventDates.add(CalendarDay.from(year, month, day))
+                            }
                         }
                     }
-
-                    // Apply event markers & highlight today
-                    calendarView.post {
-                        calendarView.removeDecorators() // Clear old decorators
-                        calendarView.addDecorator(EventDecorator(eventDates)) // Add event dots
-                        calendarView.addDecorator(TodayDecorator(todayDate)) // Highlight today
+                        calendarView.post {
+                        calendarView.removeDecorators()
+                        calendarView.addDecorator(EventDecorator(eventDates))
+                        calendarView.addDecorator(TodayDecorator(todayDate))
                     }
                 } else {
                     Toast.makeText(this@TrainerScheduleActivity, "No events found", Toast.LENGTH_SHORT).show()
@@ -120,8 +133,10 @@ class TrainerScheduleActivity : AppCompatActivity() {
     }
 
     private fun fetchEventsForDate(date: String) {
+        val preferenceManager = PreferenceManager(this)
         val api = RetrofitClient.instance.create(Api::class.java)
-        val call: Call<List<Event>> = api.getEvents(date)
+        val email = preferenceManager.getEmail() ?: return
+        val call: Call<List<Event>> = api.getEvents(date,email)
 
         call.enqueue(object : Callback<List<Event>> {
             override fun onResponse(call: Call<List<Event>>, response: Response<List<Event>>) {

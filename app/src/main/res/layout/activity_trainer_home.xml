@@ -109,12 +109,12 @@
                 android:textStyle="bold" />
 
             <!-- Background -->
-            <ImageView
-                android:layout_width="320dp"
-                android:layout_height="150dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/black_rectangle" />
+                android:layout_marginTop="20dp"/>
 
         </LinearLayout>
     </ScrollView>

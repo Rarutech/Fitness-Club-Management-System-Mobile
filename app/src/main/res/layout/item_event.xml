@@ -6,9 +6,22 @@
     android:background="@drawable/circular_border"
     android:layout_marginTop="15dp"
     android:padding="16dp">
-
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/rowNoSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="No Upcoming Schedule"/>
+    </LinearLayout>
     <!-- Name Section -->
     <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/nameRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -53,6 +66,8 @@
 
     <!-- Date Section -->
     <LinearLayout
+        android:id="@+id/dateRow"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -96,6 +111,8 @@
 
     <!-- Time Section -->
     <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/timeRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -139,6 +156,8 @@
 
     <!-- Status Section -->
     <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/statusRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -174,5 +193,6 @@
             android:textSize="16sp"
             android:fontFamily="@font/poppins_regular" />
     </LinearLayout>
+
 
 </LinearLayout>

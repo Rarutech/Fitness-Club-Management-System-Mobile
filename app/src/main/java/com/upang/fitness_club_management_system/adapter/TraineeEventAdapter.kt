@@ -1,4 +1,4 @@
-package com.upang.fitness_club_management_system.adapter
+package com.upang.fitness_club_management_system
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.upang.fitness_club_management_system.R
-import com.upang.fitness_club_management_system.model.Event
+import com.upang.fitness_club_management_system.model.TraineeEvent
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class EventAdapter(eventList: List<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+class TraineeEventAdapter(eventList: List<TraineeEvent>) : RecyclerView.Adapter<TraineeEventAdapter.TraineeEventViewHolder>() {
+
     private val filteredEvents = eventList.filter { event ->
         val eventDateTimeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         val currentDate = Date()
@@ -26,7 +26,7 @@ class EventAdapter(eventList: List<Event>) : RecyclerView.Adapter<EventAdapter.E
         status != "Ended"
     }
 
-    class EventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class TraineeEventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val traineeName: TextView = view.findViewById(R.id.trineeName)
         val assignmentDate: TextView = view.findViewById(R.id.assignmentDate)
         val eventTime: TextView = view.findViewById(R.id.eventTime)
@@ -38,17 +38,17 @@ class EventAdapter(eventList: List<Event>) : RecyclerView.Adapter<EventAdapter.E
         val statusRow: LinearLayout = view.findViewById(R.id.statusRow)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventAdapter.EventViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TraineeEventViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_event, parent, false)
-        return EventViewHolder(view)
+        return TraineeEventViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: EventAdapter.EventViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TraineeEventViewHolder, position: Int) {
         if (filteredEvents.isEmpty()) {
-            // Show the "No Schedule" layout
+            // Display "No Upcoming Schedule"
             holder.noSched.visibility = View.VISIBLE
 
-            // Hide event details rows
+            // Hide other event details
             holder.traineeNameRow.visibility = View.GONE
             holder.assignmentDateRow.visibility = View.GONE
             holder.eventTimeRow.visibility = View.GONE
@@ -93,6 +93,7 @@ class EventAdapter(eventList: List<Event>) : RecyclerView.Adapter<EventAdapter.E
             holder.status.text = status
         }
     }
+
 
     override fun getItemCount(): Int {
         return if (filteredEvents.isEmpty()) 1 else filteredEvents.size
