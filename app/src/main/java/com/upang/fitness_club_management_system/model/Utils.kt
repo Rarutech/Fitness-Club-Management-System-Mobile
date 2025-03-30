@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import com.upang.fitness_club_management_system.LoginPage
+import com.upang.fitness_club_management_system.MembershipFee
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
@@ -56,4 +57,43 @@ object Utils {
 
         })
     }
+
+    fun membershipAuthentication(context: Context) {
+        Log.d("MembershipAuth", "Membership authentication check started")
+        val preferenceManager = PreferenceManager(context)
+        val email = preferenceManager.getEmail()
+
+        if (email.isNullOrEmpty()) {
+            Log.d("MembershipAuth", "Email is empty, redirecting to login")
+            val intent = Intent(context, LoginPage::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            context.startActivity(intent)
+            return
+        }
+
+        val api = RetrofitClient.instance.create(Api::class.java)
+
+        api.authenticateMembership(email).enqueue(object : retrofit2.Callback<memberAuthResponse> {
+            override fun onResponse(call: Call<memberAuthResponse>, response: Response<memberAuthResponse>) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result?.is_active == false) {
+                        Log.d("MembershipAuth", "Membership inactive, redirecting to MembershipFee activity")
+                        val intent = Intent(context, MembershipFee::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        context.startActivity(intent)
+                    } else {
+                        Log.d("MembershipAuth", "Membership active")
+                    }
+                } else {
+                    Log.e("MembershipAuth", "Failed to authenticate membership: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<memberAuthResponse>, t: Throwable) {
+                Log.e("MembershipAuth", "Network error: ${t.message}")
+            }
+        })
+    }
+
 }

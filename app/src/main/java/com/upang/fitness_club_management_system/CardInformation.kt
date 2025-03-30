@@ -35,14 +35,14 @@ class CardInformation : AppCompatActivity() {
 
         PaymentConfiguration.init(
             applicationContext,
-            "pk_test_51QuQqmFJOmXFu2MhKBNEmzockLi7VsMXC14Rpt3hWOvmgDvdNDjdX0bpagWbRWck2Zkq2CeLO8TXWGP3AriLSh8A00SqPRHZR6"
+            "pk_test_51R7qAeBNSwOEu2mpYqg3LpokRdbt17nufCifDObthMiiOzuybNT8lnbWUJYdYHNr4gSs7QrafjN8ExeScD91FcLN002nD7PMvM"
         )
         stripe = Stripe(this, PaymentConfiguration.getInstance(this).publishableKey)
 
         cardInputWidget = findViewById(R.id.cardInputWidget)
         payButton = findViewById(R.id.payButton)
 
-        createPaymentIntent(600) // Amount in cents ($50.00)
+        createPaymentIntent(600)
 
         payButton.setOnClickListener {
             processPayment()
@@ -115,7 +115,6 @@ class CardInformation : AppCompatActivity() {
         stripe.confirmPayment(this, params)
     }
 
-    // Handle the result
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -129,7 +128,7 @@ class CardInformation : AppCompatActivity() {
 
                     val intent = Intent(this@CardInformation, Trainee_Home::class.java)
                     startActivity(intent)
-                    finish() // Close this activity
+                    finish()
                 }
             }
 

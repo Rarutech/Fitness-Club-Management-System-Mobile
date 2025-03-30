@@ -45,25 +45,21 @@ class EventAdapter(eventList: List<Event>) : RecyclerView.Adapter<EventAdapter.E
 
     override fun onBindViewHolder(holder: EventAdapter.EventViewHolder, position: Int) {
         if (filteredEvents.isEmpty()) {
-            // Show the "No Schedule" layout
             holder.noSched.visibility = View.VISIBLE
-
-            // Hide event details rows
             holder.traineeNameRow.visibility = View.GONE
             holder.assignmentDateRow.visibility = View.GONE
             holder.eventTimeRow.visibility = View.GONE
             holder.statusRow.visibility = View.GONE
         } else {
-            val event = filteredEvents[position]
+            val event = filteredEvents.first() // Get only the first event
 
-            // Show event details
             holder.noSched.visibility = View.GONE
             holder.traineeNameRow.visibility = View.VISIBLE
             holder.assignmentDateRow.visibility = View.VISIBLE
             holder.eventTimeRow.visibility = View.VISIBLE
             holder.statusRow.visibility = View.VISIBLE
 
-            holder.traineeName.text = event.trainer_name
+            holder.traineeName.text = event.user_name
 
             val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val outputFormat = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
@@ -95,6 +91,6 @@ class EventAdapter(eventList: List<Event>) : RecyclerView.Adapter<EventAdapter.E
     }
 
     override fun getItemCount(): Int {
-        return if (filteredEvents.isEmpty()) 1 else filteredEvents.size
+        return if (filteredEvents.isNotEmpty()) 1 else 1
     }
 }

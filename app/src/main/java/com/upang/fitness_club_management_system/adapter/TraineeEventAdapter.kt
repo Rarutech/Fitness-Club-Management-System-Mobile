@@ -54,7 +54,7 @@ class TraineeEventAdapter(eventList: List<TraineeEvent>) : RecyclerView.Adapter<
             holder.eventTimeRow.visibility = View.GONE
             holder.statusRow.visibility = View.GONE
         } else {
-            val event = filteredEvents[position]
+            val event = filteredEvents.first() // Only take the first event
 
             // Show event details
             holder.noSched.visibility = View.GONE
@@ -94,8 +94,7 @@ class TraineeEventAdapter(eventList: List<TraineeEvent>) : RecyclerView.Adapter<
         }
     }
 
-
     override fun getItemCount(): Int {
-        return if (filteredEvents.isEmpty()) 1 else filteredEvents.size
+        return if (filteredEvents.isNotEmpty()) 1 else 1 // Always show one item (either event or "No Schedule")
     }
 }

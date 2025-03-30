@@ -18,6 +18,7 @@ import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.HighlightResponse
 import com.upang.fitness_club_management_system.model.TraineeEvent
+import com.upang.fitness_club_management_system.model.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +37,10 @@ class Trainee_Home : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        Utils.checkAuthentication(this)
+        Utils.membershipAuthentication(this)
+
         val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
         btnAccount.setOnClickListener {
             val intent = Intent(this,Account::class.java)
