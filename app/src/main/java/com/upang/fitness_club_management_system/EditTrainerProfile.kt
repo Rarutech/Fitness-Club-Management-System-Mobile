@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import com.upang.fitness_club_management_system.api.Api
@@ -53,22 +54,21 @@ class EditTrainerProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_trainer_profile)
 
+        val toolbar: Toolbar = findViewById(R.id.toolbarEditProfile)
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
+
         progressBar = findViewById(R.id.progressBar)
         tvSaveBtn = findViewById(R.id.tvSaveBtn)
         ivBtn = findViewById(R.id.ivBtn)
         etFullname = findViewById(R.id.etFullName)
-        etAboutMe = findViewById(R.id.etAboutMe)
 
         progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Uploading... Please wait")
         progressDialog.setCancelable(false)
 
-        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbarEditProfile)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.setNavigationOnClickListener {
-            finish()
-        }
 
         fetchUserProfile()
         showLoader()
@@ -214,14 +214,7 @@ class EditTrainerProfile : AppCompatActivity() {
     private fun fetchUserProfile() {
         val preferenceManager = PreferenceManager(this)
         val api = RetrofitClient.instance.create(Api::class.java)
-        val email = preferenceManager.getEmail()
-
-        if (email == null) {
-            Log.e("TrainerAccount", "Email is null")
-            Toast.makeText(this, "Failed to fetch profile: Email is null", Toast.LENGTH_SHORT).show()
-            hideLoader()
-            return
-        }
+        val email = preferenceManager.getEmail() ?: return
 
         api.fetchTrainerProfile(email).enqueue(object : Callback<FetchTrainerProfileResponse> {
             override fun onResponse(

@@ -147,7 +147,6 @@ class BuyProductActivity : AppCompatActivity() {
 
     private fun purchaseItem(quantity: Int) {
         if (selectedProduct == null) {
-            Toast.makeText(this, "Product details not available", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -164,24 +163,18 @@ class BuyProductActivity : AppCompatActivity() {
         val api = RetrofitClient.instance.create(Api::class.java)
         api.sendOrder(orderRequest).enqueue(object : Callback<OrderResponse> {
             override fun onResponse(call: Call<OrderResponse>, response: Response<OrderResponse>) {
-                Log.d("ORDER_RESPONSE", "Parameters: email${email}, product name: ${productName}, quantity: ${quantity}")
-                Log.d("ORDER_RESPONSE", "Raw: ${response.raw()}")
-                Log.d("ORDER_RESPONSE", "Body: ${response.body()}")
-                Log.d("ORDER_RESPONSE", "ErrorBody: ${response.errorBody()?.string()}")
-
                 if (response.isSuccessful) {
                     Toast.makeText(this@BuyProductActivity, "Product Purchased", Toast.LENGTH_SHORT).show()
-                    Log.d("ORDER_RESPONSE", "Success: ${response.body()}")
 
                     val preferenceManager = PreferenceManager(this@BuyProductActivity)
                     val role = preferenceManager.getRole()
                     if (role != null) {
                         if (role == "trainer") {
-                            val intent = Intent(this@BuyProductActivity, TrainerShop::class.java)
+                            val intent = Intent(this@BuyProductActivity, TrainerAccount::class.java)
                             startActivity(intent)
                         }
                     } else{
-                        val intent = Intent(this@BuyProductActivity, Shop::class.java)
+                        val intent = Intent(this@BuyProductActivity, Account::class.java)
                         startActivity(intent)
                     }
                 } else {

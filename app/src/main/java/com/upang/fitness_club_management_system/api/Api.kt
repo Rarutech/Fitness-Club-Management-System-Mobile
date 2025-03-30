@@ -25,6 +25,7 @@ import com.upang.fitness_club_management_system.model.OrderRequest
 import com.upang.fitness_club_management_system.model.OrderResponse
 import com.upang.fitness_club_management_system.model.postHighlightResponse
 import com.upang.fitness_club_management_system.model.FetchOrdersResponse
+import com.upang.fitness_club_management_system.model.FetchTraineeProfileResponse
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
 import com.upang.fitness_club_management_system.model.ForgotPasswordResponse
 import com.upang.fitness_club_management_system.model.PaymentIntentResponse
@@ -40,6 +41,7 @@ import com.upang.fitness_club_management_system.model.TrainerReviewResponse
 import com.upang.fitness_club_management_system.model.UpdateProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileResponse
+import com.upang.fitness_club_management_system.model.UpdateUserProfileResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -202,4 +204,15 @@ interface Api {
     @POST("Api/forgotPassword.php")
     fun forgotPassword(@Field("email") email: String,
                        @Field("new_password") new_password: String) : Call<ForgotPasswordResponse>
+
+    @FormUrlEncoded
+    @POST("Api/fetchUserProfile.php")
+    fun fetchUserProfile(@Field("email") email: String) : Call<FetchTraineeProfileResponse>
+
+    @FormUrlEncoded
+    @POST("Api/updateUserProfile.php")
+    fun updateProfile(@Field("email") email:String,
+                      @Field("fullname") fullname:String) : Call<UpdateUserProfileResponse>
+
+
 }

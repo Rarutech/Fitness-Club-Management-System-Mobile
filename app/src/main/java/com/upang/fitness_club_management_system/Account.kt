@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,7 @@ import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.FetchOrdersResponse
+import com.upang.fitness_club_management_system.model.FetchTraineeProfileResponse
 import com.upang.fitness_club_management_system.model.FetchTrainerProfileResponse
 import com.upang.fitness_club_management_system.model.Order
 import retrofit2.Call
@@ -39,6 +41,13 @@ class Account : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        val toolbar: Toolbar = findViewById(R.id.toolbar2)
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, Trainee_Home::class.java)
+            startActivity(intent)
+            finish()
         }
         progressBar = findViewById(R.id.progressBar)
 
@@ -75,10 +84,10 @@ class Account : AppCompatActivity() {
             return
         }
 
-        api.fetchTrainerProfile(email).enqueue(object : Callback<FetchTrainerProfileResponse> {
+        api.fetchUserProfile(email).enqueue(object : Callback<FetchTraineeProfileResponse> {
             override fun onResponse(
-                call: Call<FetchTrainerProfileResponse>,
-                response: Response<FetchTrainerProfileResponse>
+                call: Call<FetchTraineeProfileResponse>,
+                response: Response<FetchTraineeProfileResponse>
             ) {
                 if (response.isSuccessful) {
                     val profile = response.body()
@@ -100,7 +109,7 @@ class Account : AppCompatActivity() {
                 hideLoader()
             }
 
-            override fun onFailure(call: Call<FetchTrainerProfileResponse>, t: Throwable) {
+            override fun onFailure(call: Call<FetchTraineeProfileResponse>, t: Throwable) {
                 Log.e("TrainerAccount", "Network request failed: ${t.message}", t)
                 Toast.makeText(this@Account, "Failed to fetch profile: ${t.message}", Toast.LENGTH_SHORT).show()
                 hideLoader()
