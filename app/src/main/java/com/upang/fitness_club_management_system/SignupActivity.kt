@@ -1,5 +1,6 @@
 package com.upang.fitness_club_management_system
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SignupActivity : AppCompatActivity() {
+    private lateinit var progressDialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
@@ -35,6 +37,10 @@ class SignupActivity : AppCompatActivity() {
         val btnSignUp = findViewById<Button>(R.id.btnSignUp)
         val tvLogin = findViewById<TextView>(R.id.tvLogin)
 
+        progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Singing in...")
+        progressDialog.setCancelable(false)
+
         tvLogin.setOnClickListener {
             startActivity(Intent(this, LoginPage::class.java))
             finish()
@@ -45,7 +51,8 @@ class SignupActivity : AppCompatActivity() {
             val fullname = etFullname.text.toString().trim()
             val password = etPassword.text.toString().trim()
             val confirmPassword = etConfirmPassword.text.toString().trim()
-
+            progressDialog.show()
+            Log.e("SignUpACtivity","email:${email}")
             when {
                 fullname.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() ->
                     Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
@@ -59,7 +66,7 @@ class SignupActivity : AppCompatActivity() {
     private fun sendEmailCode(email: String, fullname: String, password: String) {
         val api = RetrofitClient.instance.create(Api::class.java)
         val request = SendConfirmEmailRequest(email)
-
+        progressDialog.show()
         api.GetEmailCode(request).enqueue(object : Callback<SendConfirmEmailResponse> {
             override fun onResponse(call: Call<SendConfirmEmailResponse>, response: Response<SendConfirmEmailResponse>) {
                 if (response.isSuccessful) {
@@ -68,14 +75,17 @@ class SignupActivity : AppCompatActivity() {
                         putExtra("fullname", fullname)
                         putExtra("password", password)
                     }
+                    progressDialog.dismiss()
                     startActivity(intent)
                     finish()
                 } else {
+                    progressDialog.dismiss()
                     Log.e("EMAIL CODE", "Error: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<SendConfirmEmailResponse>, t: Throwable) {
+                progressDialog.dismiss()
                 Log.e("EMAIL CODE", "Error: ${t.message}")
             }
         })

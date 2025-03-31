@@ -130,24 +130,4 @@ class LoginPage : AppCompatActivity() {
             }
         })
     }
-
-    private fun checkSession() {
-        val preferenceManager = PreferenceManager(this)
-        val role = preferenceManager.getRole()
-        val token = preferenceManager.getToken()
-
-        if (token == null && role == null) {
-            return
-        } else {
-            if (role == "trainer") {
-                val intent = Intent(this@LoginPage, TrainerHomeActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                val intent = Intent(this@LoginPage, Trainee_Home::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
-    }
 }

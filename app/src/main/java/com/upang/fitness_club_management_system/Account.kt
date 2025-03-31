@@ -25,9 +25,12 @@ import com.upang.fitness_club_management_system.model.FetchOrdersResponse
 import com.upang.fitness_club_management_system.model.FetchTraineeProfileResponse
 import com.upang.fitness_club_management_system.model.FetchTrainerProfileResponse
 import com.upang.fitness_club_management_system.model.Order
+import com.upang.fitness_club_management_system.model.getMembershipResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class Account : AppCompatActivity() {
     private lateinit var ordersAdapter: OrdersAdapter
@@ -65,6 +68,7 @@ class Account : AppCompatActivity() {
         showLoader()
         fetchUserProfile()
         fetchOrders()
+        fetchMembership()
     }
     private fun showLoader() {
         progressBar.visibility = View.VISIBLE
@@ -122,6 +126,34 @@ class Account : AppCompatActivity() {
         })
     }
 
+    private fun fetchMembership() {
+        val preferenceManager = PreferenceManager(this)
+        val api = RetrofitClient.instance.create(Api::class.java)
+        val email = preferenceManager.getEmail() ?: return
+
+        api.getMembership(email).enqueue(object : retrofit2.Callback<getMembershipResponse> {
+            override fun onResponse(call: Call<getMembershipResponse>, response: Response<getMembershipResponse>) {
+                if (response.isSuccessful) {
+                    val membership = response.body() ?: return
+                    if (membership.success) {
+                        val formattedMembershipEnd = formatDate(membership.membership_end)
+                        val formattedNextPaymentDate = formatDate(membership.next_payment_date)
+
+                        findViewById<TextView>(R.id.tvMembershipEnd).text = formattedMembershipEnd
+                        findViewById<TextView>(R.id.tvNextPaymentDate).text = formattedNextPaymentDate
+                        findViewById<TextView>(R.id.tvStatus).text = membership.status
+                    } else {
+                        Toast.makeText(this@Account, "Failed to get membership details", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<getMembershipResponse>, t: Throwable) {
+                Toast.makeText(this@Account, "Error ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
     private fun fetchOrders() {
         val preferenceManager = PreferenceManager(this)
         val api = RetrofitClient.instance.create(Api::class.java)
@@ -169,4 +201,16 @@ class Account : AppCompatActivity() {
         recyclerView.adapter = ordersAdapter
     }
 
+    private fun formatDate(dateStr: String?): String {
+        if (dateStr.isNullOrEmpty()) return "N/A"
+
+        return try {
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Assuming API returns YYYY-MM-DD
+            val outputFormat = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault()) // Example: January 01, 2025
+            val date = inputFormat.parse(dateStr)
+            outputFormat.format(date ?: return "Invalid date")
+        } catch (e: Exception) {
+            "Invalid date"
+        }
+    }
 }
