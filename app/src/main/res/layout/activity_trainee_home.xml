@@ -129,6 +129,7 @@
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="labeled"
         app:itemRippleColor="@android:color/transparent"
+        style="@style/NoRippleBottomNavigation"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
         app:itemTextAppearanceActive="@style/BottomNavTextAppearance"

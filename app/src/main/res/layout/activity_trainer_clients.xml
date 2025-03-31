@@ -37,15 +37,15 @@
         app:layout_constraintBottom_toBottomOf="@id/toolbarHome"
         app:layout_constraintEnd_toEndOf="@id/toolbarHome">
 
-        <!-- Search Icon -->
+        <!-- Notification Icon -->
         <ImageButton
-            android:id="@+id/btnSearch"
+            android:id="@+id/btnNotification"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="10dp"
             android:background="@null"
-            android:contentDescription="Search"
-            android:src="@drawable/search" />
+            android:contentDescription="Notification"
+            android:src="@drawable/notification" />
 
         <!-- Account Icon -->
         <ImageButton
@@ -94,6 +94,7 @@
         app:labelVisibilityMode="labeled"
         app:itemBackground="@color/white"
         app:itemRippleColor="@android:color/transparent"
+        style="@style/NoRippleBottomNavigation"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
         app:itemTextAppearanceActive="@style/BottomNavTextAppearance"

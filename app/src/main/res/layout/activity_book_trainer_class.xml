@@ -150,7 +150,7 @@
             <CalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="370dp"
-                android:layout_height="300dp"
+                android:layout_height="325dp"
                 android:layout_gravity="center"/>
 
             <!-- Time -->

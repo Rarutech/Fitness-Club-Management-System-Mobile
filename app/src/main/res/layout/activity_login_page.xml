@@ -201,7 +201,7 @@
         android:id="@+id/tvSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="27dp"
+        android:layout_marginEnd="30dp"
         android:fontFamily="@font/inter_regular"
         android:padding="3sp"
         android:text="Sign up"

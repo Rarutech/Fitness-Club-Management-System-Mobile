@@ -5,6 +5,7 @@
     android:id="@+id/trainer_schedule"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:background="#FFFFFF">
 
@@ -96,6 +97,7 @@
         android:elevation="4dp"
         android:backgroundTint="@color/white"
         app:itemRippleColor="@android:color/transparent"
+        style="@style/NoRippleBottomNavigation"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
         app:itemTextAppearanceActive="@style/BottomNavTextAppearance"
