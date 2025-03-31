@@ -8,7 +8,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.appcompat.widget.Toolbar
 import android.content.Intent
 import android.widget.TextView
+import com.upang.fitness_club_management_system.api.Api
+import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
+import com.upang.fitness_club_management_system.model.LogoutResponse
+import com.upang.fitness_club_management_system.model.Utils
+import retrofit2.Call
+import retrofit2.Response
 
 class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +26,7 @@ class Settings : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        Utils.checkAuthentication(this)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbarSettings)
         toolbar.setNavigationOnClickListener {
@@ -35,6 +42,7 @@ class Settings : AppCompatActivity() {
                 return@setNavigationOnClickListener
             }
         }
+
         val editProfile = findViewById<TextView>(R.id.tvEditProfile)
         editProfile.setOnClickListener {
             val preferenceManager = PreferenceManager(this)
@@ -49,6 +57,7 @@ class Settings : AppCompatActivity() {
                 return@setOnClickListener
             }
         }
+
         val changePassword = findViewById<TextView>(R.id.tvChangePass)
         changePassword.setOnClickListener {
             val intent = Intent(this, CreateNewPassword::class.java)
@@ -56,11 +65,7 @@ class Settings : AppCompatActivity() {
         }
         val logout = findViewById<TextView>(R.id.tvLogout)
         logout.setOnClickListener {
-            val preferenceManager = PreferenceManager(this)
-            preferenceManager.clear()
-            val intent = Intent(this, LoginPage::class.java)
-            startActivity(intent)
-            finish()
+            logout()
         }
         val tvAboutUs = findViewById<TextView>(R.id.tvAboutUs)
         tvAboutUs.setOnClickListener {
@@ -73,5 +78,27 @@ class Settings : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    private fun logout(){
+        val preferenceManager = PreferenceManager(this)
+        val apiService = RetrofitClient.instance.create(Api::class.java)
+        val email = preferenceManager.getEmail() ?: return
 
+        apiService.logout(email).enqueue(object  : retrofit2.Callback<LogoutResponse>{
+            override fun onResponse(
+                call: Call<LogoutResponse>,
+                response: Response<LogoutResponse>
+            ) {
+                if(response.isSuccessful){
+                    val preferenceManager = PreferenceManager(this@Settings)
+                    preferenceManager.clear()
+                }
+
+            }
+
+            override fun onFailure(call: Call<LogoutResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+
+    }
 }

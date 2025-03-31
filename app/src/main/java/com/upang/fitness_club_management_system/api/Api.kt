@@ -1,6 +1,5 @@
 package com.upang.fitness_club_management_system.api
 
-import com.upang.fitness_club_management_system.ForgotPassword
 import com.upang.fitness_club_management_system.model.AuthRequest
 import com.upang.fitness_club_management_system.model.AuthResponse
 import com.upang.fitness_club_management_system.model.BookTrainerRequest
@@ -28,6 +27,7 @@ import com.upang.fitness_club_management_system.model.FetchOrdersResponse
 import com.upang.fitness_club_management_system.model.FetchTraineeProfileResponse
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
 import com.upang.fitness_club_management_system.model.ForgotPasswordResponse
+import com.upang.fitness_club_management_system.model.LogoutResponse
 import com.upang.fitness_club_management_system.model.PaymentIntentResponse
 import com.upang.fitness_club_management_system.model.RateTrainerRequest
 import com.upang.fitness_club_management_system.model.RateTrainerResponse
@@ -43,12 +43,12 @@ import com.upang.fitness_club_management_system.model.UpdateProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateUserProfileResponse
+import com.upang.fitness_club_management_system.model.getMembershipResponse
 import com.upang.fitness_club_management_system.model.memberAuthResponse
 import com.upang.fitness_club_management_system.model.updateMembershipResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -63,6 +63,10 @@ interface Api {
     @Headers("Content-Type: application/json")
     @POST("Api/Login.php")  // Adjust based on your actual API URL
     fun loginUser(@Body request: LoginRequest): Call<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("Api/logout.php")
+    fun logout(@Field("email") email: String): Call<LogoutResponse>
 
     @Headers("Content-Type: application/json")
     @POST("Api/authentication.php")
@@ -229,4 +233,8 @@ interface Api {
     @FormUrlEncoded
     @POST("Api/updateMembership.php")
     fun updateMembership(@Field("email") email: String) : Call<updateMembershipResponse>
+
+    @FormUrlEncoded
+    @POST("Api/getMembershipDates.php")
+    fun getMembership(@Field("email") email: String) : Call<getMembershipResponse>
 }

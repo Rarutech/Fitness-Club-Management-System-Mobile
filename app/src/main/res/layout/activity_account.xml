@@ -128,7 +128,85 @@
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"/>
-
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/black_rectangle">
+                <LinearLayout
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Subscription Type:"/>
+                    <TextView
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:text="Monthly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Active until:"/>
+                    <TextView
+                        android:id="@+id/tvMembershipEnd"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:text="Monthly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Next payment: "/>
+                    <TextView
+                        android:id="@+id/tvNextPaymentDate"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:text="Monthly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Status: "/>
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:text="Monthly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+            
+            
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/accountRecyclerView"
                 android:layout_width="match_parent"
