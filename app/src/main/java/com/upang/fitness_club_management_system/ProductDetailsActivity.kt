@@ -67,6 +67,16 @@ class ProductDetailsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val toolbar_pd = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbarBuyProducts)
+        setSupportActionBar(toolbar_pd)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        toolbar.setNavigationOnClickListener {
+            startActivity(Intent(this, Shop::class.java))
+            finish() // Close current activity
+        }
+
+
         val sharedPreferences = getSharedPreferences("shop_prefs", Context.MODE_PRIVATE)
         val productId = sharedPreferences.getInt("selected_product_id", -1)
 

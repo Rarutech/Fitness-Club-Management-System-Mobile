@@ -82,6 +82,15 @@ class EditTrainerProfile : AppCompatActivity() {
                 updatePicture()
             }
         }
+        val toolbartrainer = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbarEditTrainerProfile)
+        setSupportActionBar(toolbartrainer)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        toolbar.setNavigationOnClickListener {
+            startActivity(Intent(this, Settings::class.java))
+            finish() // Close current activity
+        }
+
     }
 
     private fun updateProfile() {

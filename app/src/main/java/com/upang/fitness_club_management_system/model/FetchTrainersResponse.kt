@@ -11,5 +11,6 @@ data class Profile(
     val email: String,
     val role: String,
     val profile_picture: String,
-    val about: String
+    val about: String,
+    val total_ratings: Double
 )
