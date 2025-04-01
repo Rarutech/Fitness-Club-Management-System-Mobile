@@ -2,16 +2,146 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
+        android:label="Pump It Jonathan: Fitness Gym App"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/pumpitjonathan_icon"
+        android:roundIcon="@mipmap/pumpitjonathan_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessClubManagementSystem"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ForgotPasswordEmailVerification"
+            android:exported="true" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="true" />
+        <activity
+            android:name=".QRCodeScan"
+            android:exported="true" />
+        <activity
+            android:name=".RateTrainer"
+            android:exported="true" />
+        <activity
+            android:name=".TraineeAppointments"
+            android:exported="true" />
+        <activity
+            android:name=".Reschedule"
+            android:exported="true" />
+        <activity
+            android:name=".BookTrainerSuccess"
+            android:exported="true" />
+        <activity
+            android:name=".BookTrainerClass"
+            android:exported="true" />
+        <activity
+            android:name=".BookClassDetails"
+            android:exported="true" />
+        <activity
+            android:name=".EditTrainerProfile"
+            android:exported="true" />
+        <activity
+            android:name=".TrainerShop"
+            android:exported="true" />
+        <activity
+            android:name=".TrainerAccount"
+            android:exported="true" />
+        <activity
+            android:name=".ViewAppointment"
+            android:exported="true" />
+        <activity
+            android:name=".TrainerClients"
+            android:exported="true" />
+        <activity
+            android:name=".EditProfile"
+            android:exported="true" />
+        <activity
+            android:name=".Account"
+            android:exported="true" />
+        <activity
+            android:name=".BuyProductActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ProductDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".BookClass"
+            android:exported="true" />
+        <activity
+            android:name=".Shop"
+            android:exported="true" />
+        <activity
+            android:name=".Progress"
+            android:exported="true" />
+        <activity
+            android:name=".Trainee_Home"
+            android:exported="true" />
+        <activity
+            android:name=".CardInformation"
+            android:exported="true" />
+        <activity
+            android:name=".LoadingScreen"
+            android:exported="true" />
+        <activity
+            android:name=".MembershipBenefits"
+            android:exported="true" />
+        <activity
+            android:name=".Assessment"
+            android:exported="true" />
+        <activity
+            android:name=".PrivacyPolicy"
+            android:exported="true" />
+        <activity
+            android:name=".AboutUs"
+            android:exported="true" />
+        <activity
+            android:name=".Settings"
+            android:exported="true" />
+        <activity
+            android:name=".QRCodeMembershipFee"
+            android:exported="true" />
+        <activity
+            android:name=".MembershipFee"
+            android:exported="true" />
+        <activity
+            android:name=".Authentication"
+            android:exported="true" />
+        <activity
+            android:name=".WelcomePage"
+            android:exported="true" />
+        <activity
+            android:name=".CreateNewPassword"
+            android:exported="true" />
+        <activity
+            android:name=".ConfirmEmailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".PostHighlightActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TrainerHomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TrainerScheduleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginPage"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

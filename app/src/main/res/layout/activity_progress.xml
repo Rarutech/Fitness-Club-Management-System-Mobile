@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#FFFFFF"
+    tools:context=".Progress">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarProgress"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="5dp"
+        app:title="Progress"
+        app:titleTextAppearance="@style/CustomToolbarTitle" />
+
+    <!-- Icon on the toolbar -->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="@id/toolbarProgress"
+        app:layout_constraintBottom_toBottomOf="@id/toolbarProgress"
+        app:layout_constraintEnd_toEndOf="@id/toolbarProgress">
+
+        <!-- Notification Icon -->
+        <ImageButton
+            android:id="@+id/btnNotification"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="10dp"
+            android:background="@null"
+            android:contentDescription="Search"
+            android:src="@drawable/notification" />
+
+        <!-- Account Icon -->
+        <ImageButton
+            android:id="@+id/btnAccount"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="10dp"
+            android:background="@null"
+            android:contentDescription="Account"
+            android:src="@drawable/account"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbarProgress"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Total -->
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Total"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp" />
+
+            <LinearLayout
+                android:id="@+id/imageTotal"
+                android:layout_width="320dp"
+                android:layout_height="66dp"
+                android:background="@drawable/black_rectangle"
+                android:contentDescription="Total"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <!-- Total Days -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvTotalDays"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/inter_regular"
+                        android:gravity="center"
+                        android:text="Total Days"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Total Hours -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvTotalHours"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/inter_regular"
+                        android:gravity="center"
+                        android:text="Total Hours"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- This Month -->
+            <TextView
+                android:id="@+id/tvThisMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="This Month"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp" />
+
+            <!-- Calendar -->
+            <CalendarView
+                android:id="@+id/imageCalendarBG"
+                android:layout_width="320dp"
+                android:layout_height="345dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/black_rectangle"
+                android:contentDescription="Total"
+                android:gravity="center"
+                android:layout_gravity="center" />
+
+            <!-- Total Hours -->
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/llDate"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/black_rectangle"
+                    android:visibility="gone">
+
+                    <!-- Total Time Per Day -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/checkInTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:fontFamily="@font/open_sans"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/inter_regular"
+                            android:gravity="center"
+                            android:text="Check-In Time"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/checkOutTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:fontFamily="@font/open_sans"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/inter_regular"
+                            android:gravity="center"
+                            android:text="Check-Out Time"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Total Workouts Per Week -->
+                <LinearLayout
+                    android:id="@+id/imageTotalWorkout"
+                    android:layout_width="320dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/black_rectangle"
+                    android:contentDescription="Total"
+                    android:orientation="vertical"
+                    android:padding="7dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Week -->
+                        <TextView
+                            android:id="@+id/tvWeek"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_weight="0.25"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="January 12 - January 18"
+                            android:textSize="14sp" />
+
+                        <!-- Total Workouts -->
+                        <TextView
+                            android:id="@+id/tvThisWeek"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/open_sans"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Year -->
+                        <TextView
+                            android:id="@+id/tvYear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/open_sans"
+                            android:text="2025"
+                            android:textColor="#808080"
+                            android:textSize="14sp" />
+
+                        <!-- Total Workouts -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2.5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:gravity="end"
+                            android:text="Workouts"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:backgroundTint="@color/white"
+        app:menu="@menu/bottom_nav_menu"
+        style="@style/NoRippleBottomNavigation"
+        app:labelVisibilityMode="labeled"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:itemTextAppearanceActive="@style/BottomNavTextAppearance"
+        app:itemTextAppearanceInactive="@style/BottomNavTextAppearance"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

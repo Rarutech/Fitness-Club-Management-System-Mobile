@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Trainer Bottom Nav Menu -->
+
+    <!-- Home Icon -->
+    <item
+        android:id="@+id/actionHomeTrainer"
+        android:icon="@drawable/home"
+        android:title="Home" />
+
+    <!-- Schedule Icon -->
+    <item
+        android:id="@+id/actionSchedule"
+        android:icon="@drawable/classes"
+        android:title="Schedule" />
+
+    <!-- Post Icon -->
+    <item
+        android:id="@+id/actionPost"
+        android:icon="@drawable/plus"
+        android:title="Add Post"/>
+
+    <!-- Clients Icon -->
+    <item
+        android:id="@+id/actionClients"
+        android:icon="@drawable/clients"
+        android:title="Clients" />
+
+    <!-- Shop Icon -->
+    <item
+        android:id="@+id/actionShopTrainer"
+        android:icon="@drawable/shop"
+        android:title="Shop" />
+</menu>

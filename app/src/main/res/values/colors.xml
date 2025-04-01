@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Radio Button Colors -->
+    <color name="checkedRadioColor">#007BFF</color> <!-- Blue button when checked -->
+    <color name="uncheckedRadioColor">#B0B0B0</color> <!-- Gray button when unchecked -->
+
+    <!-- To remove the ripple effect color -->
+    <color name="RippleColor">@android:color/transparent</color>
+
 </resources>

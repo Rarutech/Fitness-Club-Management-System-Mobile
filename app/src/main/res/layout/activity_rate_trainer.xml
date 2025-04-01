@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".RateTrainer">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/back_btn"
+        app:title="View Appointments"
+        app:titleMarginStart="15dp"
+        app:titleTextAppearance="@style/CustomToolbarTitle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0">
+
+        <!-- Profile -->
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="How was your training experience with Joel?"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/inter_regular"
+            android:text="Rate your experience with the trainer"
+            android:textColor="#808080"
+            android:textSize="15sp" />
+
+        <!-- Stars -->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:numStars="5"
+            android:stepSize="1"
+            android:progressTint="#FFD700"
+            android:layout_marginBottom="20dp" />
+
+        <EditText
+            android:id="@+id/etComment"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="252dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Describe your experience"
+            android:textColor="@color/black"
+            android:textColorHint="#B0B0B0"
+            app:layout_constraintBottom_toTopOf="@+id/btnPost"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+    <!-- Post Button -->
+    <Button
+        android:id="@+id/btnPost"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:background="@drawable/blue_button"
+        android:fontFamily="@font/inter_regular"
+        android:text="Post"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.928" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

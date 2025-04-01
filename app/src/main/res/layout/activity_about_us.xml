@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".AboutUs">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarAboutUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:navigationIcon="@drawable/back_btn"
+        app:title="About Us"
+        app:titleMarginStart="15dp"
+        app:titleTextAppearance="@style/CustomToolbarTitle" />
+
+    <!-- About Us First Section -->
+    <TextView
+        android:id="@+id/tvFirstSec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:lineSpacingExtra="7dp"
+        android:padding="16dp"
+        android:text="At Pump It Jonathan: Fitness Gym App, we believe that fitness is more than just lifting weights—it's about building strength, confidence, and a community that supports each other. Whether you're a beginner or a seasoned athlete, we’re here to help you crush your goals."
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <!-- About Us Second Section -->
+    <TextView
+        android:id="@+id/tvSecondSec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:lineSpacingExtra="7dp"
+        android:padding="16dp"
+        android:text="We offer top-notch training programs, expert guidance, and a space where everyone feels welcome. Our mission is simple: to make fitness accessible, motivating, and part of your lifestyle.
+Join us and take your fitness journey to the next level. Let’s get stronger together! 💪"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFirstSec"
+        app:layout_constraintVertical_bias="0.108" />
+
+    <!-- Creators -->
+    <TextView
+        android:id="@+id/tvCreators"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="7dp"
+        android:padding="16dp"
+        android:text="Creators:\n1. Josafat, Kyran Gabriel E.\n2. Lozano, Melchizedek Joshua S.\n3. Mamaril, Ralph Luis D.\n4. Quitlong, Mac Lelove L.\n5. Rodas, Piolo A."
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSecondSec"
+        app:layout_constraintVertical_bias="0.247" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

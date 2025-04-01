@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:padding="16dp"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <FrameLayout
+        android:id="@+id/frameContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/circular_border"
+        android:padding="10dp">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Name Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="3dp"
+                android:layout_marginBottom="5dp">
+
+                <!-- Person Icon -->
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/tao"
+                    android:contentDescription="Person Icon"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <!-- Label -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Trainer:"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black" />
+
+                <!-- Data -->
+                <TextView
+                    android:id="@+id/trainerName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="John"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#F1F1F1" />
+
+            <!-- Date Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <!-- Calendar Icon -->
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/calendar"
+                    android:contentDescription="Calendar Icon"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="8dp" />
+
+                <!-- Label -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Date:"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black" />
+
+                <!-- Data -->
+                <TextView
+                    android:id="@+id/assignmentDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="August 14"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#F1F1F1" />
+
+            <!-- Training Plan Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="8dp">
+
+                <!-- Icon -->
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/calendar"
+                    android:contentDescription="Calendar Icon"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="8dp" />
+
+                <!-- Label -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Training Plan:"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black" />
+
+                <!-- Data -->
+                <TextView
+                    android:id="@+id/trainingPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weight Loss"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#F1F1F1" />
+
+            <!-- Time Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <!-- Time Icon -->
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/time"
+                    android:contentDescription="Time Icon"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="8dp" />
+
+                <!-- Label -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Time:"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black" />
+
+                <!-- Data -->
+                <TextView
+                    android:id="@+id/eventTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:text="12:00-3:00PM"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#F1F1F1" />
+
+            <!-- Status Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp">
+
+                <!-- Check Icon -->
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/check"
+                    android:contentDescription="Check Icon"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="8dp" />
+
+                <!-- Label -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Status:"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/black" />
+
+                <!-- Data -->
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="John"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/frameContent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnReschedule"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:text="Reschedule"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:layout_marginEnd="20dp"
+            android:textAllCaps="false"
+            android:textColor="#007BFF"
+            app:icon="@drawable/reschedule"
+            app:iconTint="#007BFF"
+            style="@style/CustomBlueButtonStyle"
+            />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:text="Cancel"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:textAllCaps="false"
+            android:textColor="#FF0000"
+            app:icon="@drawable/cancel"
+            app:iconTint="#FF0000"
+            style="@style/CustomRedButtonStyle"/>
+
+    </LinearLayout>
+
+    <!-- Rate Trainer Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRateTrainer"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
+        style="@style/CustomBlueButtonStyle"
+        android:fontFamily="@font/inter_regular"
+        android:text="Rate Trainer"
+        android:textAllCaps="false"
+        android:textColor="#007BFF"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLayout" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="#F1F1F1"
+        app:layout_constraintTop_toBottomOf="@id/btnRateTrainer"
+        android:layout_marginTop="30dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

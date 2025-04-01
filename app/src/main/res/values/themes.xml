@@ -1,9 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.FitnessClubManagementSystem" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#2196F3</item> <!-- Change to blue -->
+        <item name="colorPrimaryContainer">#1976D2</item> <!-- Darker blue -->
+        <item name="android:colorButtonNormal">#2196F3</item> <!-- Default button color -->
+        <item name="android:statusBarColor">#FFFFFF</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.FitnessClubManagementSystem" parent="Base.Theme.FitnessClubManagementSystem" />
+
+    <!-- Bottom Navigation Bar Custom Text -->
+    <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat">
+
+        <!-- Text size -->
+        <item name="android:textSize">10sp</item>
+
+        <!-- To set font -->
+        <item name="android:fontFamily">@font/poppins_regular</item>
+
+        <!-- To set margin bottom -->
+        <item name="android:layout_marginBottom">5dp</item>
+
+    </style>
 </resources>

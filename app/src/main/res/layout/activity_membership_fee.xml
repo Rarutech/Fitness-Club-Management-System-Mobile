@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MembershipFee">
+
+    <!-- To ensure a large touchable area of back button -->
+    <FrameLayout
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:clickable="true"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.018">
+
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/imageBackButton"
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="332dp"
+            android:background="@color/white"
+            android:contentDescription="Back"
+            android:src="@drawable/back_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.29"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.017" />
+
+    </FrameLayout>
+
+    <!-- Smart Fitness Image -->
+    <ImageView
+        android:id="@+id/imageRecSmartFit"
+        android:layout_width="320dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.172"
+        app:srcCompat="@drawable/bgrectangle" />
+
+    <TextView
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:text="Your best self starts here—become a member!"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageRecSmartFit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.286"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageRecSmartFit"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageSmartFit"
+        android:layout_width="300dp"
+        android:layout_height="270dp"
+        android:contentDescription="Fitness"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14"
+        app:srcCompat="@drawable/smart_fitness" />
+
+    <!-- Price Monthly -->
+    <TextView
+        android:id="@+id/tvPriceMonthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="₱ 600/ Monthly"
+        android:textColor="#B0B0B0"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnPayNow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.978" />
+
+    <!-- Pay Now -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPayNow"
+        style="@style/CustomGrayButtonStyle"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/inter_regular"
+        android:paddingRight="195dp"
+        android:text="Pay now"
+        android:textAllCaps="false"
+        android:textColor="#B0B0B0"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <!-- Radio Button -->
+    <androidx.appcompat.widget.AppCompatRadioButton
+        android:id="@+id/btnRadio1"
+        android:layout_width="32dp"
+        android:layout_height="31dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:buttonTint="@color/radio_button_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.616">
+
+    </androidx.appcompat.widget.AppCompatRadioButton>
+
+    <!-- OR -->
+    <TextView
+        android:id="@+id/tvOr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="OR"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.682" />
+
+    <!-- Pay At Counter -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPayAtCounter"
+        style="@style/CustomGrayButtonStyle"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/inter_regular"
+        android:paddingRight="120dp"
+        android:text="Pay at the counter"
+        android:textAllCaps="false"
+        android:textColor="#B0B0B0"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.762" />
+
+    <!-- Radio Button -->
+    <androidx.appcompat.widget.AppCompatRadioButton
+        android:id="@+id/btnRadio2"
+        android:layout_width="32dp"
+        android:layout_height="31dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:buttonTint="@color/radio_button_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.754" />
+
+    <!-- Continue Membership Button -->
+    <Button
+        android:id="@+id/btnContinueMembership"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        android:background="@drawable/blue_button"
+        android:fontFamily="@font/inter_regular"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.919" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

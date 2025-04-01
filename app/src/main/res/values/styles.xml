@@ -1,0 +1,18 @@
+<resources>
+    <!-- Define custom toolbar title style  -->
+    <style name="CustomToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="fontFamily">@font/poppins_regular</item>
+
+        <!-- Font size -->
+        <item name="android:textSize">18sp</item>
+
+        <!-- Font color -->
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Remove Ripple Effect from Bottom Navigation -->
+    <style name="NoRippleBottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemRippleColor">@android:color/transparent</item>
+        <item name="itemBackground">@null</item>
+    </style>
+</resources>

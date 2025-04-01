@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.upang.fitness_club_management_system"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.upang.fitness_club_management_system"
@@ -36,13 +36,27 @@ android {
 }
 
 dependencies {
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation ("com.google.zxing:core:3.4.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("com.prolificinteractive:material-calendarview:1.4.3")
+    implementation("com.github.dhaval2404:imagepicker:2.1")
+    implementation("com.stripe:stripe-android:21.6.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.play.services.cast.framework)
+    implementation(libs.volley)
+    implementation(libs.androidx.ui.text.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

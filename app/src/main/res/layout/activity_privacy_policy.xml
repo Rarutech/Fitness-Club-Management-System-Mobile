@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".PrivacyPolicy">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPrivacyPolicy"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:navigationIcon="@drawable/back_btn"
+        app:title="Privacy Policy"
+        app:titleMarginStart="15dp"
+        app:titleTextAppearance="@style/CustomToolbarTitle" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp"
+            android:padding="16dp">
+
+            <!-- Last Updated Text -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:text="Last Updated: March 14, 2025"
+                android:textSize="18sp"
+                android:paddingVertical="8dp" />
+
+            <!-- Privacy Policy Introduction -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="7dp"
+                android:text="Welcome to Pump It Jonathan: Fitness Gym App! Your privacy is important to us, and we are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and protect your data when you use our services."
+                android:textSize="18sp"
+                android:paddingBottom="16dp" />
+
+            <!-- Section 1: Information We Collect -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="1. Information We Collect"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingVertical="5dp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="8dp"
+                android:text="We may collect the following types of information:\n
+\u2022 Personal Information: Name, email address, phone number, and other contact details.\n
+\u2022 Account Information: Login credentials, profile details, and preferences.\n
+\u2022 Payment Information: Billing details if you purchase memberships, products, or services.\n
+\u2022 Activity Data: Workout history, class bookings, and app interactions.\n
+\u2022 Device and Usage Information: IP address, browser type, and app usage analytics."
+                android:textSize="18sp"
+                android:paddingBottom="16dp" />
+
+            <!-- Section 2: How We Use Your Information -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="2. How We Use Your Information"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingVertical="8dp" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="8dp"
+                android:text="We use your data to:\n
+\u2022 Provide and improve our services.\n
+\u2022 Process payments and manage subscriptions.\n
+\u2022 Customize your fitness experience.\n
+\u2022 Send important updates, promotions, and workout tips.\n
+\u2022 Ensure security and prevent fraud."
+                android:textSize="18sp"
+                android:paddingBottom="16dp" />
+
+            <!-- Section 3: Data Protection and Security -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="3. Data Protection and Security"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingVertical="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We implement industry-standard security measures to protect your data. However, no online platform is 100% secure, so we encourage you to use strong passwords and be mindful of sharing personal information."
+                android:textSize="18sp"
+                android:fontFamily="@font/inter_regular"
+                android:layout_marginBottom="20dp"
+                android:lineSpacingExtra="7dp"/>
+
+            <!-- Section 4: Sharing Your Information -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="4. Sharing Your Information"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingVertical="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We do not sell your personal data. We may share it with trusted third parties, such as: \n
+\u2022 Payment processors to handle transactions. \n
+\u2022 Fitness trainers or gym staff to personalize your experience. \n
+\u2022 Legal authorities if required by law. \n"
+                android:textSize="18sp"
+                android:layout_marginBottom="-10dp"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="7dp"/>
+
+            <!-- Section 5: Your Rights & Choices -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="5: Your Rights and Choices"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingVertical="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You have the right to: \n
+\u2022 Access, update, or delete your personal data. \n
+\u2022 Opt out of marketing communications. \n
+\u2022 Request a copy of your data."
+                android:textSize="18sp"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="7dp"/>
+
+            <!-- Section 6: Cookies & Tracking -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="6. Cookies and Tracking"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingVertical="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We may use cookies and similar technologies to enhance your experience and improve our services. You can manage your cookie preferences in your browser settings."
+                android:textSize="18sp"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="7dp"/>
+
+            <!-- Section 7: Changes to This Policy -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="7. Changes to This Policy"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingVertical="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We may update this Privacy Policy from time to time. Any changes will be posted here, and we encourage you to review this page periodically."
+                android:textSize="18sp"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="7dp"/>
+
+            <!-- Section 8: Contact Us -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="8. Contact Us"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingVertical="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="If you have any questions about this Privacy Policy, please contact us at:\n📧 pumpingironfitnessgym@gmail.com
+\n📞 0925 499 5747\n📍 3rd floor Espino Bldg. Burgos st. Dagupan City, Dagupan City, Philippines"
+                android:textSize="18sp"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="8dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
