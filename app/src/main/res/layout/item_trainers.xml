@@ -62,7 +62,7 @@
                 android:id="@+id/tvPricePerPlan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price per plan"
+                android:text="Starting Rate: "
                 android:textSize="14sp"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/inter_regular"/>

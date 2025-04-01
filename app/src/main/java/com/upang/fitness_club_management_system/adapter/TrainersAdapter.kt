@@ -55,10 +55,14 @@ class TrainersAdapter(
         private val ivTrainerProfile: ImageView = itemView.findViewById(R.id.ivTrainerProfile)
         private val tvName: TextView = itemView.findViewById(R.id.tvName)
         private val tvRole: TextView = itemView.findViewById(R.id.tvRole)
-
+        private val tvRating: TextView = itemView.findViewById(R.id.tvRating)
+        private val tvPriceRate: TextView = itemView.findViewById(R.id.tvPricePerPlan)
         fun bind(trainer: Profile) {
             tvName.text = trainer.fullname
             tvRole.text = trainer.role
+            tvRating.text = "Rating: ${trainer.total_ratings}"
+            tvPriceRate.text = "Stating rate: ₱300 - ₱800"
+
             val profilePictureUrl = RetrofitClient.getBaseImageUrl() +"storage/profiles/"+ trainer.profile_picture
             Glide.with(context).load(profilePictureUrl).into(ivTrainerProfile)
         }
