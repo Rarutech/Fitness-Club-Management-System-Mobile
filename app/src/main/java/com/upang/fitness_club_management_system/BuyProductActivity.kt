@@ -332,6 +332,7 @@ class BuyProductActivity : AppCompatActivity() {
             }
         })
     }
+
     private fun purchaseProduct(quantity: Int){
         val preferenceManager = PreferenceManager(this@BuyProductActivity)
         val email = preferenceManager.getEmail()
