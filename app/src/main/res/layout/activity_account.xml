@@ -29,7 +29,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:navigationIcon="@drawable/back_btn" />
+        app:navigationIcon="@drawable/back_btn"
+        app:titleTextAppearance="@style/CustomToolbarTitle"/>
 
     <!-- QR Code and Settings Buttons -->
     <LinearLayout
@@ -96,9 +97,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_medium"
-                android:textSize="15sp"
+                android:textSize="18sp"
                 android:layout_gravity="center_horizontal"/>
 
             <!-- Email -->
@@ -109,7 +110,7 @@
                 android:text="Email"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:textColor="#808080"
                 android:layout_gravity="center_horizontal"/>
 
@@ -128,79 +129,139 @@
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"/>
+
+            <!-- Subscription Details -->
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/black_rectangle">
+
+                <!-- Subscription Type Section -->
                 <LinearLayout
                     android:padding="10dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
+                    <!-- Subscription Type -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Subscription Type:"/>
+                        android:text="Subscription Type:"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="#808080"/>
+
                     <TextView
                         android:gravity="right"
                         android:layout_weight="1"
                         android:text="Monthly"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="324dp"
+                    android:layout_gravity="center"
+                    android:layout_height="1.5dp"
+                    android:background="#F1F1F1"/>
+
+                <!-- Active Until Section -->
                 <LinearLayout
                     android:padding="10dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
+                    <!-- Active Until -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="#808080"
                         android:text="Active until:"/>
+
                     <TextView
                         android:id="@+id/tvMembershipEnd"
                         android:gravity="right"
                         android:layout_weight="1"
                         android:text="Monthly"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="324dp"
+                    android:layout_gravity="center"
+                    android:layout_height="1.5dp"
+                    android:background="#F1F1F1"/>
+
+                <!-- Next Payment Section -->
                 <LinearLayout
                     android:padding="10dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
+                    <!-- Next Payment -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="#808080"
                         android:text="Next payment: "/>
+
                     <TextView
                         android:id="@+id/tvNextPaymentDate"
                         android:gravity="right"
                         android:layout_weight="1"
                         android:text="Monthly"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="324dp"
+                    android:layout_gravity="center"
+                    android:layout_height="1.5dp"
+                    android:background="#F1F1F1"/>
+
+                <!-- Status Section -->
                 <LinearLayout
                     android:padding="10dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
+                    <!-- Status -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Status: "/>
+                        android:text="Status: "
+                        android:textSize="15sp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="#808080"/>
+
                     <TextView
                         android:id="@+id/tvStatus"
                         android:gravity="right"
                         android:layout_weight="1"
                         android:text="Monthly"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -226,7 +287,9 @@
                 android:fontFamily="@font/poppins_medium"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:textSize="18sp"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvOrders"
                 android:layout_width="match_parent"
