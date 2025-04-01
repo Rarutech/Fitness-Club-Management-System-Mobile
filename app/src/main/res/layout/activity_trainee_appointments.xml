@@ -26,7 +26,7 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -39,19 +39,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <LinearLayout
                 android:padding="15dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <ImageButton
                     android:id="@+id/btnFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/filter"
-                    android:contentDescription="Filter"/>
+                    android:background="@drawable/filter"/>
 
             </LinearLayout>
             <SearchView
@@ -59,7 +56,7 @@
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/search_2"
                 android:iconifiedByDefault="false"
                 android:queryHint="Search" />
@@ -74,8 +71,7 @@
                     android:id="@+id/rvTrainers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:nestedScrollingEnabled="false"/>
+                    android:layout_gravity="top" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
