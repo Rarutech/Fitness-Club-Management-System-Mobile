@@ -26,7 +26,7 @@ import java.util.Locale
 import java.util.Calendar
 
 
-class TraineeAppointmentAdapter(private val appointments: List<TraineeRequestResponse>) :
+class TraineeAppointmentAdapter(private var appointments: List<TraineeRequestResponse>) :
     RecyclerView.Adapter<TraineeAppointmentAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -57,15 +57,8 @@ class TraineeAppointmentAdapter(private val appointments: List<TraineeRequestRes
         // Format and set time
         holder.eventTime.text = "${formatTime(appointment.time_start)} - ${formatTime(appointment.time_end)}"
 
-        // Compare event date with current date
-        val eventDate = parseDate(appointment.date_of_training)
-        val currentDate = Calendar.getInstance().time
+        holder.status.text = appointment.status
 
-        if (eventDate != null && eventDate.before(currentDate)) {
-            holder.status.text = "Completed"
-        } else {
-            holder.status.text = appointment.status
-        }
 
         // Show/Hide Buttons based on status
         if (holder.status.text == "pending") {
@@ -77,7 +70,7 @@ class TraineeAppointmentAdapter(private val appointments: List<TraineeRequestRes
         }
 
 
-        if (holder.status.text == "Completed") {
+        if (holder.status.text == "completed") {
             holder.btnRateTrainer.visibility = View.VISIBLE
         } else if (holder.status.text == "Rated") {
             holder.btnRateTrainer.visibility = View.GONE
@@ -172,5 +165,9 @@ class TraineeAppointmentAdapter(private val appointments: List<TraineeRequestRes
         } catch (e: Exception) {
             null
         }
+    }
+    fun updateList(newAppointments: List<TraineeRequestResponse>) {
+        appointments = newAppointments
+        notifyDataSetChanged() // Refresh RecyclerView
     }
 }

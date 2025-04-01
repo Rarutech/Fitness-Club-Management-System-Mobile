@@ -77,13 +77,19 @@ class SignupActivity : AppCompatActivity() {
             val fullname = etFullname.text.toString().trim()
             val password = etPassword.text.toString().trim()
             val confirmPassword = etConfirmPassword.text.toString().trim()
-            progressDialog.show()
-            Log.e("SignUpACtivity","email:${email}")
+
+            Log.e("SignUpActivity", "email: $email")
+
             when {
                 fullname.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() ->
                     Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+
+                !isValidEmail(email) ->
+                    Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show()
+
                 password != confirmPassword ->
                     Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+
                 else -> sendEmailCode(email, fullname, password)
             }
         }
@@ -115,5 +121,9 @@ class SignupActivity : AppCompatActivity() {
                 Log.e("EMAIL CODE", "Error: ${t.message}")
             }
         })
+    }
+    private fun isValidEmail(email: String): Boolean {
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+        return email.matches(emailPattern.toRegex())
     }
 }

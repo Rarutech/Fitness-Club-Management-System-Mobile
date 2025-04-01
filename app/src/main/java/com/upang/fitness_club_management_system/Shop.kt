@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,7 @@ class Shop : AppCompatActivity() {
     private lateinit var shopRecyclerView: RecyclerView
     private lateinit var shopAdapter: ShopAdapter
     private lateinit var sharedPreferences: SharedPreferences
+    private var productList: List<Product> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +40,13 @@ class Shop : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
         btnAccount.setOnClickListener {
-            val intent = Intent(this,Account::class.java)
+            val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
+
         sharedPreferences = getSharedPreferences("shop_prefs", Context.MODE_PRIVATE)
 
         shopRecyclerView = findViewById(R.id.shopRecyclerView)
@@ -74,6 +78,18 @@ class Shop : AppCompatActivity() {
             true
         }
 
+        val searchView = findViewById<SearchView>(R.id.searchView)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterProducts(newText)
+                return true
+            }
+        })
+
         fetchInventory()
     }
 
@@ -85,8 +101,8 @@ class Shop : AppCompatActivity() {
                 response: Response<FetchInventoryResponse>
             ) {
                 if (response.isSuccessful && response.body() != null) {
-                    val productList = response.body()!!.data
-                    setupRecyclerView(productList)
+                    productList = response.body()!!.data
+                    setupRecyclerView(productList)  // Initially display all products
                 } else {
                     val errorBody = response.errorBody()?.string() ?: "Unknown error"
                     val errorCode = response.code()
@@ -102,8 +118,6 @@ class Shop : AppCompatActivity() {
         })
     }
 
-
-
     private fun setupRecyclerView(productList: List<Product>) {
         shopAdapter = ShopAdapter(productList) { selectedProduct ->
             saveProductId(selectedProduct.id)
@@ -117,5 +131,27 @@ class Shop : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         editor.putInt("selected_product_id", productId)
         editor.apply()
+    }
+
+    private fun filterProducts(query: String?) {
+        if (query.isNullOrEmpty()) {
+            // If the search query is empty, show all products
+            shopAdapter = ShopAdapter(productList) { selectedProduct ->
+                saveProductId(selectedProduct.id)
+                val intent = Intent(this, ProductDetailsActivity::class.java)
+                startActivity(intent)
+            }
+        } else {
+            // Filter products by name
+            val filteredList = productList.filter {
+                it.product_name.contains(query, ignoreCase = true)
+            }
+            shopAdapter = ShopAdapter(filteredList) { selectedProduct ->
+                saveProductId(selectedProduct.id)
+                val intent = Intent(this, ProductDetailsActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        shopRecyclerView.adapter = shopAdapter
     }
 }

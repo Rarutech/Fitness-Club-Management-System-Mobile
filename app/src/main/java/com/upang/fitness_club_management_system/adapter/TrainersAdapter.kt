@@ -23,7 +23,7 @@ import retrofit2.Response
 
 class TrainersAdapter(
     private val context: Context,
-    private val trainers: List<Profile>
+    private var trainers: List<Profile>
 ) : RecyclerView.Adapter<TrainersAdapter.TrainerViewHolder>() {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("TrainerPrefs", Context.MODE_PRIVATE)
@@ -45,6 +45,11 @@ class TrainersAdapter(
 
     override fun getItemCount(): Int = trainers.size
 
+    fun updateList(newTrainers: List<Profile>) {
+        trainers = newTrainers
+        notifyDataSetChanged()
+    }
+
     private fun saveSelectedTrainerEmail(email: String) {
         val editor = sharedPreferences.edit()
         editor.putString("selected_trainer_email", email)
@@ -57,11 +62,12 @@ class TrainersAdapter(
         private val tvRole: TextView = itemView.findViewById(R.id.tvRole)
         private val tvRating: TextView = itemView.findViewById(R.id.tvRating)
         private val tvPriceRate: TextView = itemView.findViewById(R.id.tvPricePerPlan)
+
         fun bind(trainer: Profile) {
             tvName.text = trainer.fullname
             tvRole.text = trainer.role
             tvRating.text = "Rating: ${trainer.total_ratings}"
-            tvPriceRate.text = "Stating rate: ₱300 - ₱800"
+            tvPriceRate.text = "Starting rate: ₱300 - ₱800"
 
             val profilePictureUrl = RetrofitClient.getBaseImageUrl() +"storage/profiles/"+ trainer.profile_picture
             Glide.with(context).load(profilePictureUrl).into(ivTrainerProfile)
