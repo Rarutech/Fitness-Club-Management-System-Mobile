@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="#FFFFFF"
     tools:context=".BookClass">
 
@@ -35,7 +36,15 @@
         app:layout_constraintBottom_toBottomOf="@id/toolbarBookClass"
         app:layout_constraintEnd_toEndOf="@id/toolbarBookClass">
 
-        <!-- Search Icon -->
+        <!-- Notification Icon -->
+        <ImageButton
+            android:id="@+id/btnNotification"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="10dp"
+            android:background="@null"
+            android:contentDescription="Notification"
+            android:src="@drawable/notification" />
 
         <!-- Account Icon -->
         <ImageButton
@@ -48,7 +57,7 @@
             android:src="@drawable/account" />
     </LinearLayout>
 
-    <!-- Client content -->
+    <!-- Scrollable content -->
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -62,6 +71,8 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="15dp">
+
+            <!-- Search -->
             <SearchView
                 android:id="@+id/searchView"
                 android:layout_width="320dp"
@@ -71,10 +82,13 @@
                 android:background="@drawable/search_2"
                 android:iconifiedByDefault="false"
                 android:queryHint="Search" />
+
+            <!-- Client content -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTrainers"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false">
 
             </androidx.recyclerview.widget.RecyclerView>
 

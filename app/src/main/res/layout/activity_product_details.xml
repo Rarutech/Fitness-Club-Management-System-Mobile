@@ -39,7 +39,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:padding="16dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,6 @@
                 android:id="@+id/productPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Price"
                 android:textColor="@color/black"
@@ -81,11 +80,11 @@
             <!-- Product Stock -->
             <TextView
                 android:id="@+id/productStock"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_regular"
                 android:text="Stock"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="italic" />
 
             <!-- Product Description -->
@@ -106,8 +105,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/inter_regular"
                 android:text="📍 In-Store Pickup Only: Place your order through the app and pick it up at our gym!"
                 android:textSize="16sp"
@@ -118,7 +117,7 @@
                 android:id="@+id/btnBuyNow"
                 android:layout_width="320dp"
                 android:layout_height="55dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="100dp"
                 android:background="@drawable/blue_button"

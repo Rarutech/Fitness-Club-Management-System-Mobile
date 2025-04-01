@@ -122,7 +122,7 @@
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/poppins_medium"
@@ -137,26 +137,18 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etAboutMe"
             android:layout_width="320dp"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="37dp"
             android:hint="Tell us a bit about yourself..."
-            android:paddingBottom="245dp"
+            android:paddingBottom="150dp"
             android:background="@drawable/edittext_border"
             android:fontFamily="@font/poppins_medium"
-            android:paddingLeft="16dp"
-            android:paddingTop="9dp"
+            android:paddingStart="16dp"
             android:textColorHint="#B0B0B0"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.524"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.409" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
