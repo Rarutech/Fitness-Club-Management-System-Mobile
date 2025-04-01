@@ -62,6 +62,7 @@ class EditProfile : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbarEditProfile)
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
+            startActivity(Intent(this, Settings::class.java))
             finish()
         }
         progressBar = findViewById(R.id.progressBar)

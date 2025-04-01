@@ -6,6 +6,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -39,6 +40,7 @@ class CreateNewPassword : AppCompatActivity() {
         val etPassword = findViewById<TextInputEditText>(R.id.etPassword)
         val etConfirmPassword = findViewById<TextInputEditText>(R.id.etConfirmPassword)
         val btnChangePass = findViewById<Button>(R.id.btnChangePass)
+        val btnBack = findViewById<ImageButton>(R.id.imageBackButton)
 
         btnShowPass2CNP.setOnClickListener {
             isPasswordVisible = !isPasswordVisible
@@ -67,6 +69,11 @@ class CreateNewPassword : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Password does not match or email is missing", Toast.LENGTH_SHORT).show()
             }
+        }
+        btnBack.setOnClickListener {
+            val intent = Intent(this, LoginPage::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
