@@ -50,7 +50,7 @@ class MembershipFee : AppCompatActivity() {
                     finish()
                 }
                 btnRadio2.isChecked -> {
-                    val intent = Intent(this, QRCodeMembershipFee::class.java)
+                    val intent = Intent(this, QRCodeScan::class.java)
                     startActivity(intent)
                     finish()
                 }
