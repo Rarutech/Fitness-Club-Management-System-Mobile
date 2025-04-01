@@ -1,10 +1,14 @@
 package com.upang.fitness_club_management_system
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Handler
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.zxing.BarcodeFormat
@@ -12,9 +16,20 @@ import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.QRCodeWriter
 import com.google.zxing.common.BitMatrix
 import com.upang.fitness_club_management_system.helper.PreferenceManager
+import com.upang.fitness_club_management_system.model.Utils
 
 class QRCodeMembershipFee : AppCompatActivity() {
+    lateinit var imageBackButton: ImageButton
     lateinit var qrCodeImageView: ImageView
+    private val handler = Handler()
+    private val delay: Long = 5000
+    private val runnable = object : Runnable {
+        override fun run() {
+            // Call membership authentication update only when this activity is active
+            Utils.membershipAuthenticationUpdate(this@QRCodeMembershipFee)
+            handler.postDelayed(this, delay) // Keep running this every 5 seconds
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +42,33 @@ class QRCodeMembershipFee : AppCompatActivity() {
             insets
         }
 
+
         qrCodeImageView = findViewById(R.id.qrCodeImageView)
 
+        imageBackButton = findViewById(R.id.imageBackButton)
+        imageBackButton.setOnClickListener {
+            val intent = Intent(this@QRCodeMembershipFee,MembershipFee::class.java)
+            startActivity(intent)
+            finish()
+        }
         val preferenceManager = PreferenceManager(this)
         val email = preferenceManager.getEmail() ?: return
         val qrCodeBitmap = generateQRCode(email)
         qrCodeBitmap?.let {
             qrCodeImageView.setImageBitmap(it)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Start checking membership status when the activity is visible
+        handler.post(runnable)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Stop checking membership status when the activity is not visible
+        handler.removeCallbacks(runnable)
     }
 
     private fun generateQRCode(data: String): Bitmap? {
