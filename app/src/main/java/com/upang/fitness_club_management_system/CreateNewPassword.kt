@@ -70,9 +70,8 @@ class CreateNewPassword : AppCompatActivity() {
                 Toast.makeText(this, "Password does not match or email is missing", Toast.LENGTH_SHORT).show()
             }
         }
+
         btnBack.setOnClickListener {
-            val intent = Intent(this, LoginPage::class.java)
-            startActivity(intent)
             finish()
         }
     }

@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.appcompat.widget.Toolbar
 import android.content.Intent
 import android.widget.TextView
+import android.widget.Toast
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
@@ -89,6 +90,7 @@ class Settings : AppCompatActivity() {
                 response: Response<LogoutResponse>
             ) {
                 if(response.isSuccessful){
+                    Toast.makeText(this@Settings, "Log out Success", Toast.LENGTH_SHORT).show()
                     val preferenceManager = PreferenceManager(this@Settings)
                     preferenceManager.clear()
                 }
@@ -96,7 +98,6 @@ class Settings : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<LogoutResponse>, t: Throwable) {
-                TODO("Not yet implemented")
             }
         })
 
