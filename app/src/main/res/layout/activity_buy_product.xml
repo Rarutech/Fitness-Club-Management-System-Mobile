@@ -140,7 +140,7 @@
                     android:layout_weight="1"
                     android:text="Pay online"/>
             </LinearLayout>
-            <com.stripe.android.view.CardNumberEditText
+            <com.stripe.android.view.CardInputWidget
                 android:id="@+id/etCard"
                 android:visibility="gone"
                 android:layout_width="match_parent"
