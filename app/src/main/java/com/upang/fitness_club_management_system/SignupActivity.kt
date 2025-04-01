@@ -3,6 +3,8 @@ package com.upang.fitness_club_management_system
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -11,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.textfield.TextInputLayout
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.model.SendConfirmEmailRequest
@@ -20,6 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SignupActivity : AppCompatActivity() {
+    private var isPasswordVisible = false
     private lateinit var progressDialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,8 @@ class SignupActivity : AppCompatActivity() {
         val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
         val btnSignUp = findViewById<Button>(R.id.btnSignUp)
         val tvLogin = findViewById<TextView>(R.id.tvLogin)
+        val btnShowPass1 = findViewById<TextInputLayout>(R.id.btnShowPass1)
+        val btnShowPass2 = findViewById<TextInputLayout>(R.id.btnShowPass2)
 
         progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Singing in...")
@@ -44,6 +50,26 @@ class SignupActivity : AppCompatActivity() {
         tvLogin.setOnClickListener {
             startActivity(Intent(this, LoginPage::class.java))
             finish()
+        }
+
+        btnShowPass1.setOnClickListener {
+            isPasswordVisible = !isPasswordVisible
+            if (isPasswordVisible) {
+                etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            } else {
+                etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
+            etPassword.setSelection(etPassword.text?.length ?: 0)
+        }
+
+        btnShowPass2.setOnClickListener {
+            isPasswordVisible = !isPasswordVisible
+            if (isPasswordVisible) {
+                etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            } else {
+                etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
+            etPassword.setSelection(etPassword.text?.length ?: 0)
         }
 
         btnSignUp.setOnClickListener {
