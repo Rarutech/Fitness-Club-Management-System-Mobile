@@ -64,6 +64,7 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/lNameRow"
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
         android:background="#F1F1F1"/>
@@ -109,6 +110,7 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/lDateRow"
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
         android:background="#F1F1F1"/>
@@ -154,6 +156,7 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/lTimeRow"
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
         android:background="#F1F1F1"/>

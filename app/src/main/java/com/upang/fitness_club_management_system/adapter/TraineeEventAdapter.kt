@@ -36,6 +36,9 @@ class TraineeEventAdapter(eventList: List<TraineeEvent>) : RecyclerView.Adapter<
         val assignmentDateRow: LinearLayout = view.findViewById(R.id.dateRow)
         val eventTimeRow: LinearLayout = view.findViewById(R.id.timeRow)
         val statusRow: LinearLayout = view.findViewById(R.id.statusRow)
+        val lineName: LinearLayout = view.findViewById(R.id.lNameRow)
+        val lineDate: LinearLayout = view.findViewById(R.id.lDateRow)
+        val lineTime: LinearLayout = view.findViewById(R.id.lTimeRow)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TraineeEventViewHolder {
@@ -53,6 +56,9 @@ class TraineeEventAdapter(eventList: List<TraineeEvent>) : RecyclerView.Adapter<
             holder.assignmentDateRow.visibility = View.GONE
             holder.eventTimeRow.visibility = View.GONE
             holder.statusRow.visibility = View.GONE
+            holder.lineDate.visibility = View.GONE
+            holder.lineTime.visibility = View.GONE
+            holder.lineName.visibility = View.GONE
         } else {
             val event = filteredEvents.first() // Only take the first event
 
@@ -62,6 +68,9 @@ class TraineeEventAdapter(eventList: List<TraineeEvent>) : RecyclerView.Adapter<
             holder.assignmentDateRow.visibility = View.VISIBLE
             holder.eventTimeRow.visibility = View.VISIBLE
             holder.statusRow.visibility = View.VISIBLE
+            holder.lineDate.visibility = View.VISIBLE
+            holder.lineTime.visibility = View.VISIBLE
+            holder.lineName.visibility = View.VISIBLE
 
             holder.traineeName.text = event.trainer_name
 
