@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -13,26 +15,41 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isNotEmpty
 import com.bumptech.glide.Glide
+import com.stripe.android.ApiResultCallback
+import com.stripe.android.PaymentConfiguration
+import com.stripe.android.PaymentIntentResult
+import com.stripe.android.Stripe
+import com.stripe.android.model.ConfirmPaymentIntentParams
+import com.stripe.android.model.PaymentMethod
+import com.stripe.android.model.StripeIntent
+import com.stripe.android.view.CardInputWidget
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.FetchInventoryResponse
 import com.upang.fitness_club_management_system.model.OrderRequest
 import com.upang.fitness_club_management_system.model.OrderResponse
+import com.upang.fitness_club_management_system.model.PaymentIntentResponse
 import com.upang.fitness_club_management_system.model.Product
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class BuyProductActivity : AppCompatActivity() {
+    private lateinit var stripe: Stripe
     private lateinit var productImage: ImageView
     private lateinit var productName: TextView
     private lateinit var productPrice: TextView
     private lateinit var productStock: TextView
     private lateinit var btnPurchase: TextView
     private lateinit var quantity: EditText
+    private lateinit var payOffline: RadioButton
+    private lateinit var payOnline: RadioButton
+    private lateinit var etCard: CardInputWidget
     private var selectedProduct: Product? = null
+    private var clientSecret: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +61,40 @@ class BuyProductActivity : AppCompatActivity() {
             insets
         }
 
-        // Initialize views
         productImage = findViewById(R.id.productImage)
         productName = findViewById(R.id.productName)
         productPrice = findViewById(R.id.productPrice)
         productStock = findViewById(R.id.productStock)
         btnPurchase = findViewById(R.id.btnPurchase)
+        payOffline = findViewById(R.id.payOffline)
+        payOnline = findViewById(R.id.payOnline)
         quantity = findViewById(R.id.etQuantity)
-        // Set up the toolbar
+        etCard = findViewById(R.id.etCard)
+
+        val sharedPreferences = getSharedPreferences("shop_prefs", Context.MODE_PRIVATE)
+        val productId = sharedPreferences.getInt("selected_product_id", -1)
+
+        Log.d("PRODUCT_DETAILS", "Retrieved Product ID: $productId")
+
+        if (productId != -1) {
+            fetchProductDetails(productId)
+        } else {
+            Log.e("PRODUCT_DETAILS", "Invalid product ID")
+            Toast.makeText(this, "Invalid product ID", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
+        payOnline.setOnClickListener {
+            payOffline.isChecked = false
+            etCard.visibility = View.VISIBLE
+        }
+
+        payOffline.setOnClickListener {
+            payOnline.isChecked = false
+            etCard.visibility = View.GONE
+        }
+
+
         val toolbar: Toolbar = findViewById(R.id.toolbarBuyProducts)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -71,7 +114,7 @@ class BuyProductActivity : AppCompatActivity() {
             }
         }
 
-        // Set up the purchase button click listener
+
         btnPurchase.setOnClickListener {
             val quantityText = quantity.text.toString().trim()
 
@@ -86,23 +129,21 @@ class BuyProductActivity : AppCompatActivity() {
                 Toast.makeText(this@BuyProductActivity, "Enter a valid quantity", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            if (!payOnline.isChecked && !payOffline.isChecked) {
+                Toast.makeText(this@BuyProductActivity, "Please select a payment method", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-            purchaseItem(_quantity)
+            if (payOnline.isChecked) {
+                val totalPrice = selectedProduct?.price?.toDouble()?.times(_quantity!!) ?: 0.0
+                purchaseItemOnline(totalPrice.toInt())
+                intent.putExtra("quantity", _quantity)
+            } else {
+                purchaseItemOffline(_quantity)
+            }
         }
 
-        // Retrieve the selected product ID from shared preferences
-        val sharedPreferences = getSharedPreferences("shop_prefs", Context.MODE_PRIVATE)
-        val productId = sharedPreferences.getInt("selected_product_id", -1)
 
-        Log.d("PRODUCT_DETAILS", "Retrieved Product ID: $productId")
-
-        if (productId != -1) {
-            fetchProductDetails(productId) // Fetch product details from the API
-        } else {
-            Log.e("PRODUCT_DETAILS", "Invalid product ID")
-            Toast.makeText(this, "Invalid product ID", Toast.LENGTH_SHORT).show()
-            finish()
-        }
     }
 
     private fun fetchProductDetails(productId: Int) {
@@ -145,7 +186,7 @@ class BuyProductActivity : AppCompatActivity() {
             .into(productImage)
     }
 
-    private fun purchaseItem(quantity: Int) {
+    private fun purchaseItemOffline(quantity: Int) {
         if (selectedProduct == null) {
             return
         }
@@ -176,6 +217,147 @@ class BuyProductActivity : AppCompatActivity() {
                     } else{
                         val intent = Intent(this@BuyProductActivity, Account::class.java)
                         startActivity(intent)
+                    }
+                } else {
+                    Log.e("ORDER_RESPONSE", "Error: ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<OrderResponse>, t: Throwable) {
+                Log.d("ORDER_RESPONSE", "Parameters: email${email}, product name: ${productName}, quantity: ${quantity}")
+                Log.e("ORDER_RESPONSE", "Network error: ${t.message}", t)
+                Toast.makeText(this@BuyProductActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun purchaseItemOnline(amount: Int) {
+        PaymentConfiguration.init(
+            applicationContext,
+            "pk_test_51R7qAeBNSwOEu2mpYqg3LpokRdbt17nufCifDObthMiiOzuybNT8lnbWUJYdYHNr4gSs7QrafjN8ExeScD91FcLN002nD7PMvM"
+        )
+        stripe = Stripe(this, PaymentConfiguration.getInstance(this).publishableKey)
+        createPaymentIntent(amount)
+
+        if (etCard.isNotEmpty()) {
+            processPayment()
+        }
+    }
+
+    private fun createPaymentIntent(amount: Int) {
+        val api = RetrofitClient.instance.create(Api::class.java)
+        val requestBody = hashMapOf("amount" to amount)
+
+        Log.d("PaymentIntent", "Sending request to create payment intent with amount: $amount")
+
+        api.createPaymentIntent(requestBody).enqueue(object : Callback<PaymentIntentResponse> {
+            override fun onResponse(call: Call<PaymentIntentResponse>, response: Response<PaymentIntentResponse>) {
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        if (it.error == null) {
+                            clientSecret = it.clientSecret
+                            Log.d("PaymentIntent", "Client Secret received: $clientSecret")
+                        } else {
+                            Log.e("PaymentIntent", "Error from API: ${it.error}")
+                            Toast.makeText(this@BuyProductActivity, "Error: ${it.error}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("PaymentIntent", "Failed to get client secret. Response code: ${response.code()}, Error: $errorBody")
+                    Toast.makeText(this@BuyProductActivity, "Failed to get client secret", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<PaymentIntentResponse>, t: Throwable) {
+                Log.e("PaymentIntent", "API Call Failed: ${t.message}", t)
+                Toast.makeText(this@BuyProductActivity, "Error: ${t.message}", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    private fun processPayment() {
+        val params = etCard.paymentMethodCreateParams
+
+        if (params != null && clientSecret != null) {
+            Log.d("PaymentProcess", "Creating payment method with provided card details")
+
+            stripe.createPaymentMethod(params, callback = object :
+                ApiResultCallback<PaymentMethod> {
+                override fun onSuccess(paymentMethod: PaymentMethod) {
+                    Log.d("PaymentProcess", "Payment method created successfully: ${paymentMethod.id}")
+                    confirmPayment(paymentMethod.id!!)
+                }
+
+                override fun onError(e: Exception) {
+                    Log.e("PaymentProcess", "Payment method error: ${e.message}", e)
+                    Toast.makeText(this@BuyProductActivity, "Payment method error: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            })
+        } else {
+            Log.e("PaymentProcess", "Invalid card details or missing client secret")
+            Toast.makeText(this, "Invalid card details", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun confirmPayment(paymentMethodId: String) {
+        Log.d("PaymentProcess", "Confirming payment with PaymentMethodId: $paymentMethodId and ClientSecret: $clientSecret")
+
+        val params = ConfirmPaymentIntentParams.createWithPaymentMethodId(
+            paymentMethodId, clientSecret!!
+        )
+
+        stripe.confirmPayment(this, params)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        stripe.onPaymentResult(requestCode, data, object : ApiResultCallback<PaymentIntentResult> {
+            override fun onSuccess(result: PaymentIntentResult) {
+                val paymentIntent = result.intent
+                Log.d("PaymentProcess", "Payment successful: ${paymentIntent.status}")
+
+                if (paymentIntent.status == StripeIntent.Status.Succeeded) {
+                    val quantity = intent.getIntExtra("quantity", 0)
+
+                    purchaseProduct(quantity)
+                    Toast.makeText(this@BuyProductActivity, "Payment Successful!", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onError(e: Exception) {
+                Log.e("PaymentProcess", "Payment failed: ${e.message}", e)
+                Toast.makeText(this@BuyProductActivity, "Payment failed: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+    private fun purchaseProduct(quantity: Int){
+        val preferenceManager = PreferenceManager(this@BuyProductActivity)
+        val email = preferenceManager.getEmail()
+
+        if (email == null || quantity == 0) {
+            return
+        }
+
+        val productName = selectedProduct!!.product_name
+        val orderRequest = OrderRequest(email, productName, quantity)
+
+        val api = RetrofitClient.instance.create(Api::class.java)
+        api.sendOrder(orderRequest).enqueue(object : Callback<OrderResponse> {
+            override fun onResponse(call: Call<OrderResponse>, response: Response<OrderResponse>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@BuyProductActivity, "Product Purchased", Toast.LENGTH_SHORT).show()
+                    val preferenceManager = PreferenceManager(this@BuyProductActivity)
+                    val role = preferenceManager.getRole()
+                    if (role != null) {
+                        if (role == "trainer") {
+                            val intent = Intent(this@BuyProductActivity, TrainerAccount::class.java)
+                            startActivity(intent)
+                        } else {
+                            val intent = Intent(this@BuyProductActivity, Account::class.java)
+                            startActivity(intent)
+                        }
                     }
                 } else {
                     Log.e("ORDER_RESPONSE", "Error: ${response.errorBody()?.string()}")

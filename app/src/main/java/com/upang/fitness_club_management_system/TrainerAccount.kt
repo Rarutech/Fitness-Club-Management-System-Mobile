@@ -45,6 +45,8 @@ class TrainerAccount : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, TrainerHomeActivity::class.java)
+            startActivity(intent)
             finish()
         }
         progressBar = findViewById(R.id.progressBar)
