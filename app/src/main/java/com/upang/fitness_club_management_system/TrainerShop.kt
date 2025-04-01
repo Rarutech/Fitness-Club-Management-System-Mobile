@@ -123,7 +123,7 @@
             }
             shopRecyclerView.adapter = shopAdapter
         }
-        
+
         private fun showError(errorCode: Int, errorBody: String?) {
             val errorMessage = "Failed to load products (Error $errorCode: ${errorBody ?: "Unknown error"})"
             Log.e("API_ERROR", errorMessage)
