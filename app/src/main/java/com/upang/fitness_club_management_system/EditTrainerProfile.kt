@@ -54,7 +54,7 @@ class EditTrainerProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_trainer_profile)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbarEditProfile)
+        val toolbar: Toolbar = findViewById(R.id.toolbarEditTrainerProfile)
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
             finish()
