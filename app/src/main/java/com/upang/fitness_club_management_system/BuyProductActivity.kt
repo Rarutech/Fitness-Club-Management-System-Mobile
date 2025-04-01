@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.stripe.android.PaymentConfiguration
+import com.stripe.android.Stripe
+import com.stripe.android.view.CardInputWidget
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
@@ -26,13 +30,18 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class BuyProductActivity : AppCompatActivity() {
+    private lateinit var stripe: Stripe
     private lateinit var productImage: ImageView
     private lateinit var productName: TextView
     private lateinit var productPrice: TextView
     private lateinit var productStock: TextView
     private lateinit var btnPurchase: TextView
     private lateinit var quantity: EditText
+    private lateinit var payOffline: RadioButton
+    private lateinit var payOnline: RadioButton
+    private lateinit var etCard: CardInputWidget
     private var selectedProduct: Product? = null
+    private var clientSecret: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +53,25 @@ class BuyProductActivity : AppCompatActivity() {
             insets
         }
 
-        // Initialize views
         productImage = findViewById(R.id.productImage)
         productName = findViewById(R.id.productName)
         productPrice = findViewById(R.id.productPrice)
         productStock = findViewById(R.id.productStock)
         btnPurchase = findViewById(R.id.btnPurchase)
+        payOffline = findViewById(R.id.payOffline)
+        payOnline = findViewById(R.id.payOnline)
         quantity = findViewById(R.id.etQuantity)
-        // Set up the toolbar
+
+
+        payOnline.setOnClickListener {
+            payOffline.isChecked = false
+        }
+
+        payOffline.setOnClickListener {
+            payOnline.isChecked = false
+        }
+
+
         val toolbar: Toolbar = findViewById(R.id.toolbarBuyProducts)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -71,7 +91,7 @@ class BuyProductActivity : AppCompatActivity() {
             }
         }
 
-        // Set up the purchase button click listener
+
         btnPurchase.setOnClickListener {
             val quantityText = quantity.text.toString().trim()
 
@@ -86,18 +106,25 @@ class BuyProductActivity : AppCompatActivity() {
                 Toast.makeText(this@BuyProductActivity, "Enter a valid quantity", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            if (!payOnline.isChecked && !payOffline.isChecked) {
+                Toast.makeText(this@BuyProductActivity, "Please select a payment method", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-            purchaseItem(_quantity)
+            if (payOnline.isChecked){
+
+            }
+            purchaseItemOffline(_quantity)
         }
 
-        // Retrieve the selected product ID from shared preferences
+
         val sharedPreferences = getSharedPreferences("shop_prefs", Context.MODE_PRIVATE)
         val productId = sharedPreferences.getInt("selected_product_id", -1)
 
         Log.d("PRODUCT_DETAILS", "Retrieved Product ID: $productId")
 
         if (productId != -1) {
-            fetchProductDetails(productId) // Fetch product details from the API
+            fetchProductDetails(productId)
         } else {
             Log.e("PRODUCT_DETAILS", "Invalid product ID")
             Toast.makeText(this, "Invalid product ID", Toast.LENGTH_SHORT).show()
@@ -145,7 +172,7 @@ class BuyProductActivity : AppCompatActivity() {
             .into(productImage)
     }
 
-    private fun purchaseItem(quantity: Int) {
+    private fun purchaseItemOffline(quantity: Int) {
         if (selectedProduct == null) {
             return
         }
@@ -189,4 +216,21 @@ class BuyProductActivity : AppCompatActivity() {
             }
         })
     }
+
+//    private fun purchaseItemOnline() {
+//        PaymentConfiguration.init(
+//            applicationContext,
+//            "pk_test_51R7qAeBNSwOEu2mpYqg3LpokRdbt17nufCifDObthMiiOzuybNT8lnbWUJYdYHNr4gSs7QrafjN8ExeScD91FcLN002nD7PMvM"
+//        )
+//        stripe = Stripe(this, PaymentConfiguration.getInstance(this).publishableKey)
+//
+//        etCard = findViewById(R.id.etCard)
+//        payButton = findViewById(R.id.payButton)
+//
+//        createPaymentIntent(600)
+//
+//        payButton.setOnClickListener {
+//            processPayment()
+//        }
+//    }
 }

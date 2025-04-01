@@ -119,6 +119,32 @@
                 android:inputType="number"
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment Method:"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/payOffline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Over the counter"/>
+                <RadioButton
+                    android:id="@+id/payOnline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pay online"/>
+            </LinearLayout>
+            <com.stripe.android.view.CardNumberEditText
+                android:id="@+id/etCard"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
 
             <View
                 android:layout_width="match_parent"

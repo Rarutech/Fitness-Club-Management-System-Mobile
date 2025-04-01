@@ -36,9 +36,9 @@ class EventAdapter(eventList: List<Event>) : RecyclerView.Adapter<EventAdapter.E
         val assignmentDateRow: LinearLayout = view.findViewById(R.id.dateRow)
         val eventTimeRow: LinearLayout = view.findViewById(R.id.timeRow)
         val statusRow: LinearLayout = view.findViewById(R.id.statusRow)
-        val lineName: LinearLayout = view.findViewById(R.id.lNameRow)
-        val lineDate: LinearLayout = view.findViewById(R.id.lDateRow)
-        val lineTime: LinearLayout = view.findViewById(R.id.lTimeRow)
+        val lineName: View = view.findViewById(R.id.lNameRow)
+        val lineDate: View = view.findViewById(R.id.lDateRow)
+        val lineTime: View = view.findViewById(R.id.lTimeRow)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventAdapter.EventViewHolder {
