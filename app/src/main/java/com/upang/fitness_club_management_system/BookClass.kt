@@ -12,7 +12,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.upang.fitness_club_management_system.adapter.TrainersAdapter
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +25,7 @@ class BookClass : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var trainerAdapter: TrainersAdapter
     private var allTrainers = listOf<Profile>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,11 +34,6 @@ class BookClass : AppCompatActivity() {
         recyclerView = findViewById(R.id.rvTrainers)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val fabAppointment = findViewById<FloatingActionButton>(R.id.fabAppointment)
-        fabAppointment.setOnClickListener{
-            val intent = Intent(this,TraineeAppointments::class.java)
-            startActivity(intent)
-        }
         val searchView = findViewById<SearchView>(R.id.searchView)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
