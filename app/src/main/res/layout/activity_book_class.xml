@@ -36,14 +36,6 @@
         app:layout_constraintEnd_toEndOf="@id/toolbarBookClass">
 
         <!-- Search Icon -->
-        <ImageButton
-            android:id="@+id/btnSearch"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="10dp"
-            android:background="@null"
-            android:contentDescription="Search"
-            android:src="@drawable/search" />
 
         <!-- Account Icon -->
         <ImageButton
@@ -70,7 +62,15 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="15dp">
-
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/search_2"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTrainers"
                 android:layout_width="match_parent"

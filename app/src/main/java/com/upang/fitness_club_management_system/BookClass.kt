@@ -3,6 +3,7 @@ package com.upang.fitness_club_management_system
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -18,36 +19,36 @@ import retrofit2.Response
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
 import com.upang.fitness_club_management_system.api.RetrofitClient
+import com.upang.fitness_club_management_system.model.Profile
 
 class BookClass : AppCompatActivity() {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var trainerAdapter: TrainersAdapter
+    private var allTrainers = listOf<Profile>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_book_class)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
-        btnAccount.setOnClickListener {
-            val intent = Intent(this,Account::class.java)
-            startActivity(intent)
-        }
-
-        val fabAppointment = findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.fabAppointment)
-
-        fabAppointment.setOnClickListener{
-            val intent = Intent(this, TraineeAppointments::class.java)
-            startActivity(intent)
-        }
-
-        val recyclerView = findViewById<RecyclerView>(R.id.rvTrainers)
+        recyclerView = findViewById(R.id.rvTrainers)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        val searchView = findViewById<SearchView>(R.id.searchView)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { filterTrainersByName(it) }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let { filterTrainersByName(it) }
+                return true
+            }
+        })
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavigationView.selectedItemId = R.id.actionHome
+        bottomNavigationView.selectedItemId = R.id.actionClasses
 
         when (javaClass) {
             Trainee_Home::class.java -> bottomNavigationView.selectedItemId = R.id.actionHome
@@ -72,19 +73,17 @@ class BookClass : AppCompatActivity() {
             true
         }
 
-        fetchTrainers(recyclerView)
+        fetchTrainers()
     }
 
-    private fun fetchTrainers(recyclerView: RecyclerView) {
+    private fun fetchTrainers() {
         val api = RetrofitClient.instance.create(Api::class.java)
         api.fetchAllTrainers().enqueue(object : Callback<FetchTrainersResponse> {
-            override fun onResponse(
-                call: Call<FetchTrainersResponse>,
-                response: Response<FetchTrainersResponse>
-            ) {
+            override fun onResponse(call: Call<FetchTrainersResponse>, response: Response<FetchTrainersResponse>) {
                 if (response.isSuccessful) {
-                    val trainers = response.body()?.profiles ?: emptyList()
-                    recyclerView.adapter = TrainersAdapter(this@BookClass, trainers)
+                    allTrainers = response.body()?.profiles ?: emptyList()
+                    trainerAdapter = TrainersAdapter(this@BookClass, allTrainers)
+                    recyclerView.adapter = trainerAdapter
                 } else {
                     Toast.makeText(this@BookClass, "Failed: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
@@ -96,5 +95,10 @@ class BookClass : AppCompatActivity() {
         })
     }
 
-
+    private fun filterTrainersByName(query: String) {
+        val filteredTrainers = allTrainers.filter {
+            it.fullname.contains(query, ignoreCase = true)
+        }
+        trainerAdapter.updateList(filteredTrainers)
+    }
 }

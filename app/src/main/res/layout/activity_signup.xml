@@ -103,53 +103,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Password"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/etPassword"
+        app:layout_constraintBottom_toTopOf="@+id/btnShowPass1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etPassword"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="37dp"
-        android:background="@drawable/edittext_border"
-        android:fontFamily="@font/poppins_medium"
-        android:hint="Enter your password"
-        android:inputType="textPassword"
-        android:paddingLeft="16dp"
-        android:paddingTop="9dp"
-        android:textColorHint="#B0B0B0"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.552" />
+
 
     <!-- Show Password Icon -->
 
     <!-- Password Indicator -->
+
     <com.google.android.material.textfield.TextInputLayout
+        app:hintEnabled="false"
         android:id="@+id/btnShowPass1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="101dp"
         android:layout_marginBottom="25dp"
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.542">
+        app:layout_constraintVertical_bias="0.548">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:background="@drawable/edittext_border"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Enter your password"
+            android:inputType="textPassword"
+            android:paddingLeft="16dp"
+            android:paddingTop="9dp"
+            android:textColor="@color/black"
+            android:textColorHint="#B0B0B0"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.524"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.552" />
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -169,60 +171,59 @@
 
 
     <!-- Confirm Password -->
+
+    <!-- Show Password Icon -->
+
+    <!-- Sign Up Button -->
+
     <TextView
         android:id="@+id/tvConfirmPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="175dp"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Confirm Password"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/etConfirmPassword"
+        app:layout_constraintBottom_toTopOf="@+id/btnShowPass2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.134"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etConfirmPassword"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="37dp"
-        android:background="@drawable/edittext_border"
-        android:fontFamily="@font/poppins_medium"
-        android:hint="Re-enter your password"
-        android:inputType="textPassword"
-        android:paddingLeft="16dp"
-        android:paddingTop="9dp"
-        android:textColorHint="#B0B0B0"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.695" />
-
-    <!-- Show Password Icon -->
     <com.google.android.material.textfield.TextInputLayout
+        app:hintEnabled="false"
         android:id="@+id/btnShowPass2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="22dp"
         app:endIconMode="password_toggle"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.672">
+        app:layout_constraintTop_toBottomOf="@+id/btnShowPass1"
+        app:layout_constraintVertical_bias="0.432">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:background="@drawable/edittext_border"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Re-enter your password"
+            android:inputType="textPassword"
+            android:paddingLeft="16dp"
+            android:paddingTop="9dp"
+            android:textColor="@color/black"
+            android:textColorHint="#B0B0B0"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.524"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.695" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Sign Up Button -->
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="320dp"

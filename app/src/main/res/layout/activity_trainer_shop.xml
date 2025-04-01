@@ -37,16 +37,6 @@
         app:layout_constraintBottom_toBottomOf="@id/toolbarShop"
         app:layout_constraintEnd_toEndOf="@id/toolbarShop">
 
-        <!-- Search Icon -->
-        <ImageButton
-            android:id="@+id/btnSearch"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="10dp"
-            android:background="@null"
-            android:contentDescription="Search"
-            android:src="@drawable/search" />
-
         <!-- Account Icon -->
         <ImageButton
             android:id="@+id/btnAccount"
@@ -63,6 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="70dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -71,22 +62,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true"
-            android:layout_marginTop="40sp"
+            android:layout_marginTop=""
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbarShop"
             app:layout_constraintVertical_bias="0.0">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/shopRecyclerView"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:clipToPadding="false"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
+                android:layout_height="wrap_content">
+                <SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="320dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/search_2"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Search" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/shopRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:clipToPadding="false"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"/>
+            </LinearLayout>
+
         </ScrollView>
 
     </LinearLayout>

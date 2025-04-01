@@ -36,14 +36,6 @@
         app:layout_constraintEnd_toEndOf="@id/toolbarShop">
 
         <!-- Search Icon -->
-        <ImageButton
-            android:id="@+id/btnSearch"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="10dp"
-            android:background="@null"
-            android:contentDescription="Search"
-            android:src="@drawable/search" />
 
         <!-- Account Icon -->
         <ImageButton
@@ -64,12 +56,19 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/search_2"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search" />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true"
-            android:layout_marginTop="40sp"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
