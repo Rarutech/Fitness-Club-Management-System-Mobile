@@ -36,7 +36,7 @@ class Settings : AppCompatActivity() {
                 val intent = Intent(this, TrainerAccount::class.java)
                 startActivity(intent)
                 return@setNavigationOnClickListener
-            } else if (role == "member") {
+            } else {
                 val intent = Intent(this, Account::class.java)
                 startActivity(intent)
                 return@setNavigationOnClickListener

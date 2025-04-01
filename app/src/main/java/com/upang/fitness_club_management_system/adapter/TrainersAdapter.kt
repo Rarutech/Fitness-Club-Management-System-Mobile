@@ -66,8 +66,8 @@ class TrainersAdapter(
         fun bind(trainer: Profile) {
             tvName.text = trainer.fullname
             tvRole.text = trainer.role
-            tvRating.text = "Rating: ${trainer.total_ratings}"
-            tvPriceRate.text = "Starting rate: ₱300 - ₱800"
+            tvRating.text = "⭐${trainer.total_ratings}"
+            tvPriceRate.text = "₱800/plan"
 
             val profilePictureUrl = RetrofitClient.getBaseImageUrl() +"storage/profiles/"+ trainer.profile_picture
             Glide.with(context).load(profilePictureUrl).into(ivTrainerProfile)

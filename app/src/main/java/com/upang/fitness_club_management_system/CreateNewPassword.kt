@@ -71,8 +71,6 @@ class CreateNewPassword : AppCompatActivity() {
             }
         }
         btnBack.setOnClickListener {
-            val intent = Intent(this, LoginPage::class.java)
-            startActivity(intent)
             finish()
         }
     }
