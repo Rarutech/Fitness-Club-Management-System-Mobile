@@ -66,7 +66,6 @@ class BuyProductActivity : AppCompatActivity() {
         productPrice = findViewById(R.id.productPrice)
         productStock = findViewById(R.id.productStock)
         btnPurchase = findViewById(R.id.btnPurchase)
-        payOffline = findViewById(R.id.payOffline)
         payOnline = findViewById(R.id.payOnline)
         quantity = findViewById(R.id.etQuantity)
         etCard = findViewById(R.id.etCard)
@@ -87,11 +86,6 @@ class BuyProductActivity : AppCompatActivity() {
         payOnline.setOnClickListener {
             payOffline.isChecked = false
             etCard.visibility = View.VISIBLE
-        }
-
-        payOffline.setOnClickListener {
-            payOnline.isChecked = false
-            etCard.visibility = View.GONE
         }
 
 
@@ -129,7 +123,7 @@ class BuyProductActivity : AppCompatActivity() {
                 Toast.makeText(this@BuyProductActivity, "Enter a valid quantity", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if (!payOnline.isChecked && !payOffline.isChecked) {
+            if (!payOnline.isChecked) {
                 Toast.makeText(this@BuyProductActivity, "Please select a payment method", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }

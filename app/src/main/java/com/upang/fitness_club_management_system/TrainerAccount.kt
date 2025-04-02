@@ -44,6 +44,13 @@ class TrainerAccount : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
+        btnAccount.setOnClickListener {
+            val intent = Intent(this,TrainerAccount::class.java)
+            startActivity(intent)
+        }
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
@@ -52,6 +59,7 @@ class TrainerAccount : AppCompatActivity() {
             finish()
         }
         progressBar = findViewById(R.id.progressBar)
+
 
         findViewById<ImageButton>(R.id.btnSettings).setOnClickListener {
             val intent = Intent(this, Settings::class.java)
@@ -64,6 +72,7 @@ class TrainerAccount : AppCompatActivity() {
         fetchOrders()
 
     }
+
 
     private fun showLoader() {
         progressBar.visibility = View.VISIBLE

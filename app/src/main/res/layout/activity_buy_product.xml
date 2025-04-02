@@ -127,12 +127,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <RadioButton
-                    android:id="@+id/payOffline"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Over the counter"/>
+
                 <RadioButton
                     android:id="@+id/payOnline"
                     android:layout_width="match_parent"
