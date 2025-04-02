@@ -7,23 +7,26 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
-        android:label="Pump It Jonathan: Fitness Gym App"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/pumpitjonathan_icon"
+        android:label="Pump It Jonathan: Fitness Gym App"
         android:roundIcon="@mipmap/pumpitjonathan_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessClubManagementSystem"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ChangePassword"
+            android:exported="true" />
         <activity
             android:name=".ForgotPasswordEmailVerification"
             android:exported="true" />
@@ -75,7 +78,7 @@
         <activity
             android:name=".BuyProductActivity"
             android:exported="true"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".ProductDetailsActivity"
             android:exported="true" />

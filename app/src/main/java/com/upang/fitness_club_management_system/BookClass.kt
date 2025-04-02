@@ -42,6 +42,12 @@ class BookClass : AppCompatActivity() {
         setContentView(R.layout.activity_book_class)
         Utils.getNotifications(this)
 
+        val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
+        btnAccount.setOnClickListener {
+            val intent = Intent(this, TrainerAccount::class.java)
+            startActivity(intent)
+        }
+
         recyclerView = findViewById(R.id.rvTrainers)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
