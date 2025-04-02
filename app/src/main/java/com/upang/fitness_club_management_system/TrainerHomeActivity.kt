@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -67,7 +68,11 @@ class TrainerHomeActivity : AppCompatActivity() {
         }
         Utils.checkAuthentication(this)
         startNotificationWorker()
-
+        val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
+        btnAccount.setOnClickListener {
+            val intent = Intent(this, TrainerAccount::class.java)
+            startActivity(intent)
+        }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         bottomNavigationView.selectedItemId = R.id.actionHomeTrainer
