@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.Toast
@@ -40,6 +41,14 @@ class Trainee_Home : AppCompatActivity() {
     private lateinit var rvEvents: RecyclerView
     private lateinit var recyclerView: RecyclerView
     private lateinit var highlightAdapter: HighlightAdapter
+    private val handler = Handler()
+    private val delay: Long = 5000
+    private val runnable = object : Runnable {
+        override fun run() {
+            Utils.getNotifications(this@Trainee_Home)
+            handler.postDelayed(this, delay)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -154,5 +163,16 @@ class Trainee_Home : AppCompatActivity() {
         WorkManager.getInstance(applicationContext).enqueue(notificationWorkRequest)
 
         Log.d("LoginActivity", "NotificationWorker enqueued after login.")
+    }
+    override fun onStart() {
+        super.onStart()
+        // Start checking membership status when the activity is visible
+        handler.post(runnable)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Stop checking membership status when the activity is not visible
+        handler.removeCallbacks(runnable)
     }
 }

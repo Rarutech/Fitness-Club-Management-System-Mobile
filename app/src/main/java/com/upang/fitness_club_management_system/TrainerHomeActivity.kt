@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
@@ -46,6 +47,15 @@ class TrainerHomeActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var rvEvents: RecyclerView
     private lateinit var highlightAdapter: HighlightAdapter
+    private val handler = Handler()
+    private val delay: Long = 5000
+    private val runnable = object : Runnable {
+        override fun run() {
+            Utils.getNotifications(this@TrainerHomeActivity)
+            handler.postDelayed(this, delay)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -89,6 +99,7 @@ class TrainerHomeActivity : AppCompatActivity() {
         fetchEvents()
         fetchHighlights()
     }
+
     private fun fetchHighlights() {
         val api = RetrofitClient.instance.create(Api::class.java)
 
@@ -136,6 +147,7 @@ class TrainerHomeActivity : AppCompatActivity() {
             }
         })
     }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 101) {
@@ -143,6 +155,7 @@ class TrainerHomeActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun startNotificationWorker() {
         val notificationWorkRequest = PeriodicWorkRequestBuilder<NotificationWorker>(15, TimeUnit.MINUTES)
             .build()
@@ -151,5 +164,17 @@ class TrainerHomeActivity : AppCompatActivity() {
         WorkManager.getInstance(applicationContext).enqueue(notificationWorkRequest)
 
         Log.d("LoginActivity", "NotificationWorker enqueued after login.")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Start checking membership status when the activity is visible
+        handler.post(runnable)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Stop checking membership status when the activity is not visible
+        handler.removeCallbacks(runnable)
     }
 }

@@ -60,13 +60,16 @@ class BuyProductActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        PaymentConfiguration.init(
+            applicationContext,
+            "pk_test_51R7qAeBNSwOEu2mpYqg3LpokRdbt17nufCifDObthMiiOzuybNT8lnbWUJYdYHNr4gSs7QrafjN8ExeScD91FcLN002nD7PMvM"
+        )
 
         productImage = findViewById(R.id.productImage)
         productName = findViewById(R.id.productName)
         productPrice = findViewById(R.id.productPrice)
         productStock = findViewById(R.id.productStock)
         btnPurchase = findViewById(R.id.btnPurchase)
-        payOffline = findViewById(R.id.payOffline)
         payOnline = findViewById(R.id.payOnline)
         quantity = findViewById(R.id.etQuantity)
         etCard = findViewById(R.id.etCard)
@@ -85,13 +88,11 @@ class BuyProductActivity : AppCompatActivity() {
         }
 
         payOnline.setOnClickListener {
-            payOffline.isChecked = false
-            etCard.visibility = View.VISIBLE
-        }
-
-        payOffline.setOnClickListener {
-            payOnline.isChecked = false
-            etCard.visibility = View.GONE
+            if (payOnline.isChecked) {
+                etCard.visibility = View.VISIBLE
+            }else {
+                etCard.visibility = View.GONE
+            }
         }
 
 
@@ -129,18 +130,10 @@ class BuyProductActivity : AppCompatActivity() {
                 Toast.makeText(this@BuyProductActivity, "Enter a valid quantity", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if (!payOnline.isChecked && !payOffline.isChecked) {
-                Toast.makeText(this@BuyProductActivity, "Please select a payment method", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
 
-            if (payOnline.isChecked) {
-                val totalPrice = selectedProduct?.price?.toDouble()?.times(_quantity!!) ?: 0.0
-                purchaseItemOnline(totalPrice.toInt())
-                intent.putExtra("quantity", _quantity)
-            } else {
-                purchaseItemOffline(_quantity)
-            }
+            val totalPrice = selectedProduct?.price?.toDouble()?.times(_quantity!!) ?: 0.0
+            purchaseItemOnline(totalPrice.toInt())
+            intent.putExtra("quantity", _quantity)
         }
 
 
@@ -186,56 +179,7 @@ class BuyProductActivity : AppCompatActivity() {
             .into(productImage)
     }
 
-    private fun purchaseItemOffline(quantity: Int) {
-        if (selectedProduct == null) {
-            return
-        }
-
-        // Create the OrderRequest object
-        val preferenceManager = PreferenceManager(this)
-        val email = preferenceManager.getEmail()
-        if (email == null) {
-            return
-        }
-        val productName = selectedProduct!!.product_name
-
-        val orderRequest = OrderRequest(email, productName, quantity)
-
-        val api = RetrofitClient.instance.create(Api::class.java)
-        api.sendOrder(orderRequest).enqueue(object : Callback<OrderResponse> {
-            override fun onResponse(call: Call<OrderResponse>, response: Response<OrderResponse>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@BuyProductActivity, "Product Purchased", Toast.LENGTH_SHORT).show()
-
-                    val preferenceManager = PreferenceManager(this@BuyProductActivity)
-                    val role = preferenceManager.getRole()
-                    if (role != null) {
-                        if (role == "trainer") {
-                            val intent = Intent(this@BuyProductActivity, TrainerAccount::class.java)
-                            startActivity(intent)
-                        }
-                    } else{
-                        val intent = Intent(this@BuyProductActivity, Account::class.java)
-                        startActivity(intent)
-                    }
-                } else {
-                    Log.e("ORDER_RESPONSE", "Error: ${response.errorBody()?.string()}")
-                }
-            }
-
-            override fun onFailure(call: Call<OrderResponse>, t: Throwable) {
-                Log.d("ORDER_RESPONSE", "Parameters: email${email}, product name: ${productName}, quantity: ${quantity}")
-                Log.e("ORDER_RESPONSE", "Network error: ${t.message}", t)
-                Toast.makeText(this@BuyProductActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
     private fun purchaseItemOnline(amount: Int) {
-        PaymentConfiguration.init(
-            applicationContext,
-            "pk_test_51R7qAeBNSwOEu2mpYqg3LpokRdbt17nufCifDObthMiiOzuybNT8lnbWUJYdYHNr4gSs7QrafjN8ExeScD91FcLN002nD7PMvM"
-        )
         stripe = Stripe(this, PaymentConfiguration.getInstance(this).publishableKey)
         createPaymentIntent(amount)
 
