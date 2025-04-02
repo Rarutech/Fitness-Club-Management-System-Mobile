@@ -74,8 +74,7 @@
             android:exported="true" />
         <activity
             android:name=".BuyProductActivity"
-            android:exported="true"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:exported="true" />
         <activity
             android:name=".ProductDetailsActivity"
             android:exported="true" />

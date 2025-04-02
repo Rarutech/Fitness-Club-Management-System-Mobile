@@ -142,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <!-- Book Session Button -->
+            <!-- Book Class Button -->
             <Button
                 android:id="@+id/btnBookClass"
                 android:layout_width="320dp"

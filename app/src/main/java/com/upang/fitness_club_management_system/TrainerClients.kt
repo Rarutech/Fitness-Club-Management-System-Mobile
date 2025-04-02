@@ -2,7 +2,6 @@ package com.upang.fitness_club_management_system
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.widget.SearchView
 import android.widget.Toast
@@ -16,7 +15,6 @@ import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.TrainerRequestApiResponse
 import com.upang.fitness_club_management_system.model.TrainerRequestResponse
-import com.upang.fitness_club_management_system.model.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,19 +26,10 @@ class TrainerClients : AppCompatActivity() {
     private lateinit var searchView: SearchView
     private var trainerRequests: MutableList<TrainerRequestResponse> = mutableListOf()
     private var filteredRequests: MutableList<TrainerRequestResponse> = mutableListOf()
-    private val handler = Handler()
-    private val delay: Long = 5000
-    private val runnable = object : Runnable {
-        override fun run() {
-            Utils.getNotifications(this@TrainerClients)
-            handler.postDelayed(this, delay)
-        }
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trainer_clients)
-        Utils.getNotifications(this)
-
 
         recyclerView = findViewById(R.id.clientRecyclerView)
         searchView = findViewById(R.id.searchView)
@@ -160,15 +149,5 @@ class TrainerClients : AppCompatActivity() {
         }
         adapter.notifyDataSetChanged() // ✅ Ensure the adapter updates
     }
-    override fun onStart() {
-        super.onStart()
-        // Start checking membership status when the activity is visible
-        handler.post(runnable)
-    }
 
-    override fun onStop() {
-        super.onStop()
-        // Stop checking membership status when the activity is not visible
-        handler.removeCallbacks(runnable)
-    }
 }

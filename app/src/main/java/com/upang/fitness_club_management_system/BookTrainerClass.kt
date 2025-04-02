@@ -18,7 +18,6 @@ import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.BookTrainerRequest
 import com.upang.fitness_club_management_system.model.BookTrainerResponse
 import com.upang.fitness_club_management_system.model.FetchTrainerProfileResponse
-import com.upang.fitness_club_management_system.model.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,7 +45,7 @@ class BookTrainerClass : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        Utils.getNotifications(this)
+
         initViews()
         setupListeners()
         fetchUserProfile()

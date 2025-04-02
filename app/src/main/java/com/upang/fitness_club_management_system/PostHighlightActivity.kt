@@ -6,7 +6,6 @@ import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.widget.Button
@@ -25,7 +24,6 @@ import com.upang.fitness_club_management_system.adapter.SelectedImageAdapter
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
-import com.upang.fitness_club_management_system.model.Utils
 import com.upang.fitness_club_management_system.model.postHighlightResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -43,14 +41,7 @@ class PostHighlightActivity : AppCompatActivity() {
     private lateinit var selectedImageAdapter: SelectedImageAdapter
     private val selectedImages = ArrayList<Uri>()
     private lateinit var progressDialog: ProgressDialog
-    private val handler = Handler()
-    private val delay: Long = 5000
-    private val runnable = object : Runnable {
-        override fun run() {
-            Utils.getNotifications(this@PostHighlightActivity)
-            handler.postDelayed(this, delay)
-        }
-    }
+
     private val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris ->
             if (uris.isNotEmpty()) {
                 selectedImages.addAll(uris)
@@ -61,8 +52,6 @@ class PostHighlightActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_highlight)
-        Utils.getNotifications(this)
-
 
         val btnGetImage = findViewById<ImageButton>(R.id.btnGetImage)
         val btnPost = findViewById<TextView>(R.id.btnPost)
@@ -206,15 +195,5 @@ class PostHighlightActivity : AppCompatActivity() {
             }
         })
     }
-    override fun onStart() {
-        super.onStart()
-        // Start checking membership status when the activity is visible
-        handler.post(runnable)
-    }
 
-    override fun onStop() {
-        super.onStop()
-        // Stop checking membership status when the activity is not visible
-        handler.removeCallbacks(runnable)
-    }
 }

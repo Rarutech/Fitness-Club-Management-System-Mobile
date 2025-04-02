@@ -24,55 +24,62 @@
         app:titleMarginStart="15dp"
         app:titleTextAppearance="@style/CustomToolbarTitle" />
 
-    <!-- Filter and Search Section -->
-    <LinearLayout
-        android:id="@+id/filterSearchLayout"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:padding="15dp"
-            android:orientation="vertical"
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btnFilter"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:padding="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btnFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/filter"
+                    android:contentDescription="Filter"/>
+
+            </LinearLayout>
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/search_2"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/filter"
-                android:contentDescription="Filter"/>
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTrainers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:nestedScrollingEnabled="false"/>
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="320dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/search_2"
-            android:iconifiedByDefault="false"
-            android:queryHint="Search" />
-    </LinearLayout>
-
-    <!-- RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTrainers"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:paddingBottom="8dp"
-        app:layout_constraintTop_toBottomOf="@id/filterSearchLayout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <!-- No Bookings Text -->
     <TextView
         android:id="@+id/tvNoBooking"
         android:layout_width="300dp"
@@ -81,7 +88,7 @@
         android:textStyle="bold"
         android:textSize="20sp"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="@id/filterSearchLayout"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

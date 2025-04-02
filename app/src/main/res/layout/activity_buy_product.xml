@@ -29,15 +29,14 @@
     <!-- Scrollable Content -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarBuyProducts">
+        android:layout_marginTop="?attr/actionBarSize">
 
         <LinearLayout
+            android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:orientation="vertical">
 
             <!-- Product Image -->
@@ -46,70 +45,70 @@
                 android:layout_width="350dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:contentDescription="Product Image" />
+                android:contentDescription="Product Image"/>
 
             <!-- Product Name -->
             <TextView
                 android:id="@+id/productName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppins_regular"
                 android:text="Product Name"
-                android:textSize="23sp" />
+                android:textSize="23sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="20dp"/>
 
             <!-- Product Price -->
             <TextView
                 android:id="@+id/productPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_regular"
                 android:text="Price"
-                android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
 
             <!-- Product Stock -->
             <TextView
                 android:id="@+id/productStock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/inter_regular"
                 android:text="Stock"
                 android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:fontFamily="@font/inter_regular"
+                android:layout_marginTop="5dp"/>
 
             <!-- Description -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/inter_regular"
                 android:text="*This item is available for pickup only. Please visit our gym after placing your order."
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/inter_regular"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
 
             <!-- Name -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/inter_regular"
                 android:text="Pumping Iron Fitness Gym"
+                android:fontFamily="@font/inter_regular"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"/>
 
             <!-- Location -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/inter_regular"
                 android:text="3rd floor Espino Bldg. Burgos st. Dagupan City, Dagupan City, Philippines"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_regular"
                 android:textColor="#808080"
-                android:textSize="16sp" />
+                android:layout_marginTop="5dp"/>
 
             <!-- Quantity -->
             <EditText
@@ -118,58 +117,46 @@
                 android:layout_height="wrap_content"
                 android:hint="Quantity"
                 android:inputType="number"
-                android:textSize="16sp" />
-
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
-                android:textSize="16sp"
-                android:text="Payment Method:" />
-
+                android:text="Payment Method:"/>
             <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/payOffline"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="16sp"
-                    android:text="Over the counter" />
+                android:layout_height="wrap_content">
 
                 <RadioButton
                     android:id="@+id/payOnline"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="16sp"
-                    android:text="Pay online" />
+                    android:text="Pay online"/>
             </LinearLayout>
-
             <com.stripe.android.view.CardInputWidget
                 android:id="@+id/etCard"
+                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/edittext_border"
-                android:visibility="gone"/>
+                android:layout_height="50dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <!-- Place Order Button -->
             <Button
                 android:id="@+id/btnPurchase"
                 android:layout_width="320dp"
                 android:layout_height="55dp"
-                android:layout_marginTop="20dp"
+                android:text="Place Order for Pickup"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_regular"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/blue_button"
-                android:fontFamily="@font/inter_regular"
-                android:text="Place Order for Pickup"
-                android:textSize="16sp" />
+                android:background="@drawable/blue_button"/>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

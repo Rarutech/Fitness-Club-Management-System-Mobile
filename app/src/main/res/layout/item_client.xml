@@ -230,6 +230,7 @@
     </androidx.cardview.widget.CardView>
 </FrameLayout>
 
+    <!-- Buttons -->
     <LinearLayout
         android:id="@+id/llButtons"
         android:orientation="horizontal"
@@ -241,25 +242,23 @@
         <!-- Accept Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAccept"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="150dp"
             android:layout_height="60dp"
             android:text="Accept"
             android:textSize="16sp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="20dp"
             android:textAllCaps="false"
             android:textColor="#007BFF"
             app:icon="@drawable/check_2"
             app:iconTint="#007BFF"
-            style="@style/CustomBlueButtonStyle" />
+            style="@style/CustomBlueButtonStyle"/>
 
         <!-- Reject Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnReject"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="150dp"
             android:layout_height="60dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="8dp"
             android:text="Reject"
             android:textSize="16sp"
             android:textAllCaps="false"

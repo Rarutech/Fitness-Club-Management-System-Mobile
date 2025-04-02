@@ -102,5 +102,13 @@ class Assessment : AppCompatActivity() {
             }
 
         })
+
+        val imgBtnRec = findViewById<android.widget.ImageButton>(R.id.imgBtnRec)
+        val imgBtnRec2 = findViewById<android.widget.ImageButton>(R.id.imgBtnRec2)
+        val imgBtnTrainee = findViewById<android.widget.ImageButton>(R.id.imgBtnTrainee)
+        val imgBtnTrainer = findViewById<android.widget.ImageButton>(R.id.imgBtnTrainer)
+        val btnContinueAssessment = findViewById<android.widget.Button>(R.id.btnContinueAssessment)
+
+
     }
 }

@@ -56,13 +56,13 @@
             android:src="@drawable/account"  />
     </LinearLayout>
 
-    <!-- ScrollView -->
+    <!-- ScrollView containing SearchView and RecyclerView -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/toolbarHome">
+        app:layout_constraintTop_toBottomOf="@id/toolbarHome"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,18 +82,15 @@
                 android:focusableInTouchMode="true"
                 android:iconifiedByDefault="false"
                 android:queryHint="Search" />
+
+            <!-- RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/clientRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
         </LinearLayout>
     </ScrollView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/clientRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:nestedScrollingEnabled="true"
-        app:layout_constraintTop_toBottomOf="@id/scrollView"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

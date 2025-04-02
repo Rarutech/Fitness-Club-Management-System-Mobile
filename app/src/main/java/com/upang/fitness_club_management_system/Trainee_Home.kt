@@ -25,7 +25,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.upang.fitness_club_management_system.adapter.HighlightAdapter
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
-import com.upang.fitness_club_management_system.helper.NotificationWorker
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.HighlightResponse
 import com.upang.fitness_club_management_system.model.TraineeEvent
@@ -33,7 +32,6 @@ import com.upang.fitness_club_management_system.model.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.concurrent.TimeUnit
 
 class Trainee_Home : AppCompatActivity() {
     private lateinit var traineeEventAdapter: TraineeEventAdapter
@@ -50,9 +48,14 @@ class Trainee_Home : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        startNotificationWorker()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 101)
+            }
+        }
         Utils.checkAuthentication(this)
         Utils.membershipAuthentication(this)
+        Utils.getNotifications(this)
 
         val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
         btnAccount.setOnClickListener {
@@ -145,14 +148,5 @@ class Trainee_Home : AppCompatActivity() {
                 // Permission granted, now you can show notifications
             }
         }
-    }
-    private fun startNotificationWorker() {
-        val notificationWorkRequest = PeriodicWorkRequestBuilder<NotificationWorker>(15, TimeUnit.MINUTES)
-            .build()
-
-        // Enqueue the periodic work request
-        WorkManager.getInstance(applicationContext).enqueue(notificationWorkRequest)
-
-        Log.d("LoginActivity", "NotificationWorker enqueued after login.")
     }
 }

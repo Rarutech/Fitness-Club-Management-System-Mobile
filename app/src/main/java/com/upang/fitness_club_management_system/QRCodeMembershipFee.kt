@@ -25,8 +25,9 @@ class QRCodeMembershipFee : AppCompatActivity() {
     private val delay: Long = 5000
     private val runnable = object : Runnable {
         override fun run() {
+            // Call membership authentication update only when this activity is active
             Utils.membershipAuthenticationUpdate(this@QRCodeMembershipFee)
-            handler.postDelayed(this, delay)
+            handler.postDelayed(this, delay) // Keep running this every 5 seconds
         }
     }
 

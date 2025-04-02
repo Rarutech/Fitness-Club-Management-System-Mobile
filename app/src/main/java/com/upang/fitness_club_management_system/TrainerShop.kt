@@ -4,7 +4,6 @@
     import android.content.Intent
     import android.content.SharedPreferences
     import android.os.Bundle
-    import android.os.Handler
     import android.util.Log
     import android.widget.SearchView
     import android.widget.Toast
@@ -19,7 +18,6 @@
     import com.upang.fitness_club_management_system.api.RetrofitClient
     import com.upang.fitness_club_management_system.model.FetchInventoryResponse
     import com.upang.fitness_club_management_system.model.Product
-    import com.upang.fitness_club_management_system.model.Utils
     import retrofit2.Call
     import retrofit2.Callback
     import retrofit2.Response
@@ -31,14 +29,7 @@
         private lateinit var sharedPreferences: SharedPreferences
         private var productList: List<Product> = emptyList()
         private var filteredProductList: List<Product> = emptyList()
-        private val handler = Handler()
-        private val delay: Long = 5000
-        private val runnable = object : Runnable {
-            override fun run() {
-                Utils.getNotifications(this@TrainerShop)
-                handler.postDelayed(this, delay)
-            }
-        }
+
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_trainer_shop)
@@ -47,7 +38,6 @@
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
                 insets
             }
-            Utils.getNotifications(this)
 
             sharedPreferences = getSharedPreferences("shop_prefs", Context.MODE_PRIVATE)
             shopRecyclerView = findViewById(R.id.shopRecyclerView)
@@ -123,7 +113,7 @@
 
         private fun filterProducts(query: String?) {
             val filteredList = if (query.isNullOrEmpty()) {
-                productList
+                productList // If the query is empty, show the full list
             } else {
                 productList.filter { it.product_name.contains(query, ignoreCase = true) }
             }
@@ -138,16 +128,5 @@
             val errorMessage = "Failed to load products (Error $errorCode: ${errorBody ?: "Unknown error"})"
             Log.e("API_ERROR", errorMessage)
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
-        }
-        override fun onStart() {
-            super.onStart()
-            // Start checking membership status when the activity is visible
-            handler.post(runnable)
-        }
-
-        override fun onStop() {
-            super.onStop()
-            // Stop checking membership status when the activity is not visible
-            handler.removeCallbacks(runnable)
         }
     }

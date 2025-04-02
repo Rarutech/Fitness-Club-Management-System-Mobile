@@ -2,7 +2,6 @@ package com.upang.fitness_club_management_system
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.widget.ImageButton
 import android.widget.SearchView
 import android.widget.Toast
@@ -22,25 +21,15 @@ import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.model.Profile
-import com.upang.fitness_club_management_system.model.Utils
 
 class BookClass : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var trainerAdapter: TrainersAdapter
     private var allTrainers = listOf<Profile>()
-    private val handler = Handler()
-    private val delay: Long = 5000
-    private val runnable = object : Runnable {
-        override fun run() {
-            Utils.getNotifications(this@BookClass)
-            handler.postDelayed(this, delay)
-        }
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_book_class)
-        Utils.getNotifications(this)
 
         recyclerView = findViewById(R.id.rvTrainers)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -116,16 +105,5 @@ class BookClass : AppCompatActivity() {
             it.fullname.contains(query, ignoreCase = true)
         }
         trainerAdapter.updateList(filteredTrainers)
-    }
-    override fun onStart() {
-        super.onStart()
-        // Start checking membership status when the activity is visible
-        handler.post(runnable)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        // Stop checking membership status when the activity is not visible
-        handler.removeCallbacks(runnable)
     }
 }

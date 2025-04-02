@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         saveEssen()
         checkAuthenticationAfterDelay()
 
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         email?.let { preferenceManager.saveEmail(it) }
         role?.let { preferenceManager.saveRole(it)}
     }
-
 
     private fun checkAuthenticationAfterDelay() {
         Handler(Looper.getMainLooper()).postDelayed({
@@ -54,9 +52,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             Intent(this, Assessment::class.java)
         }
-
-        startActivity(intent)
     }
-
 
 }
