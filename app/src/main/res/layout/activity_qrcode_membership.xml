@@ -10,6 +10,7 @@
 
     <!-- To ensure a large touchable area of back button -->
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:clickable="true"

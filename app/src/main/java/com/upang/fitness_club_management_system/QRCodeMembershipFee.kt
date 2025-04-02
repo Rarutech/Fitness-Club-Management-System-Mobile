@@ -4,11 +4,11 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Handler
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.zxing.BarcodeFormat
@@ -40,8 +40,11 @@ class QRCodeMembershipFee : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-
+        val frameLayout = findViewById<FrameLayout>(R.id.frameLayout)
+        frameLayout.setOnClickListener {
+            val intent = Intent(this@QRCodeMembershipFee, MembershipFee::class.java)
+            startActivity(intent)
+        }
         qrCodeImageView = findViewById(R.id.qrCodeImageView)
 
         imageBackButton = findViewById(R.id.imageBackButton)
