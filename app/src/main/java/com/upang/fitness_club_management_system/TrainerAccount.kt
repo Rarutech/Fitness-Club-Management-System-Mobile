@@ -27,6 +27,8 @@ import retrofit2.Response
 import android.content.Intent
 import android.widget.ImageButton
 import androidx.appcompat.widget.Toolbar
+import com.bumptech.glide.util.Util
+import com.upang.fitness_club_management_system.model.Utils
 
 class TrainerAccount : AppCompatActivity() {
     private lateinit var ordersAdapter: OrdersAdapter
@@ -60,6 +62,7 @@ class TrainerAccount : AppCompatActivity() {
         showLoader()
         fetchUserProfile()
         fetchOrders()
+
     }
 
     private fun showLoader() {

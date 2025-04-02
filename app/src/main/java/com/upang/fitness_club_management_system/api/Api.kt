@@ -43,6 +43,7 @@ import com.upang.fitness_club_management_system.model.UpdateProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateUserProfileResponse
+import com.upang.fitness_club_management_system.model.fetchNotificationResponse
 import com.upang.fitness_club_management_system.model.getMembershipResponse
 import com.upang.fitness_club_management_system.model.memberAuthResponse
 import com.upang.fitness_club_management_system.model.updateMembershipResponse
@@ -237,4 +238,8 @@ interface Api {
     @FormUrlEncoded
     @POST("Api/getMembershipDates.php")
     fun getMembership(@Field("email") email: String) : Call<getMembershipResponse>
+
+    @FormUrlEncoded
+    @POST("Api/fetchNotification.php")
+    fun getNotification(@Field("email") email: String) : Call<fetchNotificationResponse>
 }

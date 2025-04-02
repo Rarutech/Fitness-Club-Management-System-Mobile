@@ -1,16 +1,26 @@
 package com.upang.fitness_club_management_system
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.upang.fitness_club_management_system.adapter.EventAdapter
@@ -22,6 +32,7 @@ import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.helper.TodayDecorator
 import com.upang.fitness_club_management_system.model.Event
 import com.upang.fitness_club_management_system.model.HighlightResponse
+import com.upang.fitness_club_management_system.model.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,7 +53,13 @@ class TrainerHomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 101)
+            }
+        }
+        Utils.checkAuthentication(this)
+        Utils.getNotifications(this)
 
         //Bottom Navigation
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
@@ -122,5 +139,12 @@ class TrainerHomeActivity : AppCompatActivity() {
                 Toast.makeText(this@TrainerHomeActivity, "Error fetching events", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 101) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            }
+        }
     }
 }
