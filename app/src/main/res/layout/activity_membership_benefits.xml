@@ -5,72 +5,199 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="#FFFFFF"
     tools:context=".MembershipBenefits">
 
+    <!-- Caption -->
     <TextView
         android:id="@+id/tvCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
         android:text="Why Join? Here’s What You Can Get!"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.136" />
+        app:layout_constraintVertical_bias="0.088" />
 
     <!-- Rectangle Background -->
-    <ImageView
-        android:id="@+id/imageViewBG1"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:background="@drawable/rectangle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.34" />
-
-    <ImageView
-        android:id="@+id/imageViewBG2"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:background="@drawable/bgrectangle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
-
-    <!-- ViewPager2 for Changing Image and Text -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/slideViewPager"
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewBG2"
+        android:background="@drawable/black_rectangle"
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageViewBG2"
-        app:layout_constraintVertical_bias="0.856" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCaption"
+        app:layout_constraintVertical_bias="0.272">
 
-    <!-- Dot Indicator -->
-    <!--Code here..... -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Premium Plan"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Price -->
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="₱600"
+                    android:textStyle="bold"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/tvPriceMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="per month"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="3dp"
+                    android:contentDescription="Check"
+                    android:src="@drawable/check_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Unlimited Gym Access"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="3dp"
+                    android:contentDescription="Check"
+                    android:src="@drawable/check_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Book Classess and Trainers"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="3dp"
+                    android:contentDescription="Check"
+                    android:src="@drawable/check_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Track Your Progress"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="3dp"
+                    android:contentDescription="Check"
+                    android:src="@drawable/check_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Stay Motivated"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="3dp"
+                    android:contentDescription="Check"
+                    android:src="@drawable/check_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Reminders and Alerts"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
 
     <!--Material Button for different button appearance-->
-    <!-- Next Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNext"
         style="@style/CustomBlueButtonStyle"
         android:layout_width="320dp"
         android:layout_height="55dp"
         android:fontFamily="@font/inter_regular"
-        android:text="Next"
+        android:text="Join Now"
         android:textAllCaps="false"
         android:textColor="#007BFF"
         android:textSize="16sp"
