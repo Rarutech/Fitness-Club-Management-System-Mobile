@@ -54,25 +54,12 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@id/toolbarHome">
-
         <LinearLayout
             android:id="@+id/filterSearchLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/btnFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/filter"
-                    android:contentDescription="Filter"/>
-            </LinearLayout>
+            android:padding="10dp">
             <SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
