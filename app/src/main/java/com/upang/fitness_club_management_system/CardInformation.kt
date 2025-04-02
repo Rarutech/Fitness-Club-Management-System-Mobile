@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +37,18 @@ class CardInformation : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_card_information)
 
+        val frameLayout = findViewById<FrameLayout>(R.id.frameLayout)
+        frameLayout.setOnClickListener {
+            val intent = Intent(this,MembershipFee::class.java)
+            startActivity(intent)
+        }
+
+        val imageBackButton = findViewById<ImageButton>(R.id.imageBackButton)
+        imageBackButton.setOnClickListener {
+            val intent = Intent(this, MembershipFee::class.java)
+            startActivity(intent)
+            finish()
+        }
         PaymentConfiguration.init(
             applicationContext,
             "pk_test_51R7qAeBNSwOEu2mpYqg3LpokRdbt17nufCifDObthMiiOzuybNT8lnbWUJYdYHNr4gSs7QrafjN8ExeScD91FcLN002nD7PMvM"

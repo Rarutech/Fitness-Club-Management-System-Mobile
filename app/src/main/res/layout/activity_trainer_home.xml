@@ -38,16 +38,6 @@
         app:layout_constraintBottom_toBottomOf="@id/toolbarHome"
         app:layout_constraintEnd_toEndOf="@id/toolbarHome">
 
-        <!-- Notification Icon -->
-        <ImageButton
-            android:id="@+id/btnNotification"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="10dp"
-            android:background="@null"
-            android:contentDescription="Notification"
-            android:src="@drawable/notification" />
-
         <!-- Account Icon -->
         <ImageButton
             android:id="@+id/btnAccount"
