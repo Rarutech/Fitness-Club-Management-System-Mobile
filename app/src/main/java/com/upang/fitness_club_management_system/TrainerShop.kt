@@ -6,6 +6,7 @@
     import android.os.Bundle
     import android.os.Handler
     import android.util.Log
+    import android.widget.ImageButton
     import android.widget.SearchView
     import android.widget.Toast
     import androidx.appcompat.app.AppCompatActivity
@@ -65,6 +66,11 @@
                     return true
                 }
             })
+            val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
+            btnAccount.setOnClickListener {
+                val intent = Intent(this, TrainerAccount::class.java)
+                startActivity(intent)
+            }
 
             fetchInventory()
             setupBottomNavigationView()

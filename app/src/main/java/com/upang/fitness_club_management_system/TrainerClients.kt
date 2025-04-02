@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +42,11 @@ class TrainerClients : AppCompatActivity() {
         setContentView(R.layout.activity_trainer_clients)
         Utils.getNotifications(this)
 
+        val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
+        btnAccount.setOnClickListener {
+            val intent = Intent(this, TrainerAccount::class.java)
+            startActivity(intent)
+        }
 
         recyclerView = findViewById(R.id.clientRecyclerView)
         searchView = findViewById(R.id.searchView)
