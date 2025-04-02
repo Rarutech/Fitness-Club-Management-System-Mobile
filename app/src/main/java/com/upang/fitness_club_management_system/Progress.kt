@@ -2,6 +2,7 @@ package com.upang.fitness_club_management_system
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -21,6 +22,7 @@ import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.TraineeProgressDateResponse
 import com.upang.fitness_club_management_system.model.TraineeProgressResponse
+import com.upang.fitness_club_management_system.model.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,11 +37,19 @@ class Progress : AppCompatActivity() {
     private lateinit var tvYear: TextView
     private lateinit var calendarView: CalendarView
     private var selectedDate: String = ""
-
+    private val handler = Handler()
+    private val delay: Long = 5000
+    private val runnable = object : Runnable {
+        override fun run() {
+            Utils.getNotifications(this@Progress)
+            handler.postDelayed(this, delay)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_progress)
+        Utils.getNotifications(this)
 
         val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
         btnAccount.setOnClickListener {
@@ -200,5 +210,16 @@ class Progress : AppCompatActivity() {
     private fun getCurrentYear(): String {
         val calendar = Calendar.getInstance()
         return calendar.get(Calendar.YEAR).toString()
+    }
+    override fun onStart() {
+        super.onStart()
+        // Start checking membership status when the activity is visible
+        handler.post(runnable)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Stop checking membership status when the activity is not visible
+        handler.removeCallbacks(runnable)
     }
 }

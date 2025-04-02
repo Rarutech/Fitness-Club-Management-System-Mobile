@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         saveEssen()
         checkAuthenticationAfterDelay()
 
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         role?.let { preferenceManager.saveRole(it)}
     }
 
+
     private fun checkAuthenticationAfterDelay() {
         Handler(Looper.getMainLooper()).postDelayed({
             Utils.checkAuthentication(this)
@@ -45,17 +47,16 @@ class MainActivity : AppCompatActivity() {
         val preferenceManager = PreferenceManager(this)
         val role = preferenceManager.getRole().toString()
 
-        if (role == "trainer") {
-            Log.d("Role", "Current Role: ${role}")
-            val intent  = Intent(this, TrainerHomeActivity::class.java)
-            startActivity(intent)
-            finish()
+        val intent = if (role == "trainer") {
+            Log.d("Role", "Current Role: $role")
+            Intent(this, TrainerHomeActivity::class.java)
         } else {
-            Log.d("Role","Role: ${role}")
-            val intent  = Intent(this, Trainee_Home::class.java)
-            startActivity(intent)
-            finish()
+            Log.d("Role", "Role: $role")
+            Intent(this, Trainee_Home::class.java)
         }
+
+        startActivity(intent)
     }
+
 
 }

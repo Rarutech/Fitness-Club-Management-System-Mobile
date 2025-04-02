@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.SearchView
@@ -20,6 +21,7 @@ import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.model.FetchInventoryResponse
 import com.upang.fitness_club_management_system.model.Product
+import com.upang.fitness_club_management_system.model.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +31,14 @@ class Shop : AppCompatActivity() {
     private lateinit var shopAdapter: ShopAdapter
     private lateinit var sharedPreferences: SharedPreferences
     private var productList: List<Product> = emptyList()
-
+    private val handler = Handler()
+    private val delay: Long = 5000
+    private val runnable = object : Runnable {
+        override fun run() {
+            Utils.getNotifications(this@Shop)
+            handler.postDelayed(this, delay)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,6 +49,7 @@ class Shop : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        Utils.getNotifications(this)
 
         val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
         btnAccount.setOnClickListener {
@@ -153,5 +163,16 @@ class Shop : AppCompatActivity() {
             }
         }
         shopRecyclerView.adapter = shopAdapter
+    }
+    override fun onStart() {
+        super.onStart()
+        // Start checking membership status when the activity is visible
+        handler.post(runnable)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Stop checking membership status when the activity is not visible
+        handler.removeCallbacks(runnable)
     }
 }

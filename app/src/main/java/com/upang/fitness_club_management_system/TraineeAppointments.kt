@@ -1,6 +1,7 @@
 package com.upang.fitness_club_management_system
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -20,6 +21,7 @@ import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.TraineeRequestApiResponse
 import com.upang.fitness_club_management_system.model.TraineeRequestResponse
+import com.upang.fitness_club_management_system.model.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +31,15 @@ class TraineeAppointments : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TraineeAppointmentAdapter
     private var allAppointments = listOf<TraineeRequestResponse>()
+    private val handler = Handler()
+    private val delay: Long = 5000
+    private val runnable = object : Runnable {
+        override fun run() {
+            Utils.getNotifications(this@TraineeAppointments)
+            handler.postDelayed(this, delay)
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,5 +148,16 @@ class TraineeAppointments : AppCompatActivity() {
             recyclerView.visibility = View.VISIBLE
             adapter.updateList(filteredAppointments)
         }
+    }
+    override fun onStart() {
+        super.onStart()
+        // Start checking membership status when the activity is visible
+        handler.post(runnable)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Stop checking membership status when the activity is not visible
+        handler.removeCallbacks(runnable)
     }
 }

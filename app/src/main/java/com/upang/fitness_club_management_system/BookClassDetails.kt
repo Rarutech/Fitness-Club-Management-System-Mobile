@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.upang.fitness_club_management_system.api.ReviewsAdapter
 import com.upang.fitness_club_management_system.model.TrainerReviewResponse
+import com.upang.fitness_club_management_system.model.Utils
 
 class BookClassDetails : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
@@ -42,6 +43,8 @@ class BookClassDetails : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        Utils.getNotifications(this)
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {

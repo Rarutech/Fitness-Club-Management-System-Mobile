@@ -28,6 +28,7 @@ import com.upang.fitness_club_management_system.adapter.HighlightAdapter
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.EventDecorator
+import com.upang.fitness_club_management_system.helper.NotificationWorker
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.helper.TodayDecorator
 import com.upang.fitness_club_management_system.model.Event
@@ -37,6 +38,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.HashSet
+import java.util.concurrent.TimeUnit
 
 
 class TrainerHomeActivity : AppCompatActivity() {
@@ -53,15 +55,9 @@ class TrainerHomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 101)
-            }
-        }
         Utils.checkAuthentication(this)
-        Utils.getNotifications(this)
+        startNotificationWorker()
 
-        //Bottom Navigation
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         bottomNavigationView.selectedItemId = R.id.actionHomeTrainer
@@ -146,5 +142,14 @@ class TrainerHomeActivity : AppCompatActivity() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             }
         }
+    }
+    private fun startNotificationWorker() {
+        val notificationWorkRequest = PeriodicWorkRequestBuilder<NotificationWorker>(15, TimeUnit.MINUTES)
+            .build()
+
+        // Enqueue the periodic work request
+        WorkManager.getInstance(applicationContext).enqueue(notificationWorkRequest)
+
+        Log.d("LoginActivity", "NotificationWorker enqueued after login.")
     }
 }
