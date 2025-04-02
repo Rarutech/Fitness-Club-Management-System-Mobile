@@ -44,7 +44,7 @@ class SignupActivity : AppCompatActivity() {
         val btnShowPass2 = findViewById<TextInputLayout>(R.id.btnShowPass2)
 
         progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Singing in...")
+        progressDialog.setMessage("Signing in...")
         progressDialog.setCancelable(false)
 
         tvLogin.setOnClickListener {
