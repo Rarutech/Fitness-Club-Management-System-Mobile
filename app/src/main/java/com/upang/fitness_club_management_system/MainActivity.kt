@@ -48,11 +48,14 @@ class MainActivity : AppCompatActivity() {
         val role = preferenceManager.getRole().toString()
 
         val intent = if (role == "trainer") {
-            Log.d("Role", "Current Role: $role")
+            Log.d("MainActivity", "Current Role: $role")
             Intent(this, TrainerHomeActivity::class.java)
-        } else {
-            Log.d("Role", "Role: $role")
+        } else if (role == "member") {
+            Log.d("MainActivity", "Role: $role")
             Intent(this, Trainee_Home::class.java)
+        } else {
+            Log.d("MainActivity", "Role: $role")
+            Intent(this, Assessment::class.java)
         }
 
         startActivity(intent)

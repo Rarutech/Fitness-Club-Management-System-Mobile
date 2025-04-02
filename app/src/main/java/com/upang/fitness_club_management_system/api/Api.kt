@@ -28,6 +28,7 @@ import com.upang.fitness_club_management_system.model.FetchTraineeProfileRespons
 import com.upang.fitness_club_management_system.model.FetchTrainersResponse
 import com.upang.fitness_club_management_system.model.ForgotPasswordResponse
 import com.upang.fitness_club_management_system.model.LogoutResponse
+import com.upang.fitness_club_management_system.model.MakeTrainer
 import com.upang.fitness_club_management_system.model.PaymentIntentResponse
 import com.upang.fitness_club_management_system.model.RateTrainerRequest
 import com.upang.fitness_club_management_system.model.RateTrainerResponse
@@ -242,4 +243,13 @@ interface Api {
     @FormUrlEncoded
     @POST("Api/fetchNotification.php")
     fun getNotification(@Field("email") email: String) : Call<fetchNotificationResponse>
+
+    @FormUrlEncoded
+    @POST("Api/makeTrainer.php")
+    fun makeTrainer(@Field("email") email: String) : Call<MakeTrainer>
+
+    @FormUrlEncoded
+    @POST("Api/makeMember.php")
+    fun makeMember(@Field("email") email: String) : Call<MakeTrainer>
+
 }
