@@ -26,8 +26,6 @@ class Settings : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        Utils.checkAuthentication(this)
-
         val toolbar = findViewById<Toolbar>(R.id.toolbarSettings)
         toolbar.setNavigationOnClickListener {
             val preferenceManager = PreferenceManager(this)
@@ -91,6 +89,7 @@ class Settings : AppCompatActivity() {
                 if(response.isSuccessful){
                     val preferenceManager = PreferenceManager(this@Settings)
                     preferenceManager.clear()
+                    Utils.checkAuthentication(this@Settings)
                 }
 
             }

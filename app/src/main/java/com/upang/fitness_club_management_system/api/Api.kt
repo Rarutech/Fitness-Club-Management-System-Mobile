@@ -45,6 +45,8 @@ import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRespon
 import com.upang.fitness_club_management_system.model.UpdateUserProfileResponse
 import com.upang.fitness_club_management_system.model.fetchNotificationResponse
 import com.upang.fitness_club_management_system.model.getMembershipResponse
+import com.upang.fitness_club_management_system.model.makeMemberRequest
+import com.upang.fitness_club_management_system.model.makeTrainerResponse
 import com.upang.fitness_club_management_system.model.memberAuthResponse
 import com.upang.fitness_club_management_system.model.updateMembershipResponse
 import okhttp3.MultipartBody
@@ -242,4 +244,12 @@ interface Api {
     @FormUrlEncoded
     @POST("Api/fetchNotification.php")
     fun getNotification(@Field("email") email: String) : Call<fetchNotificationResponse>
+
+    @FormUrlEncoded
+    @POST("Api/makeTrainer.php")
+    fun makeTrainer(@Field("email") email: String) : Call<makeTrainerResponse>
+
+    @FormUrlEncoded
+    @POST("Api/makeTrainer.php")
+    fun makeMember(@Field("email") email: String) : Call<makeMemberRequest>
 }
