@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.upang.fitness_club_management_system.LoginPage
+import com.upang.fitness_club_management_system.MembershipBenefits
 import com.upang.fitness_club_management_system.MembershipFee
 import com.upang.fitness_club_management_system.R
 import com.upang.fitness_club_management_system.Trainee_Home
@@ -95,7 +96,7 @@ object Utils {
                             Log.d("MembershipAuth", "Membership active, proceeding")
                         } else {
                             Log.d("MembershipAuth", "Membership inactive, redirecting to MembershipFee activity")
-                            val intent = Intent(context, MembershipFee::class.java)
+                            val intent = Intent(context, MembershipBenefits::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             context.startActivity(intent)
                         }
