@@ -147,11 +147,6 @@ class TrainerClients : AppCompatActivity() {
             }
         })
     }
-
-
-
-
-
     private fun filter(query: String) {
         filteredRequests.clear()
         if (query.isEmpty()) {

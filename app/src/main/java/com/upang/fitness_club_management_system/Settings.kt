@@ -7,6 +7,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.appcompat.widget.Toolbar
 import android.content.Intent
+import android.view.View
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
@@ -59,12 +62,26 @@ class Settings : AppCompatActivity() {
 
         val changePassword = findViewById<TextView>(R.id.tvChangePass)
         changePassword.setOnClickListener {
-            val intent = Intent(this, CreateNewPassword::class.java)
+            val intent = Intent(this, ChangePassword::class.java)
             startActivity(intent)
         }
         val logout = findViewById<TextView>(R.id.tvLogout)
         logout.setOnClickListener {
+            val ConfirmPassword = findViewById<LinearLayout>(R.id.ConfirmLogout)
+
+            ConfirmPassword.visibility = View.VISIBLE
+
+        }
+
+        val btnYes = findViewById<Button>(R.id.btnYes)
+        btnYes.setOnClickListener {
             logout()
+        }
+
+        val btnNo = findViewById<Button>(R.id.btnNo)
+        btnNo.setOnClickListener {
+            val ConfirmPassword = findViewById<LinearLayout>(R.id.ConfirmLogout)
+            ConfirmPassword.visibility = View.GONE
         }
         val tvAboutUs = findViewById<TextView>(R.id.tvAboutUs)
         tvAboutUs.setOnClickListener {

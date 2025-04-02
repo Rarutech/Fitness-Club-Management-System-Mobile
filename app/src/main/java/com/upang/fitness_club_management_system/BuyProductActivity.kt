@@ -103,10 +103,12 @@ class BuyProductActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener {
             val preferenceManager = PreferenceManager(this)
             val role = preferenceManager.getRole()
-
             if (role != null) {
                 if (role == "trainer") {
                     val intent = Intent(this@BuyProductActivity, TrainerShop::class.java)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this@BuyProductActivity, Shop::class.java)
                     startActivity(intent)
                 }
             } else{

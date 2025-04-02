@@ -30,6 +30,9 @@ class ForgotPassword : AppCompatActivity() {
         val etEmail: EditText = findViewById(R.id.etEmail)
         val btnSend: Button = findViewById(R.id.btnSend)
 
+
+
+
         btnSend.setOnClickListener {
             val email = etEmail.text.toString().trim()
             sendEmailCode(email)

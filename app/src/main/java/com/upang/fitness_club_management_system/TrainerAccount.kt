@@ -49,7 +49,7 @@ class TrainerAccount : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
-            val intent = Intent(this, TrainerHomeActivity::class.java)
+            val intent = Intent(this, BookClass::class.java)
             startActivity(intent)
             finish()
         }

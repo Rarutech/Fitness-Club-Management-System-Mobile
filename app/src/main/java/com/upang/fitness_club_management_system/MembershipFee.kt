@@ -3,6 +3,7 @@ package com.upang.fitness_club_management_system
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -21,6 +22,13 @@ class MembershipFee : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val imageBackButton = findViewById<ImageButton>(R.id.imageBackButton)
+        imageBackButton.setOnClickListener {
+            val intent = Intent(this, MembershipBenefits::class.java)
+            startActivity(intent)
+            finish()
         }
 
         val btnRadio1 = findViewById<RadioButton>(R.id.btnRadio1)
