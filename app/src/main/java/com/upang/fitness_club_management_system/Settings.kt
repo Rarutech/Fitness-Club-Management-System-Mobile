@@ -73,12 +73,12 @@ class Settings : AppCompatActivity() {
 
         }
 
-        val btnYes = findViewById<Button>(R.id.btnYes)
+        val btnYes = findViewById<TextView>(R.id.btnYes)
         btnYes.setOnClickListener {
             logout()
         }
 
-        val btnNo = findViewById<Button>(R.id.btnNo)
+        val btnNo = findViewById<TextView>(R.id.btnNo)
         btnNo.setOnClickListener {
             val ConfirmPassword = findViewById<LinearLayout>(R.id.ConfirmLogout)
             ConfirmPassword.visibility = View.GONE
