@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.MenuItem
+import android.view.View
 import android.widget.ImageButton
+import android.widget.PopupMenu
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -56,8 +59,10 @@ class TrainerClients : AppCompatActivity() {
         searchView.isFocusableInTouchMode = true
         searchView.clearFocus()
 
-        fetchEvents()
+        val dropdownButton: ImageButton = findViewById(R.id.btnFilter)
+        dropdownButton.setOnClickListener { view -> showPopupMenu(view) }
 
+        fetchEvents()
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         bottomNavigationView.selectedItemId = R.id.actionClients
@@ -79,7 +84,6 @@ class TrainerClients : AppCompatActivity() {
             true
         }
 
-        // Implement SearchView Listener
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -92,6 +96,40 @@ class TrainerClients : AppCompatActivity() {
         })
     }
 
+    private fun showPopupMenu(view: View) {
+        val popupMenu = PopupMenu(this, view)
+        popupMenu.menuInflater.inflate(R.menu.dropdown_menu, popupMenu.menu)
+
+        popupMenu.setOnMenuItemClickListener { item: MenuItem ->
+            val selectedStatus = when (item.itemId) {
+                R.id.all -> "All"
+                R.id.approved -> "approved"
+                R.id.pending -> "pending"
+                R.id.completed -> "completed"
+                R.id.rejected -> "rejected"
+                else -> null
+            }
+
+            selectedStatus?.let { filterByStatus(it) } // Apply filter when status is selected
+            true
+        }
+
+        popupMenu.show()
+    }
+    private fun filterByStatus(status: String) {
+        filteredRequests.clear()
+        if (status == "All") {
+            filteredRequests.addAll(trainerRequests)
+        } else {
+            for (request in trainerRequests) {
+                if (request.status.equals(status, ignoreCase = true)) {
+                    filteredRequests.add(request)
+                }
+            }
+        }
+
+        adapter.notifyDataSetChanged() // Refresh RecyclerView
+    }
     private fun fetchEvents() {
         val preferenceManager = PreferenceManager(this)
         val email = preferenceManager.getEmail()

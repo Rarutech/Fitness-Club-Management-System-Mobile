@@ -149,7 +149,6 @@ class TraineeAppointments : AppCompatActivity() {
             adapter.updateList(filteredAppointments)
         }
     }
-
     override fun onStart() {
         super.onStart()
         // Start checking membership status when the activity is visible

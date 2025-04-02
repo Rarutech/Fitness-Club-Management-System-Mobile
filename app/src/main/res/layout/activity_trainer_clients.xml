@@ -60,6 +60,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
+            <LinearLayout
+                android:padding="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btnFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/filter"
+                    android:contentDescription="Filter"/>
+            </LinearLayout>
             <SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"

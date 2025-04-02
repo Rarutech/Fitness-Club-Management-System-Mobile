@@ -44,7 +44,7 @@ class BookClass : AppCompatActivity() {
 
         val btnAccount = findViewById<ImageButton>(R.id.btnAccount)
         btnAccount.setOnClickListener {
-            val intent = Intent(this, TrainerAccount::class.java)
+            val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
 
