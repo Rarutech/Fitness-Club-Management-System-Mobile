@@ -1,5 +1,6 @@
 package com.upang.fitness_club_management_system
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -45,11 +46,11 @@ class BuyProductActivity : AppCompatActivity() {
     private lateinit var productStock: TextView
     private lateinit var btnPurchase: TextView
     private lateinit var quantity: EditText
-    private lateinit var payOffline: RadioButton
     private lateinit var payOnline: RadioButton
     private lateinit var etCard: CardInputWidget
     private var selectedProduct: Product? = null
     private var clientSecret: String? = null
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +65,10 @@ class BuyProductActivity : AppCompatActivity() {
             applicationContext,
             "pk_test_51R7qAeBNSwOEu2mpYqg3LpokRdbt17nufCifDObthMiiOzuybNT8lnbWUJYdYHNr4gSs7QrafjN8ExeScD91FcLN002nD7PMvM"
         )
+
+        progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Buying product...")
+        progressDialog.setCancelable(false)
 
         productImage = findViewById(R.id.productImage)
         productName = findViewById(R.id.productName)
@@ -227,7 +232,7 @@ class BuyProductActivity : AppCompatActivity() {
 
         if (params != null && clientSecret != null) {
             Log.d("PaymentProcess", "Creating payment method with provided card details")
-
+            progressDialog.show()
             stripe.createPaymentMethod(params, callback = object :
                 ApiResultCallback<PaymentMethod> {
                 override fun onSuccess(paymentMethod: PaymentMethod) {
@@ -236,11 +241,13 @@ class BuyProductActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Exception) {
+                    progressDialog.dismiss()
                     Log.e("PaymentProcess", "Payment method error: ${e.message}", e)
                     Toast.makeText(this@BuyProductActivity, "Payment method error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             })
         } else {
+            progressDialog.dismiss()
             Log.e("PaymentProcess", "Invalid card details or missing client secret")
             Toast.makeText(this, "Invalid card details", Toast.LENGTH_LONG).show()
         }
@@ -263,7 +270,6 @@ class BuyProductActivity : AppCompatActivity() {
             override fun onSuccess(result: PaymentIntentResult) {
                 val paymentIntent = result.intent
                 Log.d("PaymentProcess", "Payment successful: ${paymentIntent.status}")
-
                 if (paymentIntent.status == StripeIntent.Status.Succeeded) {
                     val quantity = intent.getIntExtra("quantity", 0)
 
@@ -273,6 +279,7 @@ class BuyProductActivity : AppCompatActivity() {
             }
 
             override fun onError(e: Exception) {
+                progressDialog.dismiss()
                 Log.e("PaymentProcess", "Payment failed: ${e.message}", e)
                 Toast.makeText(this@BuyProductActivity, "Payment failed: ${e.message}", Toast.LENGTH_LONG).show()
             }
@@ -294,6 +301,7 @@ class BuyProductActivity : AppCompatActivity() {
         api.sendOrder(orderRequest).enqueue(object : Callback<OrderResponse> {
             override fun onResponse(call: Call<OrderResponse>, response: Response<OrderResponse>) {
                 if (response.isSuccessful) {
+                    progressDialog.dismiss()
                     Toast.makeText(this@BuyProductActivity, "Product Purchased", Toast.LENGTH_SHORT).show()
                     val preferenceManager = PreferenceManager(this@BuyProductActivity)
                     val role = preferenceManager.getRole()
@@ -307,6 +315,7 @@ class BuyProductActivity : AppCompatActivity() {
                         }
                     }
                 } else {
+                    progressDialog.dismiss()
                     Log.e("ORDER_RESPONSE", "Error: ${response.errorBody()?.string()}")
                 }
             }
@@ -314,6 +323,7 @@ class BuyProductActivity : AppCompatActivity() {
             override fun onFailure(call: Call<OrderResponse>, t: Throwable) {
                 Log.d("ORDER_RESPONSE", "Parameters: email${email}, product name: ${productName}, quantity: ${quantity}")
                 Log.e("ORDER_RESPONSE", "Network error: ${t.message}", t)
+                progressDialog.dismiss()
                 Toast.makeText(this@BuyProductActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })

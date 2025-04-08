@@ -12,6 +12,7 @@ import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.MakeTrainer
+import com.upang.fitness_club_management_system.model.Utils
 
 class Assessment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,8 +24,9 @@ class Assessment : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val btn_trainee = findViewById<ImageButton>(R.id.imgBtnRec)
-        val btn_Trainer = findViewById<ImageButton>(R.id.imgBtnRec2)
+        val btn_trainee = findViewById<ImageButton>(R.id.imgBtnTrainee)
+        val btn_Trainer = findViewById<ImageButton>(R.id.imgBtnTrainer)
+        Utils.checkAuthentication(this)
 
         btn_trainee.setOnClickListener {
             makeTrainee()

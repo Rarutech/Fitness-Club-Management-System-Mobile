@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.upang.fitness_club_management_system.api.Api
@@ -31,7 +32,12 @@ class ForgotPassword : AppCompatActivity() {
         val btnSend: Button = findViewById(R.id.btnSend)
 
 
-
+        val toolbar: Toolbar = findViewById(R.id.toolbar2)
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            startActivity(Intent(this, LoginPage::class.java))
+            finish()
+        }
 
         btnSend.setOnClickListener {
             val email = etEmail.text.toString().trim()

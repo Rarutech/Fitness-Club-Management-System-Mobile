@@ -105,6 +105,8 @@ class EditProfile : AppCompatActivity() {
                     val profile = response.body()
                     if (profile != null) {
                         val profileImageView = findViewById<ImageView>(R.id.imageViewAvatar2)
+                        val currentName = profile.fullname
+                        preferenceManager.saveFullName(currentName)
                         Glide.with(this@EditProfile)
                             .load(RetrofitClient.getBaseImageUrl() + "storage/profiles/" + profile.profile_picture)
                             .into(profileImageView)

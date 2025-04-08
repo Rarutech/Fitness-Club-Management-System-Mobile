@@ -44,6 +44,7 @@ import com.upang.fitness_club_management_system.model.UpdateProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileRequest
 import com.upang.fitness_club_management_system.model.UpdateTrainerProfileResponse
 import com.upang.fitness_club_management_system.model.UpdateUserProfileResponse
+import com.upang.fitness_club_management_system.model.checkEmailResponse
 import com.upang.fitness_club_management_system.model.fetchNotificationResponse
 import com.upang.fitness_club_management_system.model.getMembershipResponse
 import com.upang.fitness_club_management_system.model.memberAuthResponse
@@ -252,4 +253,7 @@ interface Api {
     @POST("Api/makeMember.php")
     fun makeMember(@Field("email") email: String) : Call<MakeTrainer>
 
+    @FormUrlEncoded
+    @POST("Api/checkEmail.php")
+    fun checkEmail(@Field("email") email: String) : Call<checkEmailResponse>
 }

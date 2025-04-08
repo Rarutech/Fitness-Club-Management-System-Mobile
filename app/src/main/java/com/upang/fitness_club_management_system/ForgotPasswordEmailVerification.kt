@@ -1,10 +1,12 @@
 package com.upang.fitness_club_management_system
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,12 +15,15 @@ import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
 import com.upang.fitness_club_management_system.model.ConfirmEmailRequest
 import com.upang.fitness_club_management_system.model.ConfirmEmailResponse
+import com.upang.fitness_club_management_system.model.SendConfirmEmailRequest
+import com.upang.fitness_club_management_system.model.SendConfirmEmailResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ForgotPasswordEmailVerification : AppCompatActivity() {
     private lateinit var btnConfirmEmail: Button
+    private lateinit var progressDialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,6 +39,19 @@ class ForgotPasswordEmailVerification : AppCompatActivity() {
         val otp4 = findViewById<EditText>(R.id.etOTP4)
 
         btnConfirmEmail = findViewById(R.id.btnConfirmEmail)
+        progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Resending code...")
+        progressDialog.setCancelable(false)
+
+        val tvResendCode = findViewById<TextView>(R.id.tvResendCode)
+        tvResendCode.setOnClickListener {
+            val bundle = intent.extras
+            val email = bundle?.getString("email").toString()
+            val fullname = bundle?.getString("fullname").toString()
+            val password = bundle?.getString("password").toString()
+            progressDialog.show()
+            sendEmailCode(email,fullname,password)
+        }
 
         val bundle = intent.extras
 
@@ -66,6 +84,33 @@ class ForgotPasswordEmailVerification : AppCompatActivity() {
 
             override fun onFailure(call: Call<ConfirmEmailResponse>, t: Throwable) {
                 Log.e("EMAIL CONFIRM", "Error: ${t.message}")
+            }
+        })
+    }
+    private fun sendEmailCode(email: String, fullname: String, password: String) {
+        val api = RetrofitClient.instance.create(Api::class.java)
+        val request = SendConfirmEmailRequest(email)
+        progressDialog.show()
+        api.GetEmailCode(request).enqueue(object : Callback<SendConfirmEmailResponse> {
+            override fun onResponse(call: Call<SendConfirmEmailResponse>, response: Response<SendConfirmEmailResponse>) {
+                if (response.isSuccessful) {
+                    val intent = Intent(this@ForgotPasswordEmailVerification, ConfirmEmailActivity::class.java).apply {
+                        putExtra("email", email)
+                        putExtra("fullname", fullname)
+                        putExtra("password", password)
+                    }
+                    progressDialog.dismiss()
+                    startActivity(intent)
+                    finish()
+                } else {
+                    progressDialog.dismiss()
+                    Log.e("EMAIL CODE", "Error: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<SendConfirmEmailResponse>, t: Throwable) {
+                progressDialog.dismiss()
+                Log.e("EMAIL CODE", "Error: ${t.message}")
             }
         })
     }

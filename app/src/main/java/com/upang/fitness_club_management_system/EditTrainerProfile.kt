@@ -63,6 +63,7 @@ class EditTrainerProfile : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         tvSaveBtn = findViewById(R.id.tvSaveBtn)
         ivBtn = findViewById(R.id.ivBtn)
+        etAboutMe = findViewById(R.id.etAboutMe)
         etFullname = findViewById(R.id.etFullName)
 
         progressDialog = ProgressDialog(this)
@@ -82,7 +83,7 @@ class EditTrainerProfile : AppCompatActivity() {
                 updatePicture()
             }
         }
-        val toolbartrainer = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbarEditTrainerProfile)
+        val toolbartrainer = findViewById<Toolbar>(R.id.toolbarEditTrainerProfile)
         setSupportActionBar(toolbartrainer)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

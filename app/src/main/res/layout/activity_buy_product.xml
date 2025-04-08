@@ -150,6 +150,10 @@
                 android:visibility="gone"/>
 
             <!-- Place Order Button -->
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="100sp"/>
             <Button
                 android:id="@+id/btnPurchase"
                 android:layout_width="320dp"

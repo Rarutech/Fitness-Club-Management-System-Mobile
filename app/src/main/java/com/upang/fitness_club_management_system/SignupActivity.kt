@@ -16,8 +16,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputLayout
 import com.upang.fitness_club_management_system.api.Api
 import com.upang.fitness_club_management_system.api.RetrofitClient
+import com.upang.fitness_club_management_system.helper.PreferenceManager
 import com.upang.fitness_club_management_system.model.SendConfirmEmailRequest
 import com.upang.fitness_club_management_system.model.SendConfirmEmailResponse
+import com.upang.fitness_club_management_system.model.checkEmailResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -90,7 +92,7 @@ class SignupActivity : AppCompatActivity() {
                 password != confirmPassword ->
                     Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
 
-                else -> sendEmailCode(email, fullname, password)
+                else -> checkEmail(email, fullname, password)
             }
         }
     }
@@ -125,5 +127,33 @@ class SignupActivity : AppCompatActivity() {
     private fun isValidEmail(email: String): Boolean {
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         return email.matches(emailPattern.toRegex())
+    }
+
+    private fun checkEmail(email: String, fullname: String, password: String) {
+        val api = RetrofitClient.instance.create(Api::class.java)
+
+        api.checkEmail(email).enqueue(object: retrofit2.Callback<checkEmailResponse>{
+            override fun onResponse(
+                call: Call<checkEmailResponse>,
+                response: Response<checkEmailResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val checkEmailResponse = response.body()
+                    if (checkEmailResponse != null) {
+                        if (checkEmailResponse.exists) {
+                            Toast.makeText(this@SignupActivity, "Email already exists", Toast.LENGTH_SHORT).show()
+                        } else {
+                            sendEmailCode(email, fullname, password)
+                        }
+                    }
+                } else {
+                    Log.e("CheckEmail", "Error: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<checkEmailResponse>, t: Throwable) {
+                Log.e("CheckEmail", "Error: ${t.message}")
+            }
+        })
     }
 }
